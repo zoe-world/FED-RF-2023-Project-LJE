@@ -1,3 +1,9 @@
 @charset "utf-8";
 
-/* 요소 리셋 CSS - reset.css */
+/* MDLA 리셋 CSS - reset.css */
+:where(*) {
+
+}
+html{
+    font-size: max(20px,calc(8px + .83333vw));
+}
