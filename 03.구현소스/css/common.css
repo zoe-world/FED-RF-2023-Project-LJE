@@ -1,3 +1,100 @@
 @charset "utf-8";
 
+@import url(./reset.css);
+
+/* root 셋팅 */
+:root {
+    --black-01:#1c1c1c;
+    --black-02:#606060;
+    --black-03:#999999;
+    --font-1: var(--hd-ff);
+    --font-2: var(--ct-ff);
+    --hd-ff: PlayfairDisplay, Times New Roman, sans-serif;
+    --ct-ff: Poppins, Arial, sans-serif;
+    --hd-fs-02: clamp(34rem,9vw,19.3vw);
+    --hd-fs-03: ;
+} 
+html{
+    font-size: 62.5%;
+    -webkit-text-size-adjust: 100%;
+}
+body{
+    color: #000;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1;
+    font-family: var(--font-2);
+    font-weight: 400;
+    font-size: 1.6rem;
+    letter-spacing: -0.05rem;
+}
+h2 {
+    font-family: var(--font-1);
+    font-size: var(--hd-fs-02);
+}
+/* 12그리드 */
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+.col-none {display: none;}
+.col-block {display: none;}
+
+@media screen and (max-width:1000px) {
+    .col2-1 {width: 8.33%;}
+    .col2-2 {width: 16.66%;}
+    .col2-3 {width: 25%;}
+    .col2-4 {width: 33.33%;}
+    .col2-5 {width: 41.66%;}
+    .col2-6 {width: 50%;}
+    .col2-7 {width: 58.33%;}
+    .col2-8 {width: 66.66%;}
+    .col2-9 {width: 75%;}
+    .col2-10 {width: 83.33%;}
+    .col2-11 {width: 91.66%;}
+    .col2-12 {width: 100%;}
+    .col2-none {display: none;}
+    .col2-block {display: none;}
+}
+
 /* MDLA 공통영역 CSS - common.css */
+
+/************************************
+    0. 공통 레이아웃
+************************************/
+.wrap{
+    margin: 0 auto;
+    max-width: 1920px;
+}
+/************************************
+    1. 상단영역 
+************************************/
+header {
+    display: flex;
+}
+/* 1-1. 로고 */
+
+/* 1-2. 검색영역 */
+
+/* 1-2-1. 검색버튼 */
+
+/* 1-2-2. 검색박스 */
+
+/* 1-2-2-1. 검색어 입력칸 */
+
+/* 1-2-2-2. 검색 카테고리 */
+
+/* 1-3. GNB메뉴 */
+
+/********************************** 
+    2. 전체화면 메뉴영 
+**********************************/
+
+/* 2-1. 전체메뉴 배경 */
