@@ -22,9 +22,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 section, main { display:block } 
 img { max-width: 100%; vertical-align: middle; display: inline-block; }
 h1, h2, h3, h4, h5, h6, em, strong { font-weight:600; } 
-svg {
-    width: 100%;
-}
+
 /* 폰트 */
 @font-face {
     font-family: PlayfairDisplay;
