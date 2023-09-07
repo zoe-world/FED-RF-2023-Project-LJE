@@ -25,8 +25,7 @@ function loadFn() {
     // 1. 대상: .nav-item
     // 1-1. 대상확인
     const navLink = qsa(".nav-item");
-    let navEach =[];
-    let navTxt = '';
+
     // 2. 이벤트 대상
     //.nav-item .btn-text 안에 span
 
@@ -37,38 +36,29 @@ function loadFn() {
         }
         return new_nav;
     };
-
+    // .nav-item안에 .btn-text, .btn-text2를 navName 배열 순으로 넣기
     navLink.forEach((ele, idx) => {
-        navEach.push(newEle(navName[idx]));
         ele.innerHTML = `
             <span class="btn-text">${newEle(navName[idx])}</span>
             <span class="btn-text2">${newEle(navName[idx])}</span>
         `;
     });
 
-    navLink.forEach(ele=>{
-        let temp = ele.querySelectorAll('span>span')
-        console.log(temp);
-        let cnt = temp.length/2;
-        temp.forEach((ele,idx)=>{
+    //.btn-text 안에 span에 transitionDelay 주기.
+    navLink.forEach((ele) => {
+        let temp = ele.querySelectorAll("span>span");
+        let cnt = temp.length / 2;
+        temp.forEach((ele, idx) => {
             let num = idx;
-            if(idx>=cnt) num = idx - cnt;
-            ele.style.transitionDelay=(0.05*num)+'s';
-        })
+            if (idx >= cnt) {
+                num = idx - cnt;
+                ele.style.display = "inline-block";
+                ele.style.transform = "translateY(100%)";
+            } else {
+                ele.style.display = "inline-block";
+                ele.style.transform = "translateY(0)";
+            }
+            ele.style.transitionDelay = 0.05 * num + "s";
+        });
     });
-
-
-
-    // // 네비게이션 글자를 받아옴
-    // navTxt = navEach.toString();
-    // console.log(navTxt);
-
-    // // 3. 생성된 span에 transition주기
-    // navTxt.forEach((ele,idx)=>{
-    //     // console.log(ele,idx,array);
-    //     ele.querySelectorAll('span').style.transitionDelay =  (0.05*idx) +'s';
-    // });
-
-
-    
 } //////// loadFn //////////

@@ -170,21 +170,26 @@ header .logo > a{
     background: url(../images/mdla1.png) no-repeat center/contain;
 }
 /* navigation common */
-.nav-items button,
-.nav-items a{
+.nav button,
+.nav a{
     font-size: 1.8rem;
 }
-.nav-items a{
+.nav-item{
     position: relative;
     overflow: hidden;
+    transition: .3s ease;
 }
-.nav-items a [class^="btn-text"]{
+.nav-item [class^="btn-text"]{
     display: flex;
     gap: 0.1rem;
     text-transform: uppercase;
 }
-.nav-items a .btn-text2 {
+.nav-item .btn-text2 {
     position: absolute;
+    top: 0;
+    bottom: auto;
+    left: 0;
+    right: auto;
 }
 /* 1-2. 검색영역 */
 .search-wrap{
@@ -334,7 +339,7 @@ header.inverse{
     background-color: var(--black-01);
     border-color: #fff;
 }
-header.inverse .nav-items a{
+header.inverse .nav-item{
     color: #fff;
 }
 header.inverse .logo > a{
