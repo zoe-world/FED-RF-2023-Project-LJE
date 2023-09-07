@@ -20,8 +20,8 @@ function loadFn() {
         span으로 단어를 하나씩 감싼뒤에, 단어 별로 끊어서 transition을 0.1씩 느리게 준다. 
     */
     // 0. 네비에 들어가야하는 텍스트
-    const navName = ["Resort 2024", "Top stories", "Trend reports", "Latest shows"];
-    
+    let navName = ["Resort 2024", "Top stories", "Trend reports", "Latest shows"];
+
     // 1. 대상: .nav-item
     // 1-1. 대상확인
     const navLink = qsa(".nav-item");
@@ -46,15 +46,28 @@ function loadFn() {
         `;
     });
 
-    // 네비게이션 글자를 받아옴
-    navTxt = navEach.toString();
-    console.log(navTxt);
-
-    // 3. 생성된 span에 transition주기
-    navTxt.forEach((ele,idx)=>{
-        // console.log(ele,idx,array);
-        ele[idx].querySelectorAll('span').style.transitionDelay =  (0.05*idx) +'s';
+    navLink.forEach(ele=>{
+        let temp = ele.querySelectorAll('span>span')
+        console.log(temp);
+        let cnt = temp.length/2;
+        temp.forEach((ele,idx)=>{
+            let num = idx;
+            if(idx>=cnt) num = idx - cnt;
+            ele.style.transitionDelay=(0.05*num)+'s';
+        })
     });
+
+
+
+    // // 네비게이션 글자를 받아옴
+    // navTxt = navEach.toString();
+    // console.log(navTxt);
+
+    // // 3. 생성된 span에 transition주기
+    // navTxt.forEach((ele,idx)=>{
+    //     // console.log(ele,idx,array);
+    //     ele.querySelectorAll('span').style.transitionDelay =  (0.05*idx) +'s';
+    // });
 
 
     
