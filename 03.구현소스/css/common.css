@@ -150,8 +150,9 @@ header{
     position: fixed;
     z-index: 999;
     top: 0;
-    display: flex;
+    display: grid;
     align-items: center;
+    grid-template-columns: 1fr 2fr 1.5fr;
     width: 100%;
     padding: 1vw;
     background-color: #fff;
@@ -176,6 +177,9 @@ header .logo > a{
 .nav-items a{
     position: relative;
     overflow: hidden;
+}
+.nav-items a [class^="btn-text"]{
+    text-transform: uppercase   ;
 }
 .nav-items a .btn-text2 {
     position: absolute;
