@@ -179,7 +179,9 @@ header .logo > a{
     overflow: hidden;
 }
 .nav-items a [class^="btn-text"]{
-    text-transform: uppercase   ;
+    display: flex;
+    gap: 0.1rem;
+    text-transform: uppercase;
 }
 .nav-items a .btn-text2 {
     position: absolute;
