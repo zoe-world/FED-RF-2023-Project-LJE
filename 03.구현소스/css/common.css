@@ -170,14 +170,13 @@ header .logo > a{
     background: url(../images/mdla1.png) no-repeat center/contain;
 }
 /* navigation common */
-.nav button,
 .nav a{
-    font-size: 1.8rem;
+    font-size:clamp(1.4rem,1.8rem,1.8vw);
 }
 .nav-item{
     position: relative;
     overflow: hidden;
-    transition: .3s ease;
+    transition: translate .3s ease;
 }
 .nav-item [class^="btn-text"]{
     display: flex;
@@ -190,6 +189,9 @@ header .logo > a{
     bottom: auto;
     left: 0;
     right: auto;
+}
+.nav-item .btn-text2 span{
+    color: red;
 }
 /* 1-2. 검색영역 */
 .search-wrap{
@@ -207,6 +209,7 @@ header .logo > a{
     border: 1px solid var(--black-02);
     text-transform: uppercase;
     transition: 0.2s linear;
+    font-size:clamp(1.4rem,1.8rem,1.8vw);
 }
 .search-box .search-btn:hover,
 .search-box .search-btn:focus-visible{
