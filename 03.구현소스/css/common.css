@@ -176,12 +176,13 @@ header .logo > a{
 .nav-item{
     position: relative;
     overflow: hidden;
-    transition: translate .3s ease;
+    transition: ease all .3s;
 }
 .nav-item [class^="btn-text"]{
     display: flex;
-    gap: 0.1rem;
     text-transform: uppercase;
+    transition: ease all .3s;
+    transform-style: preserve-3d;
 }
 .nav-item .btn-text2 {
     position: absolute;
@@ -191,7 +192,7 @@ header .logo > a{
     right: auto;
 }
 .nav-item .btn-text2 span{
-    color: red;
+
 }
 /* 1-2. 검색영역 */
 .search-wrap{

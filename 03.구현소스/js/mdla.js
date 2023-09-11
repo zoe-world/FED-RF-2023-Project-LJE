@@ -57,12 +57,14 @@ function loadFn() {
     temp.forEach((ele, idx) => {
       let num = idx;
       if (idx >= cnt) {
+        //.btn-text2
         num = idx - cnt;
         ele.style.display = "inline-block";
-        ele.style.transform = "translateY(100%)";
+        ele.style.transform = "translate(0, 100%)";
       } else {
+        //.btn-text
         ele.style.display = "inline-block";
-        ele.style.transform = "translateY(0px)";
+        ele.style.transform = "translate(0px, 0px) translateZ(10px)";
       }
       ele.style.transitionDelay = 0.05 * num + "s";
     });
@@ -79,10 +81,24 @@ function loadFn() {
     let mtit = domFn.qsaEl(ele, "span>span");
     let cnt = mtit.length / 2;
     domFn.addEvt(ele, "mouseover", overFn);
+    domFn.addEvt(ele, "mouseout", leaveFn);
     function overFn() {
-      if (idx < cnt) {
-        ele.querySelectorAll('.txt').style.transform = "translateY(100%)";
-      }
+      Array.from(mtit).forEach((ele,idx)=>{
+      if (idx >= cnt) {
+            ele.style.transform = "translate(0px,0px)";
+          } else {
+            ele.style.transform = "translate(0px, 100%)";
+          }
+        })
+    }
+    function leaveFn() {
+      Array.from(mtit).forEach((ele,idx)=>{
+      if (idx >= cnt) {
+            ele.style.transform = "translate(0px,100%)";
+          } else {
+            ele.style.transform = "translate(0px,0px)";
+          }
+        })
     }
   });
 } //////// loadFn //////////
