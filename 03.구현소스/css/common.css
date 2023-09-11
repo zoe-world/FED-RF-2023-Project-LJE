@@ -176,13 +176,11 @@ header .logo > a{
 .nav-item{
     position: relative;
     overflow: hidden;
-    transition: ease all .3s;
 }
 .nav-item [class^="btn-text"]{
     display: flex;
     text-transform: uppercase;
-    transition: ease all .3s;
-    transform-style: preserve-3d;
+    transition: transform ease-in-out .1s;
 }
 .nav-item .btn-text2 {
     position: absolute;
@@ -191,8 +189,9 @@ header .logo > a{
     left: 0;
     right: auto;
 }
-.nav-item .btn-text2 span{
-
+.nav-item [class^="btn-text"] span{
+    margin-left: 0.1rem;
+    transition: transform ease-in-out .1s;
 }
 /* 1-2. 검색영역 */
 .search-wrap{
@@ -271,7 +270,12 @@ header .logo > a{
     width: 100%;
     height: 100%;
     background-color: var(--black-01);
+    transition: transform .8s cubic-bezier(.165, .84, .44, 1);
+    transform: matrix(1, 0, 0, 1, 0, -1000);
 }
+.fsc-menu-wrap {pointer-events:none}
+.fsc-menu-wrap.show {pointer-events:all;}
+.fsc-menu-wrap.show .menu-bg{ transform: matrix(1, 0, 0, 1, 0, 0);}
 .fsc-menu-wr{
     height: 100%;
 }

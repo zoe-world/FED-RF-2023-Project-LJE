@@ -52,21 +52,20 @@ function loadFn() {
             <span class="btn-text">${newEle(navName[idx])}</span>
             <span class="btn-text2">${newEle(navName[idx])}</span>
         `;
-    let temp = ele.querySelectorAll("span>span");
+    let temp = domFn.qsaEl(ele, "span>span");
     let cnt = temp.length / 2;
     temp.forEach((ele, idx) => {
       let num = idx;
       if (idx >= cnt) {
         //.btn-text2
         num = idx - cnt;
-        ele.style.display = "inline-block";
-        ele.style.transform = "translate(0, 100%)";
+        ele.style.transform = "matrix(1, 0, 0, 1, 0, 18)";
+        ele.style.transitionDelay = 0.05 * num + "s";
       } else {
         //.btn-text
-        ele.style.display = "inline-block";
-        ele.style.transform = "translate(0px, 0px) translateZ(10px)";
+        ele.style.transform = "matrix(1, 0, 0, 1, 0, 0)";
+        ele.style.transitionDelay = 0.05 * num + "s";
       }
-      ele.style.transitionDelay = 0.05 * num + "s";
     });
   }); ////////// forEach ////////////
 
@@ -76,29 +75,38 @@ function loadFn() {
 
   // 1. 대상선정
   // 1-1. navLink
-
-  navLink.forEach((ele, idx) => {
+  navLink.forEach((ele) => {
     let mtit = domFn.qsaEl(ele, "span>span");
     let cnt = mtit.length / 2;
     domFn.addEvt(ele, "mouseover", overFn);
     domFn.addEvt(ele, "mouseout", leaveFn);
     function overFn() {
-      Array.from(mtit).forEach((ele,idx)=>{
-      if (idx >= cnt) {
-            ele.style.transform = "translate(0px,0px)";
-          } else {
-            ele.style.transform = "translate(0px, 100%)";
-          }
-        })
+      Array.from(mtit).forEach((ele, idx) => {
+        let num = idx;
+        //.btn-text2
+        if (idx >= cnt) {
+          num = idx - cnt;
+          ele.style.transform = "matrix(1, 0, 0, 1, 0, 0)";
+          ele.style.transitionDelay = 0.05 * num + "s";
+        } else {
+          ele.style.transform = "matrix(1, 0, 0, 1, 0, -18)";
+          ele.style.transitionDelay = 0.05 * num + "s";
+        }
+      });
     }
     function leaveFn() {
-      Array.from(mtit).forEach((ele,idx)=>{
-      if (idx >= cnt) {
-            ele.style.transform = "translate(0px,100%)";
-          } else {
-            ele.style.transform = "translate(0px,0px)";
-          }
-        })
+      Array.from(mtit).forEach((ele, idx) => {
+        let num = idx;
+        if (idx >= cnt) {
+          //.btn-text2
+          num = idx - cnt;
+          ele.style.transform = "matrix(1, 0, 0, 1, 0, 18)";
+          ele.style.transitionDelay = 0.05 * num + "s";
+        } else {
+          ele.style.transform = "matrix(1, 0, 0, 1, 0, 0)";
+          ele.style.transitionDelay = 0.05 * num + "s";
+        }
+      });
     }
   });
 } //////// loadFn //////////
