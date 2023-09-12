@@ -29,7 +29,7 @@ function loadFn() {
         span으로 단어를 하나씩 감싼뒤에, 단어 별로 끊어서 transition을 0.1씩 느리게 준다. 
     */
   // 0. 네비에 들어가야하는 텍스트
-  let navName = ["Resort 2024", "Top stories", "Trend reports", "Latest shows"];
+  let navName = ["Resort 2024", "Top stories", "Trend reports", "Latest shows", "Menu"];
 
   // 1. 대상: .nav-item
   // 1-1. 대상확인
