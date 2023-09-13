@@ -14,47 +14,78 @@ const domFn = {
   addEvt: (ele, evt, fn) => ele.addEventListener(evt, fn),
 }; ///////// domFn 객체 ///////////
 
-// 로드구역 //////////////
-window.addEventListener("DOMContentLoaded", loadFn);
+/* 부드러운 스크롤 호출 */
+startSS();
 
-// 로드함수 /////////////
-function loadFn() {
-  /* 부드러운 스크롤 호출 */
-  startSS();
-  /* 
-        시나리오
-        nav-item에 들어갈 텍스트들을 배열로 나열한 후에,
-        그 텍스트들을 .nav-item에 넣어줘야함
-        .nav-item 배열 개수에 맞게 생성해서 그 안에 집어 넣어야함
-        span으로 단어를 하나씩 감싼뒤에, 단어 별로 끊어서 transition을 0.1씩 느리게 준다. 
-    */
-  // 0. 네비에 들어가야하는 텍스트
-  let navName = ["Resort 2024", "Top stories", "Trend reports", "Latest shows", "Menu"];
+// nav-item 에 들어가는 span html 로 넣기
 
-  // 1. 대상: .nav-item
-  // 1-1. 대상확인
-  const navLink = domFn.qsa(".nav-item");
+const navName = [
+  "Resort 2024",
+  "Top stories",
+  "Trend reports",
+  "Latest shows",
+  "Menu",
+];
 
-  // 2. 이벤트 대상
-  //.nav-item .btn-text 안에 span
-
-  const newEle = (txt) => {
-    let new_nav = "";
-    for (let x of txt) {
-      new_nav += `<span class="txt">${x}</span>`;
-    }
-    return new_nav;
-  };
-  // .nav-item안에 .btn-text, .btn-text2를 navName 배열 순으로 넣기
-  //.btn-text 안에 span에 transitionDelay 주기
-  navLink.forEach((ele, idx) => {
-    ele.innerHTML = `
+const navLink = domFn.qsa(".nav-item");
+const newEle = (txt) => {
+  let new_nav = "";
+  for (let x of txt) {
+    new_nav += `<span class="txt">${x}</span>`;
+  }
+  return new_nav;
+};
+/* 
+.nav-item안에 .btn-text, .btn-text2를 navName 배열 순으로 넣고,
+.btn-text 안에 span에 transitionDelay 주기
+*/
+navLink.forEach((ele, idx) => {
+  ele.innerHTML = `
             <span class="btn-text">${newEle(navName[idx])}</span>
             <span class="btn-text2">${newEle(navName[idx])}</span>
         `;
-    let temp = domFn.qsaEl(ele, "span>span");
-    let cnt = temp.length / 2;
-    temp.forEach((ele, idx) => {
+  let temp = domFn.qsaEl(ele, "span>span");
+  let cnt = temp.length / 2;
+  temp.forEach((ele, idx) => {
+    let num = idx;
+    if (idx >= cnt) {
+      //.btn-text2
+      num = idx - cnt;
+      ele.style.transform = "matrix(1, 0, 0, 1, 0, 18)";
+      ele.style.transitionDelay = 0.05 * num + "s";
+    } else {
+      //.btn-text
+      ele.style.transform = "matrix(1, 0, 0, 1, 0, 0)";
+      ele.style.transitionDelay = 0.05 * num + "s";
+    }
+  });
+}); ////////// forEach ////////////
+
+// navLink에 마우스오버했을 때, .btn-text에 translate 효과 주기
+
+navLink.forEach((ele) => {
+  let mtit = domFn.qsaEl(ele, "span>span");
+  let cnt = mtit.length / 2;
+  domFn.addEvt(ele, "mouseover", overFn);
+  domFn.addEvt(ele, "mouseout", leaveFn);
+
+  function overFn() {
+    Array.from(mtit).forEach((ele, idx) => {
+      let num = idx;
+      //.btn-text2
+      if (idx >= cnt) {
+        num = idx - cnt;
+        ele.style.transform = "matrix(1, 0, 0, 1, 0, 0)";
+        ele.style.transitionDelay = 0.05 * num + "s";
+      } else {
+        ele.style.transform = "matrix(1, 0, 0, 1, 0, -18)";
+        ele.style.transitionDelay = 0.05 * num + "s";
+      }
+    });
+  }
+
+  function leaveFn() {
+    Array.from(mtit).forEach((ele, idx) => {
       let num = idx;
       if (idx >= cnt) {
         //.btn-text2
@@ -62,51 +93,38 @@ function loadFn() {
         ele.style.transform = "matrix(1, 0, 0, 1, 0, 18)";
         ele.style.transitionDelay = 0.05 * num + "s";
       } else {
-        //.btn-text
         ele.style.transform = "matrix(1, 0, 0, 1, 0, 0)";
         ele.style.transitionDelay = 0.05 * num + "s";
       }
     });
-  }); ////////// forEach ////////////
+  }
+});
 
-  // navLink에 마우스오버했을 때,
-  // span>span 중 앞에 .btn-text는 transform translateY 가 -100% 되어야 하고,
-  // span>span 중 뒤에 .btn-text2는 transform translateY 가 0% 되어야 한다
+/* 
+  메인그림판영역에서 마우스 커서를 따라서 이동하는 .cursor__wrap 만들기 
+*/
 
-  // 1. 대상선정
-  // 1-1. navLink
-  navLink.forEach((ele) => {
-    let mtit = domFn.qsaEl(ele, "span>span");
-    let cnt = mtit.length / 2;
-    domFn.addEvt(ele, "mouseover", overFn);
-    domFn.addEvt(ele, "mouseout", leaveFn);
-    function overFn() {
-      Array.from(mtit).forEach((ele, idx) => {
-        let num = idx;
-        //.btn-text2
-        if (idx >= cnt) {
-          num = idx - cnt;
-          ele.style.transform = "matrix(1, 0, 0, 1, 0, 0)";
-          ele.style.transitionDelay = 0.05 * num + "s";
-        } else {
-          ele.style.transform = "matrix(1, 0, 0, 1, 0, -18)";
-          ele.style.transitionDelay = 0.05 * num + "s";
-        }
-      });
-    }
-    function leaveFn() {
-      Array.from(mtit).forEach((ele, idx) => {
-        let num = idx;
-        if (idx >= cnt) {
-          //.btn-text2
-          num = idx - cnt;
-          ele.style.transform = "matrix(1, 0, 0, 1, 0, 18)";
-          ele.style.transitionDelay = 0.05 * num + "s";
-        } else {
-          ele.style.transform = "matrix(1, 0, 0, 1, 0, 0)";
-          ele.style.transitionDelay = 0.05 * num + "s";
-        }
-      });
-    }
-  });
-} //////// loadFn //////////
+// 1.  대상선정 : .cursor__box
+const cursorBox = domFn.qs(".cursor__box");
+let hcode = "";
+
+for (let x in brand) {
+  hcode += `
+  <a href="#" class="cursor__wrap">
+    <img src="./images/${brand[x]["imgsrc"]}" loading="eager" alt="" />
+    <h3 class="h3__case">
+        <span class="brand__name">${brand[x]["brand"]}.</span>
+        <span class="tit">${brand[x]["title"]}.</span>
+        Tapping into youth culture to create a new kind of entertainment
+        brand.
+    </h3>
+  </a>
+  `;
+}
+cursorBox.innerHTML = hcode;
+
+// 2. 시나리오 구현
+/* 
+  마우스 오버시, 마우스를 따라다니며, 이미지들의 좌표값이 일정하게 변해야됨
+  
+*/

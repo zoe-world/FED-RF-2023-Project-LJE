@@ -5,7 +5,7 @@
 /********************************** 
     1. 메인그림판영역 
 **********************************/
-.cursor-board {
+.cursor__board {
     position: fixed;
     top: 0;
     left: 0;
@@ -14,10 +14,10 @@
     width: 100%;
     height: 100vh;
     transition: opacity 0.6s;
+    overflow: hidden;
 }
-
-/* 2-1. 그림판내용 */
-.cursor-board .cursor-img-wrapper {
+/* 1-1. 그림판내용 */
+.cursor__board .cursor__wrap {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -27,23 +27,25 @@
     aspect-ratio: 0.7/1;
     text-align: center;
 }
-.cursor-board .cursor-img-wrapper img{
+.cursor__board .cursor__wrap img{
     height: 100%;
 }
-.cursor-board .h3-cases{
+.cursor__board .h3__case{
     margin-top: 1rem;
     font-family: var(--font-1);
     font-size: var(--hd-fs-03);
     font-weight: 400;
     text-align: left;
 }
-.cursor-board .h3-cases .client-name {
+.cursor__board .h3__case .client__name {
     display: inline-block;
     padding-right: 10px;
     font-weight: 600;
 }
-
-/* 2. 메인그림판 텍스트영역 */
+/********************************** 
+    2. 메인그림판 텍스트영역 
+**********************************/
+/* 2-1. 메인그림판 텍스트영역 */
 .text-board {
     pointer-events: none;
     position: relative;
@@ -51,18 +53,18 @@
     padding:15rem 2rem 0 2rem;
 }
 
-.text-board .text-cases {
+.text-board .text__case {
     font-family: var(--font-2);
     font-size: clamp(6.4rem, 3vw, 30rem);
 }
 
-.text-board .text-cases .subhead-span {
+.text-board .text__case .em {
     display: inline-block;
     width: 60%;
     font-family: var(--font-1);
 }
 
-/* 5. 메인영역 */
+/* 3. 메인영역 */
 .main {
     position: relative;
 }
