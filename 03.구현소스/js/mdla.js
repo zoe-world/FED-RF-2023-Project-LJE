@@ -91,10 +91,10 @@ navLink.forEach((ele) => {
         //.btn-text2
         num = idx - cnt;
         ele.style.transform = "matrix(1, 0, 0, 1, 0, 18)";
-        ele.style.transitionDelay = 0.05 * num + "s";
+        ele.style.transitionDelay = 0.02 * num + "s";
       } else {
         ele.style.transform = "matrix(1, 0, 0, 1, 0, 0)";
-        ele.style.transitionDelay = 0.05 * num + "s";
+        ele.style.transitionDelay = 0.02 * num + "s";
       }
     });
   }
@@ -123,8 +123,5 @@ for (let x in brand) {
 }
 cursorBox.innerHTML = hcode;
 
-// 2. 시나리오 구현
-/* 
-  마우스 오버시, 마우스를 따라다니며, 이미지들의 좌표값이 일정하게 변해야됨
-  
-*/
+// sticky menu 내용넣기
+// 대상선정 sticky-menu

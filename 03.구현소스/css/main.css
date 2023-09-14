@@ -67,4 +67,29 @@
 /* 3. 메인영역 */
 .main {
     position: relative;
+    background-color: #fff;
+}
+
+/* 메인 공통 */
+.content-box{
+    position: relative;
+    height: 100vh;
+}
+.head-box{
+    position: sticky;
+    top:4rem;
+    overflow: hidden;
+    height: 32rem;
+    background-color: #fff;
+    border-bottom: 1px solid #1c1c1c;
+}
+.head-box .tit{
+    position: absolute;
+    bottom: -3.9rem;
+}
+.content-box .content{
+    position: relative;
+    overflow: hidden;
+    background-color: #fff;
+    width: 100%;
 }
