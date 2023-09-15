@@ -73,7 +73,6 @@
 /* 메인 공통 */
 .content-box{
     position: relative;
-    height: 100vh;
 }
 .head-box{
     position: sticky;
@@ -86,10 +85,33 @@
 .head-box .tit{
     position: absolute;
     bottom: -3.9rem;
+    display: flex;
 }
 .content-box .content{
     position: relative;
     overflow: hidden;
     background-color: #fff;
     width: 100%;
+}
+
+/* Resort 2023 */
+#runway {
+    background-color: #000;
+}
+.runway {
+    padding:calc(45vh - 4.5rem) 3rem calc(40vh - 4.5rem);
+}
+.runway__name{
+    color: #fff;
+    font-family: var(--font-2);
+    font-weight: 400;
+    font-size: 8.2rem;
+    text-transform: uppercase;
+}
+.runway__li{
+    line-height: 1.5;
+}
+.runway__li.on .runway__name {
+    font-size: 10rem;
+    font-weight: 500;
 }

@@ -20,7 +20,7 @@ startSS();
 // nav-item 에 들어가는 span html 로 넣기
 
 const navName = [
-  "Resort 2024",
+  "Resort 2023",
   "Top stories",
   "Trend reports",
   "Latest shows",
