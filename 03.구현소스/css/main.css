@@ -96,9 +96,12 @@
 
 /* Resort 2023 */
 #runway {
+    position: relative;
     background-color: #000;
 }
 .runway {
+    position: relative;
+    z-index: 1;
     padding:calc(45vh - 4.5rem) 3rem calc(40vh - 4.5rem);
 }
 .runway__name{
@@ -114,4 +117,16 @@
 .runway__li.on .runway__name {
     font-size: 10rem;
     font-weight: 500;
+}
+.photo{
+    display: grid;
+    width: calc(100vh + 1300px);
+    grid-template-columns: repeat(7, 1fr);
+    overflow: hidden;
+    gap: 0 2rem;
+}
+.photo figure{
+    overflow: hidden;
+    width: 20vw;
+    border-radius: 5px;
 }
