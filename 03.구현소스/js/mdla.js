@@ -133,7 +133,11 @@ cursorBox.innerHTML = hcode;
 
 const rw = domFn.qs(".photo__wrap");
 domFn.addEvt(window, "scroll", moveSlide);
+let stsMove = 1;
 function moveSlide() {
+
+  if(stsMove) return;
+
   // 스크롤 위치값
   let scTop = window.scrollY;
 
@@ -151,3 +155,17 @@ function moveSlide() {
     target.style.left = "-4800px";
   }
 } ////////// moveSlide 함수 ///////
+
+
+const runwLi = domFn.qsa('.runway__li');
+const menuBox = domFn.qs('.runway_wrap');
+const photoBox = domFn.qs('.photo__wrap');
+runwLi.forEach(ele=>{
+  domFn.addEvt(ele,'click',e=>{
+    e.preventDefault();
+    menuBox.style.left = '-100%';
+    menuBox.style.transition = '1s';
+    stsMove = 0;
+    photoBox.style.height = 'calc(100vh + 4800px)';
+  })
+})
