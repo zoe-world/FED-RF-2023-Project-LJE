@@ -45,3 +45,34 @@ const brand = {
       "Lydia Tár might be a fictional character, but she is a bona fide fashion muse.",
   },
 };
+// main artboard data
+const runway = {
+  Balenciaga: {
+    name: "Balenciaga",
+    img: [
+      "./images/resort01_1.jpg",
+      "./images/resort01_2.jpg",
+      "./images/resort01_3.jpg",
+      "./images/resort01_4.jpg",
+      "./images/resort01_5.jpg",
+      "./images/resort01_6.jpg",
+      "./images/resort01_7.jpg",
+    ],
+  },
+  Chanel: {
+    "": "",
+    "": "",
+  },
+  "Christian Dior": {
+    "": "",
+    "": "",
+  },
+  "Thom Browne": {
+    "": "",
+    "": "",
+  },
+  Valentino: {
+    "": "",
+    "": "",
+  },
+};

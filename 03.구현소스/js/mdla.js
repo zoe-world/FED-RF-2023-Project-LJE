@@ -128,44 +128,43 @@ for (let x in brand) {
 }
 cursorBox.innerHTML = hcode;
 
-// sticky menu 내용넣기
-// 대상선정 sticky-menu
-
 const rw = domFn.qs(".photo__wrap");
-domFn.addEvt(window, "scroll", moveSlide);
 let stsMove = 1;
+let scTop = window.scrollY;
+
+domFn.addEvt(window, "scroll", moveSlide);
 function moveSlide() {
-
-  if(stsMove) return;
-
-  // 스크롤 위치값
-  let scTop = window.scrollY;
+  if (stsMove) return;
 
   let bTop = domFn.getBCR(rw);
 
   // 움직일 대상
-  const target = domFn.qs('.photo__list');
+  const target = domFn.qs(".photo__list");
   // console.log(scTop,bTop, target);
 
-  if(bTop > 0 ){
+  if (bTop > 0) {
     target.style.left = "0px";
-  } else if (bTop <= 0 && bTop >= -4800){
+  } else if (bTop <= 0 && bTop >= -4800) {
     target.style.left = bTop + "px";
   } else {
     target.style.left = "-4800px";
   }
 } ////////// moveSlide 함수 ///////
 
+// 스크롤 위치값
 
-const runwLi = domFn.qsa('.runway__li');
-const menuBox = domFn.qs('.runway_wrap');
-const photoBox = domFn.qs('.photo__wrap');
-runwLi.forEach(ele=>{
-  domFn.addEvt(ele,'click',e=>{
+const runwLi = domFn.qsa(".runway__li");
+const menuBox = domFn.qs(".runway__wrap");
+const photoBox = domFn.qs(".photo__wrap");
+
+runwLi.forEach((ele) => {
+  domFn.addEvt(ele, "click", (e) => {
     e.preventDefault();
-    menuBox.style.left = '-100%';
-    menuBox.style.transition = '1s';
+    menuBox.style.left = "-100%";
+    menuBox.style.transition = "1s";
     stsMove = 0;
-    photoBox.style.height = 'calc(100vh + 4800px)';
-  })
-})
+    photoBox.style.height = "calc(100vh + 4800px)";
+  });
+});
+
+// photo__list 이미지 뿌리기

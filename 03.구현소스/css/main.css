@@ -99,13 +99,13 @@
     position: relative;
     background-color: #000;
 }
-.runway_wrap {
+.runway__wrap {
     position: absolute;
     left: 0;
     z-index: 9;
     padding: calc(17vh - .45rem) 2.4rem
 }
-.runway_box{  
+.runway__box{  
 
 }
 .runway__list {
@@ -113,6 +113,7 @@
 }
 .runway__name{
     display: inline-block;
+    width: 100vw;
     height: 15.5rem;
     color: #C4C4C4;
     font-family: var(--font-2);
@@ -144,20 +145,29 @@
 }
 .photo__list {
     position: relative;
-    top: 20rem;
+    top: 0;
     left: 0;
     display: flex;
     gap: 0 2rem;
-    width: calc(100vh + 4800px);
+    width: calc(100vw + 4800px);
+    height: 100%;
     transition: 0.4s ease-out;
 }
 .photo__list figure{
-    flex: 1;
+    flex-shrink: 0;
     text-align: center;
 }
 
 .photo__list figure img{
-    overflow: hidden;
-    width: 25vw;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-top: 6.6rem;
     border-radius: 5px;
+    width: 27.5vw;
+}
+
+/* active */
+body.over{
+    overflow-x: hidden;
 }
