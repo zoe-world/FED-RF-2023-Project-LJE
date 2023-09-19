@@ -105,18 +105,24 @@
     padding:calc(45vh - 4.5rem) 3rem calc(40vh - 4.5rem);
 }
 .runway__name{
-    color: #fff;
+    display: inline-block;
+    height: 12.5rem;
+    color: #C4C4C4;
     font-family: var(--font-2);
     font-weight: 400;
     font-size: 8.2rem;
     text-transform: uppercase;
+    transition: font-size .7s ease, color .5s ease;
 }
 .runway__li{
     line-height: 1.5;
 }
 .runway__li.on .runway__name {
     font-size: 10rem;
-    font-weight: 500;
+}
+.runway__li .runway__name:hover {
+    color: #fff;
+    font-size: 10rem;
 }
 .photo{
     display: grid;
