@@ -12,6 +12,11 @@ const domFn = {
 
   // 이벤트셋팅함수
   addEvt: (ele, evt, fn) => ele.addEventListener(evt, fn),
+  // 바운딩위치값함수
+  getBCR: (ele) => ele.getBoundingClientRect().top,
+
+  // 옵셋탑값 반환함수
+  getOT: (ele) => ele.offsetTop,
 }; ///////// domFn 객체 ///////////
 
 /* 부드러운 스크롤 호출 */
@@ -125,3 +130,24 @@ cursorBox.innerHTML = hcode;
 
 // sticky menu 내용넣기
 // 대상선정 sticky-menu
+
+const rw = domFn.qs(".photo__wrap");
+domFn.addEvt(window, "scroll", moveSlide);
+function moveSlide() {
+  // 스크롤 위치값
+  let scTop = window.scrollY;
+
+  let bTop = domFn.getBCR(rw);
+
+  // 움직일 대상
+  const target = domFn.qs('.photo__list');
+  // console.log(scTop,bTop, target);
+
+  if(bTop > 0 ){
+    target.style.left = "0px";
+  } else if (bTop <= 0 && bTop >= -4800){
+    target.style.left = bTop + "px";
+  } else {
+    target.style.left = "-4800px";
+  }
+} ////////// moveSlide 함수 ///////

@@ -89,7 +89,7 @@
 }
 .content-box .content{
     position: relative;
-    overflow: hidden;
+    /* overflow: hidden; */
     background-color: #fff;
     width: 100%;
 }
@@ -99,14 +99,18 @@
     position: relative;
     background-color: #000;
 }
-.runway {
-    position: relative;
-    z-index: 1;
-    padding:calc(45vh - 4.5rem) 3rem calc(40vh - 4.5rem);
+.runway_wrap {
+    padding: calc(17vh - .45rem) 2.4rem
+}
+.runway_box{  
+
+}
+.runway__list {
+
 }
 .runway__name{
     display: inline-block;
-    height: 12.5rem;
+    height: 15.5rem;
     color: #C4C4C4;
     font-family: var(--font-2);
     font-weight: 400;
@@ -124,15 +128,33 @@
     color: #fff;
     font-size: 10rem;
 }
-.photo{
-    display: grid;
-    width: calc(100vh + 1300px);
-    grid-template-columns: repeat(7, 1fr);
-    overflow: hidden;
-    gap: 0 2rem;
+.photo__wrap {
+    position: relative;
+    z-index: 1;
+    height: calc(100vh + 4800px);
 }
-.photo figure{
+.photo__box{  
+    position: sticky;
+    top: 0;
+    left: 0;  
+    height: 100vh;
+}
+.photo__list {
+    position: relative;
+    top: 20rem;
+    left: 0;
+    display: flex;
+    gap: 0 2rem;
+    width: calc(100vh + 4800px);
+    transition: 0.4s ease-out;
+}
+.photo__list figure{
+    flex: 1;
+    text-align: center;
+}
+
+.photo__list figure img{
     overflow: hidden;
-    width: 20vw;
+    width: 25vw;
     border-radius: 5px;
 }
