@@ -157,36 +157,18 @@ function moveSlide() {
     -배열데이터를 이용하여 HTML코드 구성
 *******************************************************/
 const runwBox = domFn.qs(".runway__box");
-
 let tcode = "";
-let seq = 0;
-// seq = runway.length - 1; 
-tcode += "<ul>";
-for (let x of runway) {
-  let news = runway[seq-1]
-  if(seq >= 0){
-    seq++;
-    tcode += `
+
+tcode += "<ul class='runway__list'>";
+
+for (let x in runway) {
+  tcode += `
     <li class="runway__li">
-      <a href="#" class="runway__name">${runway[seq-1]}</a>
+      <a href="#" class="runway__name">${runway[x]["name"]}</a>
     </li>
     `;
-    console.log(runway[seq-1]);
-  }
-
 }
 runwBox.innerHTML = tcode;
-
-function makeData (obj){
-  let hcode ="";
-  for (let x in obj){
-    hcode += `
-      
-    `;
-  }
-  return hcode;
-}
-
 
 // .runway__li 클릭시, .runway__wrap 박스 왼쪽으로 사라지기
 const runwLi = domFn.qsa(".runway__li");
@@ -196,11 +178,15 @@ const photoBox = domFn.qs(".photo__wrap");
 runwLi.forEach((ele) => {
   domFn.addEvt(ele, "click", (e) => {
     e.preventDefault();
-    menuBox.style.left = "-100%";
-    menuBox.style.transition = "1s";
-    stsMove = 0;
-    photoBox.style.height = "calc(100vh + 4800px)";
     ele.classList.add("on");
+    if(ele.classList.contains("on")){
+      menuBox.style.transform = `translateX(calc(-100vw - 2.4rem*2))`;
+      menuBox.style.transition = "1s";
+      stsMove = 0;
+      photoBox.style.height = "calc(100vh + 4800px)";
+    } else{
+
+    }
   });
 });
 
