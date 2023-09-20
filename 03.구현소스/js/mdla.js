@@ -116,7 +116,7 @@ let hcode = "";
 for (let x in brand) {
   hcode += `
   <a href="#" class="cursor__wrap">
-    <img src="./images/${brand[x]["imgsrc"]}" loading="eager" alt="" />
+    <img src="./images/${brand[x]["imgName"]}.png" loading="eager" alt="" />
     <h3 class="h3__case">
         <span class="brand__name">${brand[x]["brand"]}.</span>
         <span class="tit">${brand[x]["title"]}.</span>
@@ -133,6 +133,7 @@ let stsMove = 1;
 let scTop = window.scrollY;
 
 domFn.addEvt(window, "scroll", moveSlide);
+
 function moveSlide() {
   if (stsMove) return;
 
@@ -151,8 +152,43 @@ function moveSlide() {
   }
 } ////////// moveSlide 함수 ///////
 
-// 스크롤 위치값
+/******************************************************** 
+    [ Resort2023 패션쇼 데이터 구성하기 ]
+    -배열데이터를 이용하여 HTML코드 구성
+*******************************************************/
+const runwBox = domFn.qs(".runway__box");
 
+let tcode = "";
+let seq = 0;
+// seq = runway.length - 1; 
+tcode += "<ul>";
+for (let x of runway) {
+  let news = runway[seq-1]
+  if(seq >= 0){
+    seq++;
+    tcode += `
+    <li class="runway__li">
+      <a href="#" class="runway__name">${runway[seq-1]}</a>
+    </li>
+    `;
+    console.log(runway[seq-1]);
+  }
+
+}
+runwBox.innerHTML = tcode;
+
+function makeData (obj){
+  let hcode ="";
+  for (let x in obj){
+    hcode += `
+      
+    `;
+  }
+  return hcode;
+}
+
+
+// .runway__li 클릭시, .runway__wrap 박스 왼쪽으로 사라지기
 const runwLi = domFn.qsa(".runway__li");
 const menuBox = domFn.qs(".runway__wrap");
 const photoBox = domFn.qs(".photo__wrap");
@@ -164,6 +200,7 @@ runwLi.forEach((ele) => {
     menuBox.style.transition = "1s";
     stsMove = 0;
     photoBox.style.height = "calc(100vh + 4800px)";
+    ele.classList.add("on");
   });
 });
 

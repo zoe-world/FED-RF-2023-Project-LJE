@@ -162,9 +162,9 @@
     position: relative;
     top: 50%;
     transform: translateY(-50%);
-    margin-top: 6.6rem;
     border-radius: 5px;
     width: 27.5vw;
+    transition: .3s;
 }
 
 /* active */
