@@ -47,6 +47,7 @@ const navName = [
   "Menu",
 ];
 
+
 const navLink = domFn.qsa(".nav-item");
 const newEle = (txt) => {
   let new_nav = "";
@@ -55,75 +56,98 @@ const newEle = (txt) => {
   }
   return new_nav;
 };
+
+const navBox = domFn.qs(".nav");
+let hcod = "";
+
+hcod += "<ul class='nav__list'>";
+
+for (let x in runway) {
+  hcod += `
+    <li class="nav__li">
+      <a href="#" class="nav-item ${navName[x]}">${newEle(navData(x))}</a>
+    </li>
+    `;
+}
+navBox.innerHTML = hcod;
+
+
 /* 
 .nav-item안에 .btn-text, .btn-text2를 navName 배열 순으로 넣고,
 .btn-text 안에 span에 transitionDelay 주기
 */
-navLink.forEach((ele, idx) => {
-  ele.innerHTML = `
-            <span class="btn-text">${newEle(navName[idx])}</span>
-            <span class="btn-text2">${newEle(navName[idx])}</span>
-        `;
-  let temp = domFn.qsaEl(ele, "span>span");
-  let cnt = temp.length / 2;
-  temp.forEach((ele, idx) => {
-    let num = idx;
-    if (idx >= cnt) {
-      //.btn-text2
-      num = idx - cnt;
-      ele.style.transform = "matrix(1, 0, 0, 1, 0, 18)";
-      ele.style.transitionDelay = 0.05 * num + "s";
-    } else {
-      //.btn-text
-      ele.style.transform = "matrix(1, 0, 0, 1, 0, 0)";
-      ele.style.transitionDelay = 0.05 * num + "s";
-    }
-  });
-}); ////////// forEach ////////////
-
-// navLink에 마우스오버했을 때, .btn-text에 translate 효과 주기
-navLink.forEach((ele) => {
-  let mtit = domFn.qsaEl(ele, "span>span");
-  let cnt = mtit.length / 2;
-  domFn.addEvt(ele, "mouseover", overFn);
-  domFn.addEvt(ele, "mouseout", leaveFn);
-
-  function overFn() {
-    Array.from(mtit).forEach((ele, idx) => {
-      let num = idx;
-      //.btn-text2
-      if (idx >= cnt) {
-        num = idx - cnt;
-        ele.style.transform = "matrix(1, 0, 0, 1, 0, 0)";
-        ele.style.transitionDelay = 0.05 * num + "s";
-      } else {
-        ele.style.transform = "matrix(1, 0, 0, 1, 0, -18)";
-        ele.style.transitionDelay = 0.05 * num + "s";
-      }
-    });
-  }
-
-  function leaveFn() {
-    Array.from(mtit).forEach((ele, idx) => {
+function navData (txt){
+  navLink.forEach((ele, idx) => {
+    ele.innerHTML = `
+              <span class="btn-text">${newEle(navName[idx])}</span>
+              <span class="btn-text2">${newEle(navName[idx])}</span>
+          `;
+    let temp = domFn.qsaEl(ele, "span>span");
+    let cnt = temp.length / 2;
+    temp.forEach((ele, idx) => {
       let num = idx;
       if (idx >= cnt) {
         //.btn-text2
         num = idx - cnt;
         ele.style.transform = "matrix(1, 0, 0, 1, 0, 18)";
-        ele.style.transitionDelay = 0.02 * num + "s";
+        ele.style.transitionDelay = 0.05 * num + "s";
       } else {
+        //.btn-text
         ele.style.transform = "matrix(1, 0, 0, 1, 0, 0)";
-        ele.style.transitionDelay = 0.02 * num + "s";
+        ele.style.transitionDelay = 0.05 * num + "s";
       }
     });
-  }
-});
+  }); ////////// forEach ////////////
+  
+  // navLink에 마우스오버했을 때, .btn-text에 translate 효과 주기
+  navLink.forEach((ele) => {
+    let mtit = domFn.qsaEl(ele, "span>span");
+    let cnt = mtit.length / 2;
+    domFn.addEvt(ele, "mouseover", overFn);
+    domFn.addEvt(ele, "mouseout", leaveFn);
+  
+    function overFn() {
+      Array.from(mtit).forEach((ele, idx) => {
+        let num = idx;
+        //.btn-text2
+        if (idx >= cnt) {
+          num = idx - cnt;
+          ele.style.transform = "matrix(1, 0, 0, 1, 0, 0)";
+          ele.style.transitionDelay = 0.05 * num + "s";
+        } else {
+          ele.style.transform = "matrix(1, 0, 0, 1, 0, -18)";
+          ele.style.transitionDelay = 0.05 * num + "s";
+        }
+      });
+    }
+  
+    function leaveFn() {
+      Array.from(mtit).forEach((ele, idx) => {
+        let num = idx;
+        if (idx >= cnt) {
+          //.btn-text2
+          num = idx - cnt;
+          ele.style.transform = "matrix(1, 0, 0, 1, 0, 18)";
+          ele.style.transitionDelay = 0.02 * num + "s";
+        } else {
+          ele.style.transform = "matrix(1, 0, 0, 1, 0, 0)";
+          ele.style.transitionDelay = 0.02 * num + "s";
+        }
+      });
+    }
+  });
+}
 
+
+/******************************************************** 
+    [ menu 버튼 클릭시 전체메뉴 영역 보여주기 ]
+*******************************************************/
+const header = domFn.qs('.header');
 
 /******************************************************** 
     [ 메인 영역에 마우스 오버시 패션쇼 게시글 바로가기 링크 생성하기 ]
     - for-in문을 이용하여 HTML코드 구성 
-    - 
+    - mouse 좌표값을 이용하여 img 박스 위치 변경
 *******************************************************/
 
 const cursorBox = domFn.qs(".cursor__box");
@@ -232,10 +256,10 @@ function moveSlide() {
 
   if (bTop > 0) {
     target.style.left = "0px";
-  } else if (bTop <= 0 && bTop >= -4800) {
+  } else if (bTop <= 0 && bTop >= -2300) {
     target.style.left = bTop + "px";
   } else {
-    target.style.left = "-4800px";
+    target.style.left = "-2300px";
   }
 } ////////// moveSlide 함수 ///////
 
@@ -252,7 +276,7 @@ runwLi.forEach((ele) => {
       menuBox.style.transform = `translateX(calc(-100vw - 2.4rem*2))`;
       menuBox.style.transition = "1s";
       stsMove = 0;
-      photoBox.style.height = "calc(100vh + 4800px)";
+      photoBox.style.height = "calc(100vh + 2300px)";
     } else{
 
     }
