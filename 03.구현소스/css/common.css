@@ -473,3 +473,92 @@ header.inverse .search__box .search__icon {
 .sticky-menu > a:hover::before{
   transform: scale(1,1);
 }
+
+/* 메인 영역 cursor */
+
+@media (pointer: fine) {
+  body:hover .cursor {opacity:1;}
+  }
+  
+  @-webkit-keyframes scaleUp {
+    0% {
+      -webkit-transform: rotate(-5deg) scale(0);
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: rotate(0deg) scale(1);
+      opacity: 1;
+    }
+  }
+  @-moz-keyframes scaleUp {
+    0% {
+      -moz-transform: rotate(-5deg) scale(0);
+      opacity: 1;
+    }
+    100% {
+      -moz-transform: rotate(0deg) scale(1);
+      opacity: 1;
+    }
+  }
+  
+  @-webkit-keyframes scaleDownFade {
+    0% {
+      -webkit-transform: rotate(0deg) scale(1);
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: rotate(0deg) scale(0);
+      opacity: 0;
+    }
+  }
+  @-moz-keyframes scaleDownFade {
+    0% {
+      -moz-transform: rotate(0deg) scale(1);
+      opacity: 1;
+    }
+    100% {
+      -moz-transform: rotate(0deg) scale(0);
+      opacity: 0;
+    }
+  }
+  
+  
+  @-webkit-keyframes scaleHold {
+    0% {
+      -webkit-transform: rotate(0deg) scale(1);
+      opacity: 1;
+    }
+    100% {
+      -webkit-transform: rotate(0deg) scale(1);
+      opacity: 1;
+    }
+  }
+  @-moz-keyframes scaleHold {
+    0% {
+      -moz-transform: rotate(0deg) scale(1);
+      opacity: 1;
+    }
+    100% {
+      -moz-transform: rotate(0deg) scale(1);
+      opacity: 1;
+    }
+  }
+  
+.cursor__wrap.visible {
+  -webkit-animation: scaleUp 1.2s cubic-bezier(.165, .84, .44, 1) forwards;
+  -moz-animation: scaleUp 1.2s cubic-bezier(.165, .84, .44, 1) forwards;
+}
+.cursor__wrap.visible.hide {
+-webkit-animation: scaleDownFade 0.8s cubic-bezier(.165, .84, .44, 1) forwards;
+-moz-animation: scaleDownFade 0.8s cubic-bezier(.165, .84, .44, 1) forwards;
+}
+.cursor__wrap.hold {
+-webkit-transform: rotate(0deg) scale(1) !important;
+-moz-transform: rotate(0deg) scale(1) !important;
+  opacity: 1 !important;
+}
+
+.cursor__wrap.visible.hold.hide, .cursor__wrap.hold.hide {
+   -webkit-animation: scaleHold 0.8s cubic-bezier(.165, .84, .44, 1) forwards;
+-moz-animation: scaleHold 0.8s cubic-bezier(.165, .84, .44, 1) forwards; 
+}

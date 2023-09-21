@@ -33,15 +33,12 @@ setTimeout(() => {
 // 0. 스크롤바 트랙을 잡고 위치이동시 위치값 반영
 domFn.addEvt(window, "mouseup", () => setPos(window.scrollY));
 //////// mouseup /////////////
-const atag = domFn.qsa(".sticky-menu a");
-console.log(atag)
+
 // 0. 키보드 방향키 이동시 위치값 반영
 domFn.addEvt(window, "keyup", () => setPos(window.scrollY));
-domFn.addEvt(atag, "click", () => setPos(window.scrollY));
 //////// keyup /////////////
 
 // nav-item 에 들어가는 span html 로 넣기
-
 const navName = [
   "Resort 2023",
   "Top stories",
@@ -85,7 +82,6 @@ navLink.forEach((ele, idx) => {
 }); ////////// forEach ////////////
 
 // navLink에 마우스오버했을 때, .btn-text에 translate 효과 주기
-
 navLink.forEach((ele) => {
   let mtit = domFn.qsaEl(ele, "span>span");
   let cnt = mtit.length / 2;
@@ -123,11 +119,13 @@ navLink.forEach((ele) => {
   }
 });
 
-/* 
-  메인그림판영역에서 마우스 커서를 따라서 이동하는 .cursor__wrap 만들기 
-*/
 
-// 1.  대상선정 : .cursor__box
+/******************************************************** 
+    [ 메인 영역에 마우스 오버시 패션쇼 게시글 바로가기 링크 생성하기 ]
+    - for-in문을 이용하여 HTML코드 구성 
+    - 
+*******************************************************/
+
 const cursorBox = domFn.qs(".cursor__box");
 let hcode = "";
 
@@ -136,8 +134,7 @@ for (let x in brand) {
   <a href="#" class="cursor__wrap">
     <img src="./images/${brand[x]["imgName"]}.png" loading="eager" alt="" />
     <h3 class="h3__case">
-        <span class="brand__name">${brand[x]["brand"]}.</span>
-        <span class="tit">${brand[x]["title"]}.</span>
+        <span class="brand__name">${brand[x]["brand"]} <span class="tit">${brand[x]["title"]}.</span></span>
         Tapping into youth culture to create a new kind of entertainment
         brand.
     </h3>
@@ -146,6 +143,78 @@ for (let x in brand) {
 }
 cursorBox.innerHTML = hcode;
 
+let wrappers = Array.from(domFn.qsa('.cursor__wrap'));
+let lastIndex = -1;
+let lastX = -1;
+let lastY = -1;
+let mouseIdleTimeout = null;
+let lastVisibleWrapper = null;
+let cursorContainer = document.querySelector('.cursor__box'); // Added cursorContainer variable here for easy access.
+function fadeOutAndScaleDown(wrapper) {
+  setTimeout(() => {
+    wrapper.classList.add('hide');
+    setTimeout(() => {
+      wrapper.classList.remove('visible', 'hide');
+      wrapper.style.transform = 'scale(0)';
+      wrapper.style.opacity = '0';
+    }, 1000);
+  }, 1000);
+}
+document.addEventListener('mousemove', e => {
+  const mouseX = e.clientX;
+  const mouseY = e.clientY;
+  if (lastX === -1 || lastY === -1 || Math.abs(mouseX - lastX) >= 100 || Math.abs(mouseY - lastY) >= 100) {
+    const i = (lastIndex + 1) % wrappers.length;
+    const wrapper = wrappers[i];
+    wrapper.style.left = `${mouseX - wrapper.offsetWidth / 2}px`;
+    wrapper.style.top = `${mouseY - wrapper.offsetHeight / 2}px`;
+    wrapper.style.zIndex = `${i + 1}`;
+    wrapper.style.transform = 'scale(1)';
+    wrapper.style.opacity = '1';
+    wrapper.classList.add('visible');
+    if (lastVisibleWrapper && lastVisibleWrapper.classList.contains('hold')) {
+      lastVisibleWrapper.classList.remove('hold');
+    }
+    lastVisibleWrapper = wrapper;
+    if (mouseIdleTimeout !== null) {
+      clearTimeout(mouseIdleTimeout);
+    }
+    mouseIdleTimeout = setTimeout(() => {
+      if (lastVisibleWrapper && !cursorContainer.classList.contains('fadeout')) { // Added check for cursorContainer's class
+        lastVisibleWrapper.classList.add('hold');
+        // cursorDot.classList.add('cursorbtn');
+      }
+    }, 1000);
+    lastIndex = i;
+    lastX = mouseX;
+    lastY = mouseY;
+    fadeOutAndScaleDown(wrapper);
+  }
+});
+
+
+
+/******************************************************** 
+    [ Resort2023 패션쇼 데이터 구성하기 ]
+    -배열데이터를 이용하여 HTML코드 구성
+*******************************************************/
+const runwBox = domFn.qs(".runway__box");
+let tcode = "";
+
+tcode += "<ul class='runway__list'>";
+
+for (let x in runway) {
+  tcode += `
+    <li class="runway__li">
+      <a href="#" class="runway__name">${runway[x]["name"]}</a>
+    </li>
+    `;
+}
+runwBox.innerHTML = tcode;
+
+/******************************************************** 
+    [ Resort2023 패션쇼 브랜드별로 이미지 변경하기 ]
+*******************************************************/
 const rw = domFn.qs(".photo__wrap");
 let stsMove = 1;
 let scTop = window.scrollY;
@@ -170,24 +239,6 @@ function moveSlide() {
   }
 } ////////// moveSlide 함수 ///////
 
-/******************************************************** 
-    [ Resort2023 패션쇼 데이터 구성하기 ]
-    -배열데이터를 이용하여 HTML코드 구성
-*******************************************************/
-const runwBox = domFn.qs(".runway__box");
-let tcode = "";
-
-tcode += "<ul class='runway__list'>";
-
-for (let x in runway) {
-  tcode += `
-    <li class="runway__li">
-      <a href="#" class="runway__name">${runway[x]["name"]}</a>
-    </li>
-    `;
-}
-runwBox.innerHTML = tcode;
-
 // .runway__li 클릭시, .runway__wrap 박스 왼쪽으로 사라지기
 const runwLi = domFn.qsa(".runway__li");
 const menuBox = domFn.qs(".runway__wrap");
@@ -208,4 +259,3 @@ runwLi.forEach((ele) => {
   });
 });
 
-// photo__list 이미지 뿌리기

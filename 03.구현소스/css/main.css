@@ -17,30 +17,48 @@
     overflow: hidden;
 }
 /* 1-1. 그림판내용 */
-.cursor__board .cursor__wrap {
+.cursor__box {
+    margin-top: 30px;
+}
+.cursor__box .cursor__wrap {
+    opacity: 0;
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 0;
+    left: 0;
     transform: translate(-50%,-50%);
     display: inline-block;
     height: 53rem;
     aspect-ratio: 0.7/1;
     text-align: center;
 }
-.cursor__board .cursor__wrap img{
+.cursor__box .cursor__wrap img{
     height: 100%;
 }
-.cursor__board .h3__case{
+.cursor__box .h3__case{
+    opacity: 0;
     margin-top: 1rem;
+    transform: translateY(1rem);
+    transition: cubic-bezier(0.52, 0.04, 0.06, 1) all 0.7s;
     font-family: var(--font-1);
     font-size: var(--hd-fs-03);
     font-weight: 400;
     text-align: left;
 }
-.cursor__board .h3__case .client__name {
+.cursor__box .hold .h3__case{
+    opacity: 1;
+    transform: translateY(0);
+}
+.cursor__box .h3__case .brand__name {
     display: inline-block;
     padding-right: 10px;
     font-weight: 600;
+}
+.cursor__box .h3__case .tit{
+    margin-right: 5rem;
+    font-size: 1.5rem;
+    font-family: var(--font-2);
+    font-style: italic;
+    font-weight: normal;
 }
 /********************************** 
     2. 메인그림판 텍스트영역 
