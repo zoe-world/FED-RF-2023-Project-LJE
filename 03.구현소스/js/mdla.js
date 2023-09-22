@@ -1,6 +1,10 @@
 // MDLA js - mdla.js
 
-import {navName,brand,runway} from "./data.js";
+import {
+  navName,
+  brand,
+  runway
+} from "./data.js";
 
 // DOM 함수 객체 ///////////
 const domFn = {
@@ -49,14 +53,13 @@ const newEle = (txt) => {
   }
   return new_nav;
 };
-
 const navBox = domFn.qs(".nav");
-const navA = domFn.qsa('.nav a')
+const navA = domFn.qsa(".nav a");
 let hcod = "";
 
 hcod += "<ul class='nav__list'>";
 
-for (let i = 0; i < navA.length; i++) {
+for (let i = 0; i < navA.length + 1; i++) {
   /* 
     class name명 공백 제거 후 대문자를 소문자로 변환 
   */
@@ -74,7 +77,10 @@ navBox.innerHTML = hcod;
 .nav-item안에 .btn-text, .btn-text2를 navName 배열 순으로 넣고,
 .btn-text 안에 span에 transitionDelay 주기
 */
-function navData (){
+
+const navLink = domFn.qsa(".nav-item");
+
+function navData() {
   navLink.forEach((ele, idx) => {
     ele.innerHTML = `
               <span class="btn-text">${newEle(navName[idx])}</span>
@@ -96,14 +102,14 @@ function navData (){
       }
     }); ////////// forEach ////////////
   }); ////////// forEach ////////////
-  
+
   // navLink에 마우스오버했을 때, .btn-text에 translate 효과 주기
   navLink.forEach((ele) => {
     let mtit = domFn.qsaEl(ele, "span>span");
     let cnt = mtit.length / 2;
     domFn.addEvt(ele, "mouseover", overFn);
     domFn.addEvt(ele, "mouseout", leaveFn);
-  
+
     function overFn() {
       Array.from(mtit).forEach((ele, idx) => {
         let num = idx;
@@ -118,7 +124,7 @@ function navData (){
         }
       });
     }
-  
+
     function leaveFn() {
       Array.from(mtit).forEach((ele, idx) => {
         let num = idx;
@@ -136,22 +142,43 @@ function navData (){
   });
 }
 
-const navLink = domFn.qsa(".nav-item");
-
 navData();
-
-
 
 /******************************************************** 
     [ menu 버튼 클릭시 전체메뉴 영역 보여주기 ]
 *******************************************************/
-const header = domFn.qs('.header');
-const menuBtn = domFn.qs('.menu');
+const header = domFn.qs(".header");
+const menuBtn = domFn.qs(".menu");
+const fullMenu = domFn.qs(".fsc__wrap");
+const closeBtn = domFn.qs(".close");
+const menuList = domFn.qsa(".nav-item");
+
+domFn.addEvt(menuBtn, "click", openFn);
+domFn.addEvt(closeBtn, "click", closeFn);
+
+function openFn() {
+  closeBtn.classList.add('active');
+  header.classList.add('inverse');
+  fullMenu.classList.add('show');
+  document.body.classList.add('scroll');
+  menuList.forEach(ele=>{
+    if(ele.innerText == 'close'){
+      closeBtn.classList.remove('hide')
+    } else {
+      ele.classList.add('hide')
+    }
+  })
+} /////////// menuFn ///////////
+function closeFn() {
+  document.body.classList.remove('scroll');
+  closeBtn.classList.remove('active');
+  header.classList.remove('inverse');
+  fullMenu.classList.remove('show');
+} /////////// menuFn ///////////
 
 /******************************************************** 
     [ 메인 영역에 마우스 오버시 패션쇼 게시글 바로가기 링크 생성하기 ]
     - for-in문을 이용하여 HTML코드 구성 
-    - mouse 좌표값을 이용하여 img 박스 위치 변경
 *******************************************************/
 
 const cursorBox = domFn.qs(".cursor__box");
@@ -171,45 +198,58 @@ for (let x in brand) {
 }
 cursorBox.innerHTML = hcode;
 
-let wrappers = Array.from(domFn.qsa('.cursor__wrap'));
+/******************************************************** 
+[ 메인 영역에 마우스 오버시 패션쇼 게시글 바로가기 링크 생성하기 ]
+    - 마우스 커서 따라가면서, 이미지 나타났다가 사라지기
+*******************************************************/
+let wrappers = Array.from(domFn.qsa(".cursor__wrap"));
 let lastIndex = -1;
 let lastX = -1;
 let lastY = -1;
 let mouseIdleTimeout = null;
 let lastVisibleWrapper = null;
-let cursorContainer = document.querySelector('.cursor__box'); // Added cursorContainer variable here for easy access.
+let cursorContainer = document.querySelector(".cursor__box"); // Added cursorContainer variable here for easy access.
 function fadeOutAndScaleDown(wrapper) {
   setTimeout(() => {
-    wrapper.classList.add('hide');
+    wrapper.classList.add("hide");
     setTimeout(() => {
-      wrapper.classList.remove('visible', 'hide');
-      wrapper.style.transform = 'scale(0)';
-      wrapper.style.opacity = '0';
+      wrapper.classList.remove("visible", "hide");
+      wrapper.style.transform = "scale(0)";
+      wrapper.style.opacity = "0";
     }, 1000);
   }, 1000);
 }
-document.addEventListener('mousemove', e => {
+document.addEventListener("mousemove", (e) => {
   const mouseX = e.clientX;
   const mouseY = e.clientY;
-  if (lastX === -1 || lastY === -1 || Math.abs(mouseX - lastX) >= 100 || Math.abs(mouseY - lastY) >= 100) {
+  if (
+    lastX === -1 ||
+    lastY === -1 ||
+    Math.abs(mouseX - lastX) >= 100 ||
+    Math.abs(mouseY - lastY) >= 100
+  ) {
     const i = (lastIndex + 1) % wrappers.length;
     const wrapper = wrappers[i];
     wrapper.style.left = `${mouseX - wrapper.offsetWidth / 2}px`;
     wrapper.style.top = `${mouseY - wrapper.offsetHeight / 2}px`;
     wrapper.style.zIndex = `${i + 1}`;
-    wrapper.style.transform = 'scale(1)';
-    wrapper.style.opacity = '1';
-    wrapper.classList.add('visible');
-    if (lastVisibleWrapper && lastVisibleWrapper.classList.contains('hold')) {
-      lastVisibleWrapper.classList.remove('hold');
+    wrapper.style.transform = "scale(1)";
+    wrapper.style.opacity = "1";
+    wrapper.classList.add("visible");
+    if (lastVisibleWrapper && lastVisibleWrapper.classList.contains("hold")) {
+      lastVisibleWrapper.classList.remove("hold");
     }
     lastVisibleWrapper = wrapper;
     if (mouseIdleTimeout !== null) {
       clearTimeout(mouseIdleTimeout);
     }
     mouseIdleTimeout = setTimeout(() => {
-      if (lastVisibleWrapper && !cursorContainer.classList.contains('fadeout')) { // Added check for cursorContainer's class
-        lastVisibleWrapper.classList.add('hold');
+      if (
+        lastVisibleWrapper &&
+        !cursorContainer.classList.contains("fadeout")
+      ) {
+        // Added check for cursorContainer's class
+        lastVisibleWrapper.classList.add("hold");
         // cursorDot.classList.add('cursorbtn');
       }
     }, 1000);
@@ -219,8 +259,6 @@ document.addEventListener('mousemove', e => {
     fadeOutAndScaleDown(wrapper);
   }
 });
-
-
 
 /******************************************************** 
     [ Resort2023 패션쇼 데이터 구성하기 ]
@@ -276,13 +314,11 @@ runwLi.forEach((ele) => {
   domFn.addEvt(ele, "click", (e) => {
     e.preventDefault();
     ele.classList.add("on");
-    if(ele.classList.contains("on")){
+    if (ele.classList.contains("on")) {
       menuBox.style.transform = `translateX(calc(-100vw - 2.4rem*2))`;
       menuBox.style.transition = "1s";
       stsMove = 0;
       photoBox.style.height = "calc(100vh + 2300px)";
-    } else{
-
-    }
+    } else {}
   });
 });

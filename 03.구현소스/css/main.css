@@ -195,3 +195,6 @@
 body.over{
     overflow-x: hidden;
 }
+body.scroll{
+    overflow-y: hidden;
+}

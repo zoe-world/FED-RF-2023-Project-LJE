@@ -193,6 +193,7 @@ header {
   height: 75px;
   background-color: #fff;
   border-bottom: 1px solid #1c1c1c;
+  transition: background 0.5s ease 0s, border-color .4s ease 0s;
 }
 
 /* 1-1. 로고 */
@@ -216,6 +217,7 @@ header .logo>a {
 .nav-item {
   position: relative;
   overflow: hidden;
+  transition: all .3s;
 }
 
 .nav-item [class^="btn-text"] {
@@ -234,6 +236,13 @@ header .logo>a {
 .nav-item [class^="btn-text"] span {
   margin-left: 0.1rem;
   transition:transform .2s ease;
+}
+.nav-item.close {
+  opacity: 0;
+  position: absolute;
+  right: 2.4rem;
+  z-index: -1;
+  pointer-events: none;
 }
 
 /* 1-2. 검색영역 */
@@ -350,10 +359,27 @@ header .logo>a {
 }
 
 .fsc__list .item {
+  opacity: 0;
+  position: relative;
+  transition: all 0.2s;
   letter-spacing: -0.1rem;
   font-size: 10rem;
 }
-
+.fsc__list .item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -0.2rem;
+  width: 100%;
+  height: 3px;
+  background-color: #fff;
+  transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform: scale(0,1);
+  transform-origin: left bottom;
+}
+.fsc__list .item:hover::before {
+  transform: scale(1,1);
+}
 [data-menu-link] span {
   -webkit-text-stroke: 0.1rem #fff;
   position: relative;
@@ -412,12 +438,22 @@ header .logo>a {
 header.inverse {
   background-color: var(--black-01);
   border-color: #fff;
+  transition: background 1s ease 0s, border-color .4s ease 0s;
 }
 
 header.inverse .nav-item {
   color: #fff;
 }
-
+header.inverse .nav-item.hide {
+  opacity: 0;
+  pointer-events: none;
+  transition: ease opacity .3s, color .3s;
+}
+header.inverse .nav-item.close.active{
+  opacity: 1;
+  z-index: 1;
+  pointer-events: all;
+}
 header.inverse .logo>a {
   background-image: url(../images/mdla1_w.png);
 }
@@ -438,6 +474,9 @@ header.inverse .search__box .search__icon {
 
 .fsc__wrap.show .menu-bg {
   transform: matrix(1, 0, 0, 1, 0, 0);
+}
+.fsc__wrap.show .fsc__list .item {
+  opacity: 1;
 }
 
 /* sticky 메뉴 */

@@ -3,7 +3,7 @@
     [ 데이터항목 ]
     1.메뉴명 : navName
 *************************************/
-const navName = ["Resort 2023","Top stories","Trend reports","Latest shows","Menu","Close",];
+const navName = ["Resort 2023","Top stories","Trend reports","Latest shows","Menu","Close"];
 
 // 메인 커서 이미지 데이터
 /************************************* 
