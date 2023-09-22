@@ -48,10 +48,9 @@ const navName = [
 ];
 
 
-const navLink = domFn.qsa(".nav-item");
 const newEle = (txt) => {
   let new_nav = "";
-  for (let x of txt) {
+  for (let x in txt) {
     new_nav += `<span class="txt">${x}</span>`;
   }
   return new_nav;
@@ -65,18 +64,24 @@ hcod += "<ul class='nav__list'>";
 for (let x in runway) {
   hcod += `
     <li class="nav__li">
-      <a href="#" class="nav-item ${navName[x]}">${newEle(navData(x))}</a>
+      <a href="#" class="nav-item ${x}"></a>
     </li>
     `;
-}
-navBox.innerHTML = hcod;
+  }
+  navBox.innerHTML = hcod;
+  
+  
+  
+  const navLink = domFn.qsa(".nav-item");
+  console.log(navLink)
 
-
+navData();
 /* 
 .nav-item안에 .btn-text, .btn-text2를 navName 배열 순으로 넣고,
 .btn-text 안에 span에 transitionDelay 주기
 */
-function navData (txt){
+
+function navData (){
   navLink.forEach((ele, idx) => {
     ele.innerHTML = `
               <span class="btn-text">${newEle(navName[idx])}</span>
@@ -96,7 +101,7 @@ function navData (txt){
         ele.style.transform = "matrix(1, 0, 0, 1, 0, 0)";
         ele.style.transitionDelay = 0.05 * num + "s";
       }
-    });
+    });////////// forEach ////////////
   }); ////////// forEach ////////////
   
   // navLink에 마우스오버했을 때, .btn-text에 translate 효과 주기
@@ -136,6 +141,7 @@ function navData (txt){
       });
     }
   });
+
 }
 
 
