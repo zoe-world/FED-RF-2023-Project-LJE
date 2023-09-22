@@ -50,7 +50,7 @@ const navName = [
 
 const newEle = (txt) => {
   let new_nav = "";
-  for (let x in txt) {
+  for (let x of txt) {
     new_nav += `<span class="txt">${x}</span>`;
   }
   return new_nav;
