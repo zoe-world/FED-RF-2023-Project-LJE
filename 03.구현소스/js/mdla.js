@@ -1,5 +1,7 @@
 // MDLA js - mdla.js
 
+import {navName,brand,runway} from "./data.js";
+
 // DOM 함수 객체 ///////////
 const domFn = {
   // 요소선택함수 ////////
@@ -39,14 +41,6 @@ domFn.addEvt(window, "keyup", () => setPos(window.scrollY));
 //////// keyup /////////////
 
 // nav-item 에 들어가는 span html 로 넣기
-const navName = [
-  "Resort 2023",
-  "Top stories",
-  "Trend reports",
-  "Latest shows",
-  "Menu",
-];
-
 
 const newEle = (txt) => {
   let new_nav = "";
@@ -57,30 +51,29 @@ const newEle = (txt) => {
 };
 
 const navBox = domFn.qs(".nav");
+const navA = domFn.qsa('.nav a')
 let hcod = "";
 
 hcod += "<ul class='nav__list'>";
 
-for (let x in runway) {
-  hcod += `
-    <li class="nav__li">
-      <a href="#" class="nav-item ${x}"></a>
-    </li>
-    `;
-  }
-  navBox.innerHTML = hcod;
-  
-  
-  
-  const navLink = domFn.qsa(".nav-item");
-  console.log(navLink)
+for (let i = 0; i < navA.length; i++) {
+  /* 
+    class name명 공백 제거 후 대문자를 소문자로 변환 
+  */
+  let navIdx = navName[i];
+  navIdx = navIdx.replace(/(\s*)/g, "").toLowerCase();
 
-navData();
+  hcod += `
+  <li class="nav__li">
+  <a href="#" class="nav-item ${navIdx}"></a>
+  </li>
+  `;
+}
+navBox.innerHTML = hcod;
 /* 
 .nav-item안에 .btn-text, .btn-text2를 navName 배열 순으로 넣고,
 .btn-text 안에 span에 transitionDelay 주기
 */
-
 function navData (){
   navLink.forEach((ele, idx) => {
     ele.innerHTML = `
@@ -101,7 +94,7 @@ function navData (){
         ele.style.transform = "matrix(1, 0, 0, 1, 0, 0)";
         ele.style.transitionDelay = 0.05 * num + "s";
       }
-    });////////// forEach ////////////
+    }); ////////// forEach ////////////
   }); ////////// forEach ////////////
   
   // navLink에 마우스오버했을 때, .btn-text에 translate 효과 주기
@@ -141,14 +134,19 @@ function navData (){
       });
     }
   });
-
 }
+
+const navLink = domFn.qsa(".nav-item");
+
+navData();
+
 
 
 /******************************************************** 
     [ menu 버튼 클릭시 전체메뉴 영역 보여주기 ]
 *******************************************************/
 const header = domFn.qs('.header');
+const menuBtn = domFn.qs('.menu');
 
 /******************************************************** 
     [ 메인 영역에 마우스 오버시 패션쇼 게시글 바로가기 링크 생성하기 ]
@@ -288,4 +286,3 @@ runwLi.forEach((ele) => {
     }
   });
 });
-
