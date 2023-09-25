@@ -288,8 +288,6 @@ let num = 0;
 pcode += '<div class="photo__box">';
 
 for (let y in runway){
-  num++;
-
   let dataName = domFn.qsEl(y,'.runway__li').getAttribute('data-name');
   console.log(dataName)
   pcode += `
