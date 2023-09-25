@@ -271,7 +271,7 @@ tcode += "<ul class='runway__list'>";
 
 for (let x in runway) {
   tcode += `
-    <li class="runway__li">
+    <li class="runway__li" data-name="${runway[x]["name"]}">
       <a href="#" class="runway__name">${runway[x]["name"]}</a>
     </li>
     `;
@@ -281,7 +281,27 @@ runwBox.innerHTML = tcode;
 /******************************************************** 
     [ Resort2023 패션쇼 브랜드별로 이미지 변경하기 ]
 *******************************************************/
-const rw = domFn.qs(".photo__wrap");
+const photoWrap = domFn.qs(".photo__wrap");
+
+let pcode = "";
+let num = 0;
+pcode += '<div class="photo__box">';
+
+for (let y in runway){
+  num++;
+
+  let dataName = domFn.qsEl(y,'.runway__li').getAttribute('data-name');
+  console.log(dataName)
+  pcode += `
+  <ul ${brandName == domFn.qs('.runway__li').src('data-name')?'data-name="${brandName}"':''}>
+    
+  </ul>
+  `;
+}
+pcode += '</div>';
+photoWrap.innerHTML = pcode;
+
+
 let stsMove = 1;
 let scTop = window.scrollY;
 
@@ -290,7 +310,7 @@ domFn.addEvt(window, "scroll", moveSlide);
 function moveSlide() {
   if (stsMove) return;
 
-  let bTop = domFn.getBCR(rw);
+  let bTop = domFn.getBCR(photoWrap);
 
   // 움직일 대상
   const target = domFn.qs(".photo__list");
@@ -308,7 +328,7 @@ function moveSlide() {
 // .runway__li 클릭시, .runway__wrap 박스 왼쪽으로 사라지기
 const runwLi = domFn.qsa(".runway__li");
 const menuBox = domFn.qs(".runway__wrap");
-const photoBox = domFn.qs(".photo__wrap");
+
 
 runwLi.forEach((ele) => {
   domFn.addEvt(ele, "click", (e) => {

@@ -70,30 +70,30 @@ const runway = {
   balenciaga: {
     name: "balenciaga",
     img: [
-      "resort01_1",
-      "resort01_2",
-      "resort01_3",
-      "resort01_4",
-      "resort01_5",
-      "resort01_6",
-      "resort01_7",
+      "balenciaga01_1",
+      "balenciaga01_2",
+      "balenciaga01_3",
+      "balenciaga01_4",
+      "balenciaga01_5",
+      "balenciaga01_6",
+      "balenciaga01_7",
     ],
   },
 
   chanel: {
     name: "chanel",
     img: [
-      "resort02_1",
-      "resort02_2",
-      "resort02_3",
-      "resort02_4",
-      "resort02_5",
-      "resort02_6",
-      "resort02_7",
+      "chanel02_1",
+      "chanel02_2",
+      "chanel02_3",
+      "chanel02_4",
+      "chanel02_5",
+      "chanel02_6",
+      "chanel02_7",
     ],
   },
   dior: {
-    name: "Christian Dior",
+    name: "christian dior",
     img: [
       "resort03_1",
       "resort03_2",
@@ -105,7 +105,7 @@ const runway = {
     ],
   },
   thom: {
-    name: "Thom Browne",
+    name: "thom browne",
     img: [
       "resort04_1",
       "resort04_2",
@@ -117,7 +117,7 @@ const runway = {
     ],
   },
   valentino: {
-    name: "Valentino",
+    name: "valentino",
     img: [
       "resort05_1",
       "resort05_2",
