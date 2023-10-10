@@ -9,13 +9,11 @@
 공지사항
 
 
-
 2. 상단메뉴:
 SIDE MENU
  - 회사 소개
- - 광고 및 제휴
+ - 이용약관
  - 개인정보 처리방침
-SUBSCRIBE
 
 3. 컨텐츠1
 복싱과 맺은 모델 수주의 이야기
@@ -59,13 +57,14 @@ SUBSCRIBE
 지속 가능한 변화를 이끄는 백 브랜드 6
 
 10. 하단정보
-10-1.회사정보
-WWW.VOGUE.COM Ⓒ CONDÉNAST ASIA PACIFIC. INC. ALL RIGHTS RESERVED. VOGUE.COM KOREA IS OPERATED BY DOOSAN MAGAZINE.
-10-2.하단메뉴
-정기구독
-회사소개
-광고 및 제휴
+10-1.하단메뉴
+회사 소개
+이용약관
 개인정보 처리방침
+10-2.회사정보
+상호 : 주식회사  ㅣ 대표이사 : 전승택 ㅣ 개인정보관리책임자 : 손혜환 ㅣ 주소 : 서울특별시 영등포구 국제금융로2길 17, 7층(여의도동, 씨티플라자빌딩)
+© 2020 KC Global Media Singapore Pte. Ltd. All Rights Reserved.
+
 
 
 
