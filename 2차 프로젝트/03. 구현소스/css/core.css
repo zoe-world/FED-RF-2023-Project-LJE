@@ -41,7 +41,19 @@ font-family: 'Roboto Condensed', sans-serif;
 body * {
     outline: 1px dashed gray;
 }
-
+html {
+    font-size: 62.5%;
+}
+body {
+    font-size: 1.6rem;
+    line-height: 1.25em;
+    font-family: 'GmarketSansMedium','Noto Sans KR',sans-serif;
+    letter-spacing: -.5px;
+    background-color: #000;
+    color: #fff;
+    min-width: 1024px;
+    font-family: 'GmarketSansMedium';
+}
 /************* 2. 공통 class *************/
 
 /* 2-1. 중앙 속박스 */
