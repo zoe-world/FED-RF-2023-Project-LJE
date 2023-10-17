@@ -48,13 +48,12 @@ html{
 }
 body{
     font-size: 1.6rem;
-    line-height: 1.25em;
+    line-height: 1.3;
     font-family: 'GmarketSansMedium','Noto Sans KR',sans-serif;
     letter-spacing: -.5px;
     background-color: #000;
     color: #fff;
     min-width: 1024px;
-    font-family: 'GmarketSansMedium';
 }
 /************* 2. 공통 class *************/
 

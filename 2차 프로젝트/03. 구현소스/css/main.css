@@ -6,3 +6,6 @@
 @import url(core.css);
 @import url(common.css);
 
+.main_area {
+    margin-bottom: 2rem;
+}
