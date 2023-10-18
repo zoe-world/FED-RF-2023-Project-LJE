@@ -34,6 +34,12 @@
     height: 100%;
     gap: 0 1vw;
 }
+.gnb_box > ul > li > a{
+    transition: .5s;
+}
+.gnb_box > ul > li > a:hover{
+    color: #32c5fa;
+}
 /* 1-3.UTIL박스 */
 .util_box{
     margin-left: auto;
@@ -43,6 +49,12 @@
     align-items: center;
     height: 100%;
     gap: 0 1vw;
+}
+.util_box > ul > li > a{
+    transition: .5s;
+}
+.util_box > ul > li > a:hover{
+    color: #32c5fa;
 }
 .util_box .search {
     margin-top: 0.5vw;
@@ -58,6 +70,7 @@
 .util_box .search a:hover{
     background-image: url(../images/ico_srch_on.png);
 }
+
 
 /* 2-1. TOP배너 박스 */
 .top-banner_box{
@@ -161,5 +174,21 @@
 .list-banner_box .list .img_bx{
     overflow: hidden;
     border-radius: 5px;
+}
+.paging_list{
+    padding-top: 30px;
+    text-align: center;
+}
+.paging_list .page{
+    display: inline-block;
+    margin-right: 5px;
+    width: 17px;
+    height: 7px;
+    background-color: #5e5e5e;
+    transform: skewX(-30deg);
+    cursor: pointer;
+}
+.paging_list .controls{
+    margin-left: 1.5rem;
 }
 /* 2-3. 컨텐츠영역 */

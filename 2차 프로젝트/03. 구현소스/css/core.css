@@ -10,7 +10,7 @@
     font-family: "remixicon";
     src: url("../fonts/remixicon.eot");
     /* IE9*/
-    src: url("../fonts/remixicon.eot#iefix") format("embedded-opentype"), /* IE6-IE8 */ url("remixicon.woff2?1690730386095") format("woff2"), url("../fonts/remixicon.woff?1690730386095") format("woff"), /* chrome, firefox */ url("../fonts/remixicon.ttf?1690730386095") format("truetype"), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/ url("../fonts/remixicon.svg#remixicon?1690730386095") format("svg");
+    src: url("../fonts/remixicon.eot#iefix") format("embedded-opentype"), /* IE6-IE8 */ url("../fonts/remixicon.woff2") format("woff2"), url("../fonts/remixicon.woff") format("woff"), /* chrome, firefox */ url("../fonts/remixicon.ttf") format("truetype"), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/ url("../fonts/remixicon.svg#remixicon") format("svg");
     /* iOS 4.1- */
 }
 
