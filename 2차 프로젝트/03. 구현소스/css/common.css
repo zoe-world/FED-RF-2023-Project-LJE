@@ -22,7 +22,7 @@
     height: 100%;
 }
 .logo img{
-    height: 65px;
+    height: max(2vw,65px);
 }
 /* 1-2.GNB박스 */
 .gnb_box{
@@ -91,6 +91,7 @@
 .top-banner_box .txt_bx img{
     display: block;
     margin-bottom: 1.8vw;
+    width: max(30vw,250px);
 }
 .top-banner_box .img_bg{
     position: absolute;
@@ -114,8 +115,10 @@
 }
 /* 2-2. LIST배너 박스 */
 .list-banner_box{
+    margin-top: min(-6vw,-10vw);
+}
+.list-banner_box .list-banner{
     position: relative;
-    margin-top: -130px;
 }
 .list-banner_box [class$="_btn"]{
     position: absolute;
@@ -189,6 +192,41 @@
     cursor: pointer;
 }
 .paging_list .controls{
-    margin-left: 1.5rem;
+    margin-left: 0.7rem;
+    cursor: pointer;
 }
 /* 2-3. 컨텐츠영역 */
+
+
+@media screen and (max-width: 1024px) {
+    body, html {
+        min-width: 100%;
+    }
+}
+@media screen and (max-width: 767px) {
+    html{
+        font-size: 50%;
+    }
+    .top_area{
+        position: relative;
+        flex-wrap: wrap;
+        width: 100%;
+        height: 85px;
+        padding: 1.5vw min(2vw, 25px);
+        background: linear-gradient(121deg, #262626 0%, black 100%);
+    }
+    .logo img{
+        height: 40px;
+    }
+    .gnb_box {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 1.5rem;
+    }
+    .util_box{
+        position: absolute;    
+        right: 2vw;
+        top: 15px;
+    }
+
+}
