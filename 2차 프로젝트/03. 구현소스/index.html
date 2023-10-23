@@ -61,9 +61,9 @@
                 <section class="list-banner_box">
                     <h2 class="sr-only">목록형배너 영역</h2>
                     <div class="list-banner">
-                        <div class="control_box">
-                            <a href="#" class="ct_btn prev_btn"><span class="sr-only">이전 슬라이드 보기</span></a>
-                            <a href="#" class="ct_btn next_btn"><span class="sr-only">다음 슬라이드 보기</span></a>
+                        <div class="arrow_box">
+                            <a href="#" class="arrow_btn prev_btn"><span class="sr-only">이전 슬라이드 보기</span></a>
+                            <a href="#" class="arrow_btn next_btn"><span class="sr-only">다음 슬라이드 보기</span></a>
                         </div>
                         <div class="lb">
                             <section class="banbx">
@@ -71,18 +71,22 @@
                             </section>
                         </div>
                     </div>
-                    <div class="paging_list">
-                        <span class="page"></span>
-                        <span class="page"></span>
-                        <span class="page"></span>
-                        <span class="page"></span>
-                        <span class="page"></span>
-                        <span class="page"></span>
-                        <em class="controls">
-                            <span class="sr-only">멈춤</span>
-                            <img src="./images/stop.png" alt="" />
-                            <!-- <img src="./images/play.png" alt=""> -->
-                        </em>
+                    <div class="paging_wrap">
+                        <ol class="paging_list">
+                            <li><a href="#" class="paging_btn">1</a></li>
+                            <li><a href="#" class="paging_btn">2</a></li>
+                            <li class="on"><a href="#" class="paging_btn">3</a></li>
+                            <li><a href="#" class="paging_btn">4</a></li>
+                            <li><a href="#" class="paging_btn">5</a></li>
+                            <li><a href="#" class="paging_btn">6</a></li>
+                        </ol>
+                        <div class="ctl_box">
+                            <a href="#" class="ctl_btn">
+                                <span class="sr-only">멈춤</span>
+                                <img src="./images/stop.png" alt="" />
+                                <!-- <img src="./images/play.png" alt=""> -->
+                            </a>
+                        </div>
                     </div>
                 </section>
                 <!-- 2-3. 컨텐츠영역 -->
@@ -97,6 +101,33 @@
                     </article>
                     <article class="update-list_box">
                         <h3>오늘의 업데이트</h3>
+                        <!-- 2.3.1 오늘의 업데이트 리스트 -->
+                        <div class="today-list_wrap">
+                            <ul class="today-list">
+                                <li>
+                                    <a href="#" class="item">
+                                        <div class="today_img">
+                                            <div class="bg"></div>
+                                            <img src="./images/banner/today_banner01.jpg" alt="">
+                                        </div>
+                                        <h4 class="tit">
+                                            코드 기아스 반역의 를르슈
+                                            <span class="txt">STAGE 2 각성한 하얀 기사</span>
+                                        </h4>
+                                    </a>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                        <div class="list-ctl_box">
+                            <ol class="paging_list">
+                                <li><a href="#" class="paging_btn">1</a></li>
+                                <li class="on"><a href="#" class="paging_btn">2</a></li>
+                                <li><a href="#" class="paging_btn">3</a></li>
+                                <li><a href="#" class="paging_btn">4</a></li>
+                            </ol>
+                            <a href="#" title="오늘의 업데이트 더보기" class="more_btn">더보기</a>
+                        </div>
                     </article>
                 </section>
             </main>
