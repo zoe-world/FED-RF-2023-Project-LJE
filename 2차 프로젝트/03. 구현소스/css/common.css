@@ -260,15 +260,23 @@
     height: 9px;
     background: url(../images/more1.png) no-repeat right /contain;
 }
+.today-list_wrap{
+    position: relative;
+    aspect-ratio: 1/0.2;
+}
 .today-list{
-    overflow: hidden;
+    position: absolute;
+    top: 0;
+    display: flex;
+    width: 100%;
+    height: 100%;
 }
 .today-list li{
     position: relative;
     display: inline-block;
     float: left;
-    width: calc(100% / 6);
-    margin-left: 1rem;
+    width: calc(100% / 6 - 8.5px);
+    margin-left: 10px;
 }
 .today-list li:first-child{
     margin-left: 0;
