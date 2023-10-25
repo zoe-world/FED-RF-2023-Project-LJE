@@ -158,7 +158,8 @@
     gap: 0 1.5rem;
 }
 .list-banner_box .list .list_item{
-    flex: 1;
+    flex-shrink: 0;
+    flex-basis: calc(100% / 3);
 }
 .list-banner_box .list .items{
     position: relative;
@@ -262,12 +263,19 @@
 }
 .today-list_wrap{
     position: relative;
-    aspect-ratio: 1/0.2;
+    overflow: hidden;
+    aspect-ratio: 1/0.15;
+}
+.today-list_box{
+    position: absolute;
+    left: -100%;
+    display: flex;
+    width: 100%;
+    height: 100%;
 }
 .today-list{
-    position: absolute;
-    top: 0;
     display: flex;
+    gap: 0 1.05vw;
     width: 100%;
     height: 100%;
 }
@@ -275,8 +283,7 @@
     position: relative;
     display: inline-block;
     float: left;
-    width: calc(100% / 6 - 8.5px);
-    margin-left: 10px;
+    width: calc(100% / 6 );
 }
 .today-list li:first-child{
     margin-left: 0;
