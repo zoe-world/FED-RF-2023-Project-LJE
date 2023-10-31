@@ -364,7 +364,7 @@
 .list_wrap.today .list_box{
 
 }
-/*2.3.1 rank list */
+/*2.3.2 rank list */
 .list_wrap.rank h3{
 
 }
@@ -392,6 +392,24 @@
     -webkit-box-orient: vertical;
     text-wrap:wrap;
 }
+
+/*2.3.3 live-on-air */
+.live_bx{
+    display: flex;
+}
+.live_bx > div{
+    width: 100%;
+}
+.live_video video{
+    width: 100%;
+}
+.live_img_bx{
+
+}
+.live_cont{
+    flex-grow: 3;
+}
+
 @media screen and (max-width: 1024px) {
     body, html {
         min-width: 100%;
