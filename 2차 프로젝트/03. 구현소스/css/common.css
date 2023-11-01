@@ -397,17 +397,18 @@
 .live_bx{
     display: flex;
 }
-.live_bx > div{
-    width: 100%;
-}
 .live_video video{
     width: 100%;
 }
 .live_img_bx{
-
+    position: relative;
+    flex-grow: 2;
+}
+.live_img_bx .ctl_box{
+    position: absolute;
 }
 .live_cont{
-    flex-grow: 3;
+    flex-grow: 2;
 }
 
 @media screen and (max-width: 1024px) {
