@@ -1,7 +1,6 @@
-// 상단 컴포넌트
+// Animax 상단영역 공통 컴포넌트
 
 import { Logo } from "../contents/Logo";
-
 
 export function TopArea(){
     return(

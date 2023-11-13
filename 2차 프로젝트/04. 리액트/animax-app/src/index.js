@@ -1,12 +1,14 @@
+// 메인페이지 CSS 불러오기
+import "./css/index.css";
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { TopArea } from './layout/TopArea';
+import { Layout } from "./layout/Layout";
 
 function App(){
   return(
     <>
-      <TopArea/>
-      
+      <Layout/>
     </>
   );
 }
