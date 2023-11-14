@@ -117,13 +117,21 @@
     
 }
 /* 2-2. list banner box */
+.list_box:hover .arrow_box .arrow_btn{
+    opacity: 1;
+}
+.list_box:hover .arrow_box .prev_btn{
+
+}
 .arrow_box .arrow_btn{
+    opacity: 0;
     position: absolute;
     z-index: 10;
-    width: 4vw;
+    width: 2.5vw;
     min-width: 35px;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.8);
+    transition: .2s ease-in-out;
 }
 .arrow_box .arrow_btn::before{
     position: absolute;
@@ -135,7 +143,7 @@
     font-style: normal;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-size: 6rem;
+    font-size: 4rem;
     content: '\ea64';
 
 }
@@ -300,23 +308,39 @@
     float: left;
     margin-left: 1vw;
     width: 14.4vw;
+    transition: all .5s ease-in-out;
 }
 .thum-list li:first-child{
     margin-left: 0;
 }
-.thum-list .on{
+.thum-list .link_img{
+    display: inline-block;
 
 }
-.thum-list .on .link_play{
-    position: absolute;
-    display: block;
-}
-.thum-list .img{
+.link_img .img{
     overflow: hidden;
+    aspect-ratio: 1/0.7;
     border-radius: 6px;
 }
-.img img{}
+.link_img .img .bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url(../../public/images/cover.png) no-repeat;
+    background-size: cover;
+}
+.link_img .img img{}
+.link_img .img video{
+    width: 100%;
+    height: 100%;
+}
 
+.link_img h4 {
+    position: absolute;
+    bottom: 0;
+}
 .link_img h4 span {
     display: block;
     width: 100%;
@@ -332,10 +356,62 @@
     color: #ccc;
     font-size: 1.3rem;
 }
-
+.thum-list .link_play{
+    z-index: 1;
+    position: absolute;
+    left: 30px;
+    bottom: 110px;
+    display: block;
+    width: 38px;
+    height: 38px;
+    background: url(../../public/images/play2.png) no-repeat;
+    transition: .25s ease-in-out;
+}
+.thum-list .link_play:hover{
+    background-image: url(../../public/images/play2_on.png);
+}
+.thum-list .link_play:hover .tootip{
+    opacity: 1;
+}
+.link_play .tootip {
+    opacity: 0;
+    position: absolute;
+    left: -15px;
+    bottom: -30px;
+    width: 71px;
+    background-color: rgb(0 0 0 / 0.5);
+    font-size: 1.2rem;
+    text-align: center;
+    line-height: 1;
+    border-radius: 5px;
+    padding: 0.6rem 0.7rem 0.5rem;
+    transition: .25s ease-in-out;
+}
+.link_play .tootip:before {
+    display: inline-block;
+    content: '';
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid rgb(0 0 0 / 0.5);
+}
 .link_play,
 .link_info,
 .link_zzim{display: none;}
+
+.thum-list li.on{
+    width: 22vw;
+}
+
+.thum-list li.on em{
+    display: none;
+}
+
 .tab_btn{
     display: inline-block;
     margin-left: 2rem;
@@ -376,6 +452,7 @@
     z-index: 1;
     padding: 0.75vw 1.5vw 1vw;
     width: 96px;
+    height: 65px;
     background: url(../../public/images/bg.png) no-repeat 50%;
     color: #fff;
     font-size: 3.5rem;
@@ -573,12 +650,9 @@
 /*2.3.4 tag list */
 .list_v2_wrap.tag .tab_btn button{
     padding: 1.2rem 1rem;
-    background-image: linear-gradient(135deg, #000, #575757, #ffa162, #c14d00);
     font-size: 1.4rem;
 }
-.list_v2_wrap .link_img em.on{
-    color: #f16e16;
-}
+
 @media screen and (max-width: 1024px) {
     body, html {
         min-width: 100%;

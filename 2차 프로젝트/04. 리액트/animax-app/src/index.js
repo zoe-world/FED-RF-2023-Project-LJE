@@ -3,7 +3,7 @@ import "./css/index.css";
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { Layout } from "./layout/Layout";
+import { Layout } from "./components/layout/Layout";
 
 function App(){
   return(
