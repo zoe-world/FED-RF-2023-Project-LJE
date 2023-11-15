@@ -3,7 +3,7 @@
 export function FooterArea(){
     return(
         <>
-        
+            
         </>
     );
 }////// FooterArea 컴포넌트 ////
