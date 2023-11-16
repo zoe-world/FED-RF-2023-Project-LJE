@@ -408,7 +408,12 @@ export function MainArea() {
                         <span className="tit">
                           무직전생 Ⅱ ~이세계에 갔으면 최선을 다한다~
                         </span>
-                        <span className="txt">판타지</span>
+                        <ul>
+                          <li>이용연령</li>
+                          <li>장르명</li>
+                          <li>작가명</li>
+                        </ul>
+                        <p className="txt">판타지</p>
                       </h4>
                     </a>
                   </li>
