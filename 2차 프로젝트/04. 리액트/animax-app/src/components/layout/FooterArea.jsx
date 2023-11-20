@@ -1,10 +1,6 @@
 // Animax 하단영역 컴포넌트
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-faFacebookF,
-faXTwitter,
-faYoutube,
-} from "@fortawesome/free-brands-svg-icons";
+import { faFacebookF, faXTwitter, faYoutube, } from "@fortawesome/free-brands-svg-icons";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 export function FooterArea() {

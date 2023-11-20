@@ -2,6 +2,7 @@
 import React from "react";
 import { TopArea } from "./TopArea";
 import { MainArea } from "./MainArea";
+import { QuickArea } from "./QuickArea";
 import { FooterArea } from "./FooterArea";
 
 export function Layout(){
@@ -10,6 +11,7 @@ export function Layout(){
         <>
         <TopArea/>
         <MainArea/>
+        <QuickArea/>
         <FooterArea />
       </>
     );

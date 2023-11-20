@@ -21,6 +21,7 @@ return (
               좌충우돌 성장기
             </p>
           </h3>
+          <button className="view_btn">자세히보기</button>
         </div>
         <div className="img_bg"></div>
         <div className="img_bx">

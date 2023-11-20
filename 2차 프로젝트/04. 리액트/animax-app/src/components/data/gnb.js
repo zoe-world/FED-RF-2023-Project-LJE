@@ -1,36 +1,63 @@
-// DC.com GNB메뉴 데이터
+// Animax GNB메뉴 데이터
 export const menu = [
     {
-        txt:"Home",
+        txt:"홈",
         link:"/",
     },
     {
-        txt:"CHARACTERS",
-        link:"/ct",
+        txt:"프로그램",
+        link:"/program",
     },
     {
         txt:"COMICS",
-        link:"/co",
-        sub:[{txt:"Hi",link:"/hi"},{txt:"My",link:"/my"},{txt:"We",link:"/we"},],
+        link:"/comics",
+        sub:[
+            {
+                txt: "LATEST COMICS",
+                link: "/co1",
+            },
+            {
+                txt: "DC UNIVERSE INFINITE",
+                link: "/co2",
+            },
+            {
+                txt: "ALL COMICS SERIES",
+                link: "/co3",
+            },
+        ],
     },
     {
-        txt:"MOVIES",
-        link:"/mv",
+        txt:"MOVIES & TV",
+        link:"/movies",
+        sub:[
+            {
+                txt: "DC MOVIES",
+                link: "/mv",
+            },
+            {
+                txt: "DC SERIES",
+                link: "/mv",
+            },
+            {
+                txt: "DC ON HBO MAX",
+                link: "/mv",
+            },
+        ]
     },
     {
         txt:"GAMES",
-        link:"/gm",
+        link:"/games",
     },
     {
         txt:"NEWS",
-        link:"/nw",
+        link:"/news",
     },
     {
         txt:"VIDEO",
-        link:"/vd",
+        link:"/video",
     },
     {
-        txt:"SWIPER",
-        link:"/sw",
+        txt:"OPINIONS",
+        link:"/board",
     },
 ];
