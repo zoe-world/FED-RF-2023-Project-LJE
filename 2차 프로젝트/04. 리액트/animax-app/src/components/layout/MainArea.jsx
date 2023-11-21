@@ -379,13 +379,13 @@ return (
             <ul className="thum-list">
               <li className="on">
                 <a href="#" className="link_img">
-                  <a href="#" title="찜하기" className="link_zzim link_ico">
+                  <button title="찜하기" className="link_zzim link_ico">
                     <span className="tootip">찜하기</span>
-                  </a>
+                  </button>
                   <div className="img_group">
-                    <a href="#" title="동영상 재생" className="link_play link_ico">
+                    <button title="동영상 재생" className="link_play link_ico">
                       <span className="tootip">재생하기</span>
-                    </a>
+                    </button>
                     <div className="ep_tit">
                       <p>제1화 어둠의 콜로세움 <br /> 바로보기</p>
                     </div>
@@ -394,9 +394,9 @@ return (
                   </div>
                   <div className="txt_group">
                     <h4>
-                      <a href="#" title="정보 더보기" className="link_info link_ico">
+                      <button title="정보 더보기" className="link_info link_ico">
                         <span className="tootip">상세보기</span>
-                      </a>
+                      </button>
                       <span className="tit">
                         무직전생 Ⅱ ~이세계에 갔으면 최선을 다한다~
                       </span>
@@ -541,10 +541,7 @@ return (
         <article className="live_wrap">
           <h3>LIVE ON AIR!</h3>
           <div className="list-ctl_box">
-            <a href="#" title="라이브편성표 더보기" className="more_btn">
-              {" "}
-              라이브 편성표
-            </a>
+            <a href="#" title="라이브편성표 더보기" className="more_btn">라이브 편성표</a>
           </div>
           <div className="live_bx_wrap">
             <dl className="live_bx">
@@ -688,21 +685,21 @@ return (
             <ul className="thum-list">
               <li className="on">
                 <a href="#" className="link_img">
-                  <a href="#" title="찜하기" className="link_zzim link_ico">
+                  <button title="찜하기" className="link_zzim link_ico">
                     <span className="tootip">찜하기</span>
-                  </a>
+                  </button>
                   <div className="img_group">
-                    <a href="#" title="동영상 재생" className="link_play link_ico">
+                    <button title="동영상 재생" className="link_play link_ico">
                       <span className="tootip">재생하기</span>
-                    </a>
+                    </button>
                     <div className="bg"></div>
                     <img src="./images/banner/tag_banner01.jpg" alt="" />
                   </div>
                   <div className="txt_group">
                     <h4>
-                      <a href="#" title="정보 더보기" className="link_info link_ico">
+                      <button title="정보 더보기" className="link_info link_ico">
                         <span className="tootip">상세보기</span>
-                      </a>
+                      </button>
                       <span className="tit">
                         무직전생 Ⅱ ~이세계에 갔으면 최선을 다한다~
                       </span>

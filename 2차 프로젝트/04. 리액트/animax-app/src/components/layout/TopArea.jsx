@@ -1,12 +1,34 @@
 // Animax 상단영역 공통 컴포넌트
 
-import { Logo } from "../modules/Logo";
+import { useEffect, useState } from "react";
 
 export function TopArea(){
+    const [ScrollY, setScrollY] = useState(0);
+    const [ScrollAct,SetScrollAct] = useState(false);
+
+    function handleScroll(){
+        if(ScrollY > 70){
+            setScrollY(window.pageYOffset);
+            SetScrollAct(true);
+        }
+        else{
+            setScrollY(window.pageYOffset);
+            SetScrollAct(false);
+        }
+    }
+    function scrollListener(){
+        window.addEventListener("scroll", handleScroll)
+    }
+    useEffect(()=>{
+        scrollListener();
+        return (()=>{
+            window.removeEventListener("scroll",handleScroll)
+        })
+    })
     return(
         <>
             {/* 1. 상단영역 */}
-            <header className="top_area">
+            <header className={ScrollAct?"top_area fixed":"top_area"}>
                 {/* 1-1.로고박스 */}
                 <h1 className="logo">
                     <a href="#">

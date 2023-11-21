@@ -9,9 +9,9 @@ export function Layout(){
 
     return(
         <>
+        <QuickArea/>
         <TopArea/>
         <MainArea/>
-        <QuickArea/>
         <FooterArea />
       </>
     );

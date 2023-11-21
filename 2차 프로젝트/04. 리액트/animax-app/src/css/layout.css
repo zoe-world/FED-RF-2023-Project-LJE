@@ -1,16 +1,102 @@
 @charset "utf-8";
 
 /* 애니맥스 PJ 공통핵심 CSS */
+/************* quick-area *************/
+.quick_area{
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 999;
+    width: 0;
+    height: 100%;
+    background-color: #000;
+    animation: slideX .5s forwards; 
+    transition: width .2s ease-in-out;
+}
+.quick_area.on{
+    width: 7rem;
+}
+.quick_area .ham_btn{
+    position: absolute;
+    top: 25px;
+    left: -25px;
+    width: 19px;
+    height: 19px;
+    background: url(../../public/images/common/btn_menu.png) no-repeat;
+}
+.quick_area.on .ham_btn{
+    background-image: url(../../public/images/common/btn_x.png);
+}
+.quick_area .tit{
+    padding: 2.5rem 0.5rem;
+    background: linear-gradient(180deg,#2a2a2a,#000);
+    text-align: center;
+}
+.quick_area .tit span{
+    display: inline-block;
+    color: #00B8FF;
+    font-size: 1.3rem;
+    line-height: 1.4;
+}
+.quick_area .quick_list{
+    width: 100%;
+    height: calc(100% - 146px);
+}
+.quick_area .quick_list li{
+    padding: 1.5rem .5rem;
+    transition: all .4s;
+}
+.quick_area .quick_list li:hover{
+    background-color: #262626;
+}
+.quick_area .quick_list li > a{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.quick_area .quick_list .txt{
+    margin-top: 1rem;
+    font-size: 1.3rem;
+    font-family: "Pretendard";
+}
+.quick_area .top_btn{
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 60px;
+    background: url(../../public/images/common/btn_top.png) no-repeat;
+}
+
+@keyframes slideX{
+    0%{
+        transform: translateX(100%);
+    }
+    100%{
+        transform: translateX(0%);
+    }
+}
 /************* top-area *************/
 /* common header */
 .top_area{
     position: fixed;
     top: 0;
-    z-index: 1000;
+    z-index: 100;
     display: flex;
     width: 100vw;
     height: 70px;
-    padding: 0 min(2vw, 25px);
+    padding-left: 2vw;
+    padding-right: min(4.5vw, 40px);
+    transition: all .5s;
+
+}
+.top_area.fixed{
+    background-color: #000;
+}
+.quick_area.on + .top_area{
+    padding-right: min(calc(2vw + 9rem), calc(25px + 9rem));
 }
 /* 1-1. logo */
 .top_area:before{
