@@ -62,9 +62,7 @@
 }
 .quick_area .top_btn{
     position: absolute;
-    left: 50%;
     bottom: 0;
-    transform: translateX(-50%);
     width: 70px;
     height: 60px;
     background: url(../../public/images/common/btn_top.png) no-repeat;
@@ -72,7 +70,7 @@
 
 @keyframes slideX{
     0%{
-        transform: translateX(100%);
+        transform: translateX(150vw);
     }
     100%{
         transform: translateX(0%);
@@ -88,7 +86,7 @@
     width: 100vw;
     height: 70px;
     padding-left: 2vw;
-    padding-right: min(4.5vw, 40px);
+    padding-right: min(5vw, 5rem);
     transition: all .5s;
 
 }
@@ -96,7 +94,7 @@
     background-color: #000;
 }
 .quick_area.on + .top_area{
-    padding-right: min(calc(2vw + 9rem), calc(25px + 9rem));
+    padding-right: min(calc(3vw + 9rem), calc(35px + 9rem));
 }
 /* 1-1. logo */
 .top_area:before{

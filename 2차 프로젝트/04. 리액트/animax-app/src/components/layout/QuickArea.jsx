@@ -4,16 +4,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useRef, useState } from "react";
 
 export function QuickArea(props) {
-
+  const [isOpen, setIsOpen] = useState(true);
   const openMenu = () => {
-    const [isOpen, setIsOpen] = useState(true);
-    // 햄버거 버튼
-    const quick = useRef();
-    isOpen? quick.current.classList().add('on') : quick.current.classList().remove('on')
+    setIsOpen(isOpen ? false : true);
   };
   return (
     <>
-      <aside id="quick_area" className="quick_area" ref={quick}>
+      <aside
+        id="quick_area"
+        className={isOpen ? "quick_area "+"on" : "quick_area"}
+      >
         <button className="ham_btn" onClick={openMenu}>
           <span className="sr-only">닫기</span>
         </button>
@@ -32,7 +32,7 @@ export function QuickArea(props) {
           <li>
             <a href="#">
               <img src="./images/common/ico_login.png" />
-              <span>로그인</span>
+              <span className="txt">로그인</span>
             </a>
           </li>
         </ul>
