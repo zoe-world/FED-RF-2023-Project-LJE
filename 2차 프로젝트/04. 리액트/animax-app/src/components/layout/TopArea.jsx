@@ -1,12 +1,10 @@
 // Animax 상단영역 공통 컴포넌트
 
 import { useEffect, useState } from "react";
-import { menu } from "../data/gnb"; 
 import { Link } from "react-router-dom";
+import { Menu } from "../modules/Menu";
 
 export function TopArea(){
-    const gnb = menu.splice(3);
-
     const [ScrollY, setScrollY] = useState(0);
     const [ScrollAct,SetScrollAct] = useState(false);
 
@@ -42,14 +40,7 @@ export function TopArea(){
                 {/* 1-2.GNB박스 */}
                 <nav className="gnb_box">
                     <ul>
-                        {menu.map((v,i)=> (
-                            <li key={i}>
-                                <Link to={v.link}>{v.txt}</Link>
-                            </li>
-                        ))}
-                        {/* <li><a href="#">홈</a></li>
-                        <li><a href="#">프로그램</a></li>
-                        <li><a href="#">LIVE</a></li> */}
+                        <Menu cat="gnb"/>
                     </ul>
                 </nav>
                 {/* 1-3.UTIL박스 */}
@@ -58,9 +49,7 @@ export function TopArea(){
                         <li className="search">
                             <a href="#"><span className="sr-only">검색</span></a>
                         </li>
-                        <li className="ttbl"><a href="#">이용권</a></li>
-                        <li className="ttbl"><a href="#">편성표</a></li>
-                        <li className="login"><a href="#">로그인</a></li>
+                        <Menu cat="util"/>
                     </ul>
                 </div>
             </header>
