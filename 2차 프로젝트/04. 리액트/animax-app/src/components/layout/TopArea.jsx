@@ -1,8 +1,12 @@
 // Animax 상단영역 공통 컴포넌트
 
 import { useEffect, useState } from "react";
+import { menu } from "../data/gnb"; 
+import { Link } from "react-router-dom";
 
 export function TopArea(){
+    const gnb = menu.splice(3);
+
     const [ScrollY, setScrollY] = useState(0);
     const [ScrollAct,SetScrollAct] = useState(false);
 
@@ -28,7 +32,7 @@ export function TopArea(){
     return(
         <>
             {/* 1. 상단영역 */}
-            <header className={ScrollAct?"top_area fixed":"top_area"}>
+            <header className={ScrollAct?"top_area "+"fixed":"top_area"}>
                 {/* 1-1.로고박스 */}
                 <h1 className="logo">
                     <a href="#">
@@ -38,9 +42,14 @@ export function TopArea(){
                 {/* 1-2.GNB박스 */}
                 <nav className="gnb_box">
                     <ul>
-                        <li><a href="#">홈</a></li>
+                        {menu.map((v,i)=> (
+                            <li key={i}>
+                                <Link to={v.link}>{v.txt}</Link>
+                            </li>
+                        ))}
+                        {/* <li><a href="#">홈</a></li>
                         <li><a href="#">프로그램</a></li>
-                        <li><a href="#">공지사항</a></li>
+                        <li><a href="#">LIVE</a></li> */}
                     </ul>
                 </nav>
                 {/* 1-3.UTIL박스 */}
@@ -51,7 +60,7 @@ export function TopArea(){
                         </li>
                         <li className="ttbl"><a href="#">이용권</a></li>
                         <li className="ttbl"><a href="#">편성표</a></li>
-                        <li className="join"><a href="#">회원가입</a></li>
+                        <li className="login"><a href="#">로그인</a></li>
                     </ul>
                 </div>
             </header>

@@ -9,55 +9,43 @@ export const menu = [
         link:"/program",
     },
     {
-        txt:"COMICS",
-        link:"/comics",
-        sub:[
-            {
-                txt: "LATEST COMICS",
-                link: "/co1",
-            },
-            {
-                txt: "DC UNIVERSE INFINITE",
-                link: "/co2",
-            },
-            {
-                txt: "ALL COMICS SERIES",
-                link: "/co3",
-            },
-        ],
+        txt:"LIVE",
+        link:"/live",
     },
     {
-        txt:"MOVIES & TV",
-        link:"/movies",
+        txt:"고객센터",
+        link:"/cs",
         sub:[
             {
-                txt: "DC MOVIES",
-                link: "/mv",
+                txt: "공지사항",
+                link: "/notice",
             },
             {
-                txt: "DC SERIES",
-                link: "/mv",
-            },
-            {
-                txt: "DC ON HBO MAX",
-                link: "/mv",
+                txt: "FAQ",
+                link: "/faq",
             },
         ]
     },
     {
-        txt:"GAMES",
-        link:"/games",
+        txt:"이용약관",
+        link:"/policy",
+        sub:[
+            {
+                txt: "이용약관",
+                link: "/policy",
+            },
+            {
+                txt: "개인정보처리방침",
+                link: "/privacy",
+            },
+        ]
     },
     {
-        txt:"NEWS",
-        link:"/news",
+        txt:"로그인",
+        link:"/login",
     },
     {
-        txt:"VIDEO",
-        link:"/video",
-    },
-    {
-        txt:"OPINIONS",
-        link:"/board",
+        txt:"이용권",
+        link:"/ticket",
     },
 ];
