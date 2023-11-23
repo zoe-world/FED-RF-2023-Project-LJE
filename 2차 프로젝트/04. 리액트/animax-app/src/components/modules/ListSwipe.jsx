@@ -1,5 +1,7 @@
 // Animax 리스트배너스와이프 컴포넌트
 
+import { SwiperApp } from "../plugin/SwiperApp";
+
 export function ListSwipe(){
     return(
         <>

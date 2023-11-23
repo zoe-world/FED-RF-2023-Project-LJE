@@ -1,41 +1,49 @@
 // Animax 상단영역 공통 컴포넌트
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu } from "../modules/Menu";
 
 export function TopArea(){
-    const [ScrollY, setScrollY] = useState(0);
-    const [ScrollAct,SetScrollAct] = useState(false);
+    const layoutRef = useRef(null);
+    const handleScroll = useCallback((e) => {
+        console.log(e,'됨?')
+      }, [])
+      
+      useEffect(() => {
+        if (layoutRef.current) {
+          layoutRef.current.addEventListener('scroll', handleScroll)
+          return () => layoutRef.current.removeEventListener('scroll', handleScroll)
+        }
+      }, [])
+    // const [ScrollY, setScrollY] = useState(0);
+    // const [ScrollAct,SetScrollAct] = useState(false);
 
-    function handleScroll(){
-        if(ScrollY > 70){
-            setScrollY(window.pageYOffset);
-            SetScrollAct(true);
-        }
-        else{
-            setScrollY(window.pageYOffset);
-            SetScrollAct(false);
-        }
-    }
-    function scrollListener(){
-        window.addEventListener("scroll", handleScroll)
-    }
-    useEffect(()=>{
-        scrollListener();
-        return (()=>{
-            window.removeEventListener("scroll",handleScroll)
-        })
-    })
+    // function handleScroll(){
+    //     if(ScrollY > 70){
+    //         setScrollY(window.pageYOffset);
+    //         SetScrollAct(true);
+    //     }
+    //     else{
+    //         setScrollY(window.pageYOffset);
+    //         SetScrollAct(false);
+    //     }
+    // }        
+    // useLayoutEffect(()=>{
+    //     window.addEventListener("scroll", handleScroll);
+    //     return ()=>{
+    //         window.removeEventListener("scroll",handleScroll)
+    //     }
+    // },[ScrollY])
     return(
         <>
             {/* 1. 상단영역 */}
-            <header className={ScrollAct?"top_area "+"fixed":"top_area"}>
+            <header  ref={layoutRef}>
                 {/* 1-1.로고박스 */}
                 <h1 className="logo">
-                    <a href="#">
+                    <Link to="/">
                         <img src="./images/logo.png" alt="Animax" />
-                    </a>
+                    </Link>
                 </h1>
                 {/* 1-2.GNB박스 */}
                 <nav className="gnb_box">

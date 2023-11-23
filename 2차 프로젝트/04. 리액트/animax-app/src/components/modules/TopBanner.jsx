@@ -1,5 +1,6 @@
 // Animax 메인 상단배너 컴포넌트
 
+
 export function TopBanner() {
   return (
     <>
