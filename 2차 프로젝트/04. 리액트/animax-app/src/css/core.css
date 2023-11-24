@@ -60,7 +60,7 @@ body::-webkit-scrollbar-track {
 html{
     font-size: 62.5%;
 }
-html, body{
+body{
     overflow-x: hidden;
 }
 body{

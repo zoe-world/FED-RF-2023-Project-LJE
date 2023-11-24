@@ -7,13 +7,15 @@ import { Menu } from "../modules/Menu";
 export function TopArea(){
     const [isScrollTop, setIsScrollTop] = useState(0);
 
-    const checkTop = () => {
+    const checkTop = (e) => {
+        // console.log(window.scrollY);
       if (window.scrollY >= 70) {
-        setIsScrollTop(true);
-      } else {
-        setIsScrollTop(false);
+        setIsScrollTop(1);
       }
-      console.log("함수 구역", window.scrollY, "250 이하냐? ", isScrollTop);
+      else{
+        setIsScrollTop(0);
+      }
+    //   console.log("함수 구역", window.scrollY, "250 이하냐? ", isScrollTop);
     };
     
     useEffect(() => {
@@ -26,7 +28,7 @@ export function TopArea(){
     return(
         <>
             {/* 1. 상단영역 */}
-            <header className={isScrollTop < 70?"top_area "+"fixed":"top_area"}>
+            <header className={"top_area"+(isScrollTop?" fixed":"")}>
                 {/* 1-1.로고박스 */}
                 <h1 className="logo">
                     <Link to="/">
