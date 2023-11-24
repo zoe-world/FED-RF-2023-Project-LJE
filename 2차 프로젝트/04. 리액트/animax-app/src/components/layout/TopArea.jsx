@@ -5,40 +5,28 @@ import { Link } from "react-router-dom";
 import { Menu } from "../modules/Menu";
 
 export function TopArea(){
-    const layoutRef = useRef(null);
-    const handleScroll = useCallback((e) => {
-        console.log(e,'됨?')
-      }, [])
-      
-      useEffect(() => {
-        if (layoutRef.current) {
-          layoutRef.current.addEventListener('scroll', handleScroll)
-          return () => layoutRef.current.removeEventListener('scroll', handleScroll)
-        }
-      }, [])
-    // const [ScrollY, setScrollY] = useState(0);
-    // const [ScrollAct,SetScrollAct] = useState(false);
+    const [isScrollTop, setIsScrollTop] = useState(0);
 
-    // function handleScroll(){
-    //     if(ScrollY > 70){
-    //         setScrollY(window.pageYOffset);
-    //         SetScrollAct(true);
-    //     }
-    //     else{
-    //         setScrollY(window.pageYOffset);
-    //         SetScrollAct(false);
-    //     }
-    // }        
-    // useLayoutEffect(()=>{
-    //     window.addEventListener("scroll", handleScroll);
-    //     return ()=>{
-    //         window.removeEventListener("scroll",handleScroll)
-    //     }
-    // },[ScrollY])
+    const checkTop = () => {
+      if (window.scrollY >= 70) {
+        setIsScrollTop(true);
+      } else {
+        setIsScrollTop(false);
+      }
+      console.log("함수 구역", window.scrollY, "250 이하냐? ", isScrollTop);
+    };
+    
+    useEffect(() => {
+      window.addEventListener("scroll", checkTop);
+      return () => {
+        window.removeEventListener("scroll", checkTop);
+      };
+    });
+
     return(
         <>
             {/* 1. 상단영역 */}
-            <header  ref={layoutRef}>
+            <header className={isScrollTop < 70?"top_area "+"fixed":"top_area"}>
                 {/* 1-1.로고박스 */}
                 <h1 className="logo">
                     <Link to="/">

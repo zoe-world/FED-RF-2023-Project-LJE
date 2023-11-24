@@ -19,7 +19,7 @@
 .quick_area .ham_btn{
     position: absolute;
     top: 25px;
-    left: -25px;
+    left: -35px;
     width: 19px;
     height: 19px;
     background: url(../../public/images/common/btn_menu.png) no-repeat;
