@@ -1,7 +1,5 @@
-import { quickData } from "../data/quick";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useRef, useState } from "react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export function QuickArea(props) {
   const [isOpen, setIsOpen] = useState(true);
@@ -24,16 +22,16 @@ export function QuickArea(props) {
         </h3>
         <ul className="quick_list">
           <li>
-            <a href="#">
+            <Link to="/customer">
               <img src="./images/common/ico_customer.png" />
               <span className="txt">고객센터</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#">
+            <Link to="/login">
               <img src="./images/common/ico_login.png" />
               <span className="txt">로그인</span>
-            </a>
+            </Link>
           </li>
         </ul>
         <button className="top_btn">

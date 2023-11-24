@@ -7,7 +7,7 @@ import { Menu } from "../modules/Menu";
 export function TopArea(){
     const [isScrollTop, setIsScrollTop] = useState(0);
 
-    const checkTop = (e) => {
+    const checkTop = () => {
         // console.log(window.scrollY);
       if (window.scrollY >= 70) {
         setIsScrollTop(1);
@@ -15,7 +15,6 @@ export function TopArea(){
       else{
         setIsScrollTop(0);
       }
-    //   console.log("함수 구역", window.scrollY, "250 이하냐? ", isScrollTop);
     };
     
     useEffect(() => {

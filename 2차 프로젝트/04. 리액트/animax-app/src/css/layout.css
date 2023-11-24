@@ -92,7 +92,7 @@
     width: 100vw;
     height: 70px;
     padding-left: 2vw;
-    padding-right: min(5vw, 5rem);
+    padding-right: min(5vw, 8rem);
     transition: all .5s;
 
 }
@@ -100,7 +100,7 @@
     background-color: #000;
 }
 .quick_area.on + .top_area{
-    padding-right: min(calc(3vw + 9rem), calc(35px + 9rem));
+    padding-right: min(calc(5vw + 6rem), calc(5vw + 6rem));
 }
 /* 1-1. logo */
 .top_area:before{
