@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 export function Menu(props) {
     // props.cat - 메뉴 분류명
+
+    // 선택데이터
     const selMenu = menu[props.cat];
   return (
     <>

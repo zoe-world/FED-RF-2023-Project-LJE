@@ -3,7 +3,7 @@
 import { Outlet } from "react-router-dom";
 import { Main } from "../pages/Main";
 
-export function MainArea() {
+export function MainArea(props) {
   return (
       <div id="main_area">
         <main className="main_area">

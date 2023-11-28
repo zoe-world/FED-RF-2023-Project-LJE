@@ -1,10 +1,10 @@
 // Animax 상단영역 공통 컴포넌트
 
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu } from "../modules/Menu";
 
-export function TopArea(){
+export const TopArea = memo(({chgPageFn})=>{
     const [isScrollTop, setIsScrollTop] = useState(0);
 
     const checkTop = () => {
@@ -52,4 +52,4 @@ export function TopArea(){
             </header>
         </>
     );
-}////// TopArea 컴포넌트 ////
+})////// TopArea 컴포넌트 ////

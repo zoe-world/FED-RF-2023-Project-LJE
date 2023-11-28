@@ -2,30 +2,41 @@
 
 // Quick 메뉴 데이터 - quick.js
 export const quickData = {
-    main:[
+    "main":[
     {
         txt:"고객센터",
         cls:"cs",
         link:"/customer",
-        img:"./images/common/ico_customer.png"
+        src:"./images/common/ico_customer.png"
+    },
+    {
+        txt:"이벤트",
+        cls:"event",
+        link:"/event",
+        src:"./images/common/ico_event.png"
     },
     {
         txt:"로그인",
         cls:"login",
         link:"/login",
-        img:"./images/common/ico_login.png"
+        src:"./images/common/ico_login.png"
     }
     ],
-    sub:[
+    "sub":[
         {
             txt:"고객센터",
             link:"/customer",
-            img:"./images/common/sub/ico_customer.png"
+            src:"./images/common/sub/ico_customer.png"
+        },
+        {
+            txt:"이벤트",
+            link:"/event",
+            src:"./images/common/sub/ico_event.png"
         },
         {
             txt:"로그인",
             link:"/login",
-            img:"./images/common/sub/ico_login.png"
+            src:"./images/common/sub/ico_login.png"
         }
     ]
 }

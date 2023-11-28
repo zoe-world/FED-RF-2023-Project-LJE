@@ -1,7 +1,8 @@
 // 스와이퍼 플러그인 컴포넌트
 import React, { useRef, useState } from "react";
+import $ from 'jquery';
 
-import SwiperCore, { Navigation, Pagination } from "swiper";
+import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -24,13 +25,17 @@ export function SwiperList() {
   const [swiper, setSwiper] = useState();
   const [mainImgIndex, setMainImgIndex] = useState(0);
 
-  SwiperCore.use([Navigation,Pagination]);
+  SwiperCore.use([Navigation,Pagination,Autoplay]);
 
   const navPrev = useRef();
   const navNext = useRef();
   const page = useRef();
 
   const swiperParams = {
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: true
+    },
     navigation: { prevEl: navPrev.current, nextEl: navNext.current },
     pagination: {
       el: ".swiper-pagination",
@@ -73,8 +78,33 @@ export function SwiperList() {
         slidesPerView: 3,
         spaceBetween: 15
       }
-    }
+    },
   };
+  let tog = 0;
+  $('.stop_btn').on('click',function(e){
+    if(tog == 0){
+      e.preventDefault(); 
+      swiper.autoplay.stop();
+      $(this).removeClass('stop_btn').addClass('play_btn')
+      .attr('aria-label','재생');
+      $(this).find('img').attr('src','./images/play.png');
+      tog = 1;
+    }
+    else {
+      e.preventDefault(); 
+      swiper.autoplay.start();
+      $(this).removeClass('play_btn').addClass('stop_btn')
+      .attr('aria-label','멈춤');
+      $(this).find('img').attr('src','./images/stop.png');
+      tog = 0;
+    }
+    
+  });
+
+  
+
+
+  // 리턴코드 ////////////////////////////////////
   return (
     <>
       <div className="arrow_box">
@@ -103,10 +133,8 @@ export function SwiperList() {
       <div className="paging_wrap">
         <ol className="paging_list swiper-pagination"></ol>
         <div className="ctl_box">
-          <a href="#" className="ctl_btn">
-            <span className="sr-only">멈춤</span>
-            <img src="./images/stop.png" alt="" />
-            {/* <img src="./images/play.png" alt="" /> */}
+          <a href="#" className="ctl_btn stop_btn" aria-label="멈춤">
+            <img src="./images/stop.png" alt="" /> 
           </a>
         </div>
       </div>
