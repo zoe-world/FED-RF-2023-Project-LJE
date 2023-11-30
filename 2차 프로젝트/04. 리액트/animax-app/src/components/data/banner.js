@@ -50,4 +50,10 @@ export const banData = {
       link: "/event",
     },
   ],
+  sub1: [
+    {
+      src: "./images/banner/line_banner01.png",
+    },
+  ],
+  
 };

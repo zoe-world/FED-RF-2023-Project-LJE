@@ -13,10 +13,10 @@ export function Promotion({ cat }) {
         <div className="pr-banner">
           <a href="#">
             <Banner cat={cat} />
-            <img
+            {/* <img
               src="./images/banner/line_banner.png"
               alt="명탐정 코난 앙상블스타즈 콜라보 캠페인 진행중"
-            />
+            /> */}
           </a>
         </div>
       </article>

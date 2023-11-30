@@ -17,11 +17,15 @@ export function Banner({ cat }) {
   const fileName = imgSrc.substring(imgSrc.length - 3);
   // 내용 텍스트
   const conts = selData[0]["cont"];
-
+console.log((selData))
   return (
     <>
-      { selData != 'main' && 
+    
+      {
+      
+      
         <>
+          {cat.indexOf('main')!=-1 && 
           <div className="txt_bx">
             {selData.map((v, i) => (
               <h3 key={i}>
@@ -47,7 +51,7 @@ export function Banner({ cat }) {
               </h3>
             ))}
             <button className="view_btn">자세히보기</button>
-          </div>
+          </div>}
           <div className="img_bg"></div>
           <div className="img_bx">
             {fileName != "png" &&

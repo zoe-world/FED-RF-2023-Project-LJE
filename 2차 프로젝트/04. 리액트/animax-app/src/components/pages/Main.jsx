@@ -15,7 +15,7 @@ export function Main(props) {
       <section className="content_wrap">
         <h2 className="sr-only">컨텐츠 영역</h2>
 
-        <Promotion cat={"main"+Math.ceil(Math.random()*5)}/>
+        <Promotion cat={"sub1"}/>
         {/* 2.3.1 오늘의 업데이트 리스트 */}
         <article className="list_wrap today">
           <h3>오늘의 업데이트</h3>
