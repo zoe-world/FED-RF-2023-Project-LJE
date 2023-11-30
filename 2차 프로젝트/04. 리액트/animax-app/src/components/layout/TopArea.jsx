@@ -31,7 +31,7 @@ export const TopArea = memo(({chgPageFn})=>{
                 {/* 1-1.로고박스 */}
                 <h1 className="logo">
                     <Link to="/">
-                        <img src="./images/logo.png" alt="Animax" />
+                        <img src="/images/logo.png" alt="Animax" />
                     </Link>
                 </h1>
                 {/* 1-2.GNB박스 */}

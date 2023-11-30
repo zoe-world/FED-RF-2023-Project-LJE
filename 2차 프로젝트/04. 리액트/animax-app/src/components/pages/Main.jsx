@@ -1,29 +1,21 @@
 // Animax 메인 컴포넌트
 
 import { ListSwipe } from "../modules/ListSwipe";
-import { Banner } from "./Banner";
+import { Promotion } from "./Promotion";
+import { TopBanner } from "./TopBanner";
 
 export function Main(props) {
   return (
     <>
       {/* 2-1. TOP배너 박스 */}
-      <Banner cat={"main"+Math.ceil(Math.random()*5)}/>
+      <TopBanner cat={"main"+Math.ceil(Math.random()*5)}/>
       {/* 2-2. LIST배너 박스 */}
       <ListSwipe />
       {/* 2-3. 컨텐츠영역 */}
       <section className="content_wrap">
         <h2 className="sr-only">컨텐츠 영역</h2>
-        <article className="pr-banner_wrap">
-          <h3 className="sr-only">프로모션 배너 영역</h3>
-          <div className="pr-banner">
-            <a href="#">
-              <img
-                src="./images/banner/line_banner.png"
-                alt="명탐정 코난 앙상블스타즈 콜라보 캠페인 진행중"
-              />
-            </a>
-          </div>
-        </article>
+
+        <Promotion cat={"main"+Math.ceil(Math.random()*5)}/>
         {/* 2.3.1 오늘의 업데이트 리스트 */}
         <article className="list_wrap today">
           <h3>오늘의 업데이트</h3>
