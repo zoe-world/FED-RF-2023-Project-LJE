@@ -10,13 +10,15 @@ export function Main(props) {
       {/* 2-1. TOP배너 박스 */}
       <TopBanner cat={"main"+Math.ceil(Math.random()*5)}/>
       {/* 2-2. LIST배너 박스 */}
-      <ListSwipe />
+      <ListSwipe cat="list"/>
       {/* 2-3. 컨텐츠영역 */}
       <section className="content_wrap">
         <h2 className="sr-only">컨텐츠 영역</h2>
-
-        <Promotion cat={"sub1"}/>
-        {/* 2.3.1 오늘의 업데이트 리스트 */}
+        
+        {/* 2.3.1 프로모션배너 박스 */}
+        <Promotion cat={"sub"+Math.ceil(Math.random()*4)}/>
+        
+        {/* 2.3.2 오늘의 업데이트 리스트 */}
         <article className="list_wrap today">
           <h3>오늘의 업데이트</h3>
           <div className="list-ctl_box">

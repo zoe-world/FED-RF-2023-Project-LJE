@@ -5,7 +5,6 @@ import { Banner } from "../modules/Banner";
 // 배너데이터
 export function Promotion({ cat }) {
   // cat = 카테고리명
-
   return (
     <>
       <article className="pr-banner_wrap">
@@ -13,10 +12,6 @@ export function Promotion({ cat }) {
         <div className="pr-banner">
           <a href="#">
             <Banner cat={cat} />
-            {/* <img
-              src="./images/banner/line_banner.png"
-              alt="명탐정 코난 앙상블스타즈 콜라보 캠페인 진행중"
-            /> */}
           </a>
         </div>
       </article>

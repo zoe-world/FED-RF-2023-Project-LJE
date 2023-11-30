@@ -55,5 +55,20 @@ export const banData = {
       src: "./images/banner/line_banner01.png",
     },
   ],
+  sub2: [
+    {
+      src: "./images/banner/line_banner02.png",
+    },
+  ],
+  sub3: [
+    {
+      src: "./images/banner/line_banner03.png",
+    },
+  ],
+  sub4: [
+    {
+      src: "./images/banner/line_banner04.png",
+    },
+  ],
   
 };

@@ -15,11 +15,11 @@ import "swiper/components/navigation/navigation.min.css";
 import "./css/swiper_list.css";
 
 // 배너리스트 데이터
-import { listBannerData } from "../data/swiper_list";
+import { swBanData } from "../data/swiper_list";
 
-export function SwiperList() {
+export function SwiperList({cat}) {
   // 배너리스트 데이터 가공
-  const selData = listBannerData;
+  const selData = swBanData[cat];
 
   // 스와이퍼
   const [swiper, setSwiper] = useState();
@@ -61,17 +61,20 @@ export function SwiperList() {
     breakpoints: {
       0:{
         slidesPerView: 1,
-        spaceBetween: 0
+        spaceBetween: 0,
+        slidesPerGroup: 1,
       },
       // when window width is >= 320px
       320: {
         slidesPerView: 2,
-        spaceBetween: 10
+        spaceBetween: 10,
+        slidesPerGroup: 2,
       },
       // when window width is >= 480px
       468: {
         slidesPerView: 2,
-        spaceBetween: 10
+        spaceBetween: 10,
+        slidesPerGroup: 2,
       },
       // when window width is >= 640px
       640: {
@@ -115,6 +118,7 @@ export function SwiperList() {
           <span className="sr-only">다음 슬라이드 보기</span>
         </a>
       </div>
+
       <Swiper {...swiperParams} ref={setSwiper} className="list">
           {selData.map((v, i) => (
             <SwiperSlide key={i} className="list_item">
@@ -130,6 +134,7 @@ export function SwiperList() {
             </SwiperSlide>
           ))}
       </Swiper>
+
       <div className="paging_wrap">
         <ol className="paging_list swiper-pagination"></ol>
         <div className="ctl_box">
