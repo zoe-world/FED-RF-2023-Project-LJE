@@ -1,4 +1,4 @@
-// Animax 메인페이지 배너 컴포넌트
+// Animax 프로모션 배너 컴포넌트
 
 import { Banner } from "../modules/Banner";
 

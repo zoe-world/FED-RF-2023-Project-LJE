@@ -648,7 +648,7 @@
     height: 100%;
     background: url(../../public/images/bg_visual.png) no-repeat 100%;
     background-size: cover;
-    opacity: 1;
+    opacity: .1;
 }
 /*2.3.2 today list */
 .list_wrap.today .list_box{
@@ -932,7 +932,7 @@
 .footer_area .ntc_list{
     display: flex;
     align-items: center;
-    font-size: 1.3rem;
+    font-size: 1.5rem;
 }
 .footer_area .ntc_list .tag{
     color: #fff;
