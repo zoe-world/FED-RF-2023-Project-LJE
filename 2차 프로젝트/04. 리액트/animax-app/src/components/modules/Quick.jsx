@@ -38,12 +38,6 @@ export const Quick = memo(({chgPageFn,cat}) => {
             )
             
           }
-          {/* <li>
-            <button onClick={() => chgPageFn("/customer")}>
-              <img src="./images/common/ico_customer.png" />
-              <span className="txt">고객센터</span>
-            </button>
-          </li> */}
         </ul>
         <button className="top_btn">
           <span className="sr-only">탑버튼</span>

@@ -2,60 +2,269 @@
 
 /****************************
     {
+        rank: "",
         tit: ``,
         director: "",
         genre: "",
         company: "",
-        episode: "",
+        epiNum: "",
         age: "",
         date: "",
-        videoSrc: "",
-        imgSrc: "",
-        logoSrc: "",
-        epiTit: "",
+        videoSrc: {
+            openSrc:"",
+            endSrc:"",
+            promSrc:"",
+        },
         desc: ``,
-        rank: "",
-        epiDate: "",
-    }
-    1) 제목 : tit
-    2) 감독 : director
-    3) 장르 : genre
-    4) 제작사 : company
-    5) 회차수 : episode
-    6) 이용연령 : age
-    7) 방송일자 : date
-    8) 영상 : videoSrc
-        8-1) 오프닝영상 : openSrc
-        8-2) 엔딩영상 : endSrc
-        8-3) 프로모션영상 : promSrc
-    9) 이미지경로 : imgSrc(view단 이미지 & list단 썸네일)
-    10) 제목이미지경로 : logoSrc
-    11) 에피소드제목: epiTit
-    12) 줄거리 : desc
-    13) 랭킹 : rank
+        thumSrc: "./images/content/thum/thum_.jpg",
+        logoSrc: "./images/content/logo/logo_.png", 
+        epiTit: "",
+        hashtag: ['#아이돌','#이세계','#러브코미디','#액션/배틀','#스릴러','#순정/로맨스','#요괴/오컬트','#극장판',],
+        newEpi: "2023-",
+        live:"",
+    },
+    1) 랭크 : rank
+    2) 제목 : tit
+    3) 감독 : director
+    4) 장르 : genre
+    5) 제작사 : company
+    6) 회차수 : epiNum
+    7) 이용연령 : age
+    8) 방송일자 : date
+    9) 영상 : videoSrc
+        9-1) 오프닝영상 : openSrc
+        9-2) 엔딩영상 : endSrc
+        9-3) 프로모션영상 : promSrc
+    10) 줄거리 : desc
+    11) 이미지경로 : thumSrc(view단 이미지 & list단 썸네일)
+    12) 제목이미지경로 : logoSrc
+    13) 에피소드제목: epiTit
     14) 해시태그 : hashtag
-    15) 최신에피소드 방영날짜 : epiDate(ex 2023-12-01)
+    15) 최신에피소드 방영날짜 : newEpi(ex 2023-12-01)
         (매일 날짜 기준으로 방영날짜와 비교 후 1달 미만일 경우, 
         오늘의 업데이트 list 에 뿌릴 예정)
+    16) 본방 날짜 : live
 ****************************/
 
 export const VideoListData = [
     {
-        idx: "1",
-        tit: ``,
-        director: "",
-        genre: "",
-        company: "",
-        episode: "",
-        age: "",
+        rank: "1",
+        tit: `우리들의 비 내리는 프로토콜`,
+        director: "카토 다이시",
+        genre: "드라마",
+        company: "Quad",
+        epiNum: "미공개",
+        age: "15세 관람",
+        date: "2023.10",
+        videoSrc: {
+            openSrc:"https://jjmp4.ofscdn.com/TveeMovie/aniplus/bokuame/bokuame_op.mp4",
+            endSrc:"https://jjmp4.ofscdn.com/TveeMovie/aniplus/bokuame/bokuame_ed.mp4",
+            promSrc:"https://jjmp4.ofscdn.com/PV/filler_bokuame_e.mp4",
+        },
+        desc: `엄마와 여동생 셋이서 살고 있는 고등학교 2학년 토키노야 슌.^사고로 인한 아빠의 죽음과 여동생의 부상을 계기로, 한때 열중했던 게임을 그만두고^현재는 E스포츠 카페 'FOX ONE'에서 일하고 있었다.^^소꿉친구이기도 한 게임 친구들과 교류하면서 슌은 알바와 공부에 열중했지만,^별안간 'FOX ONE'에 막대한 액수의 빚이 있다는 것이 발각되었다.^^`,
+        thumSrc: "./images/content/thum/thum_01.jpg",
+        logoSrc: "./images/content/logo/logo_01.png",
+        epiTit: "제9화 무너지는 징조 Latch Up",
+        hashtag: ['#러브코미디','#순정/로맨스'],
+        newEpi: "2023-12-04",
+        live:"매주(월) 01:00",
+    },
+    {
+        rank: "2",
+        tit: `아이돌 마스터`,
+        director: "니시고리 아츠시",
+        genre: "드라마",
+        company: "A-1 Pictures",
+        epiNum: "26화",
+        age: "15세 관람",
+        date: "2011.07",
+        videoSrc: {
+            openSrc:"https://jjmp4.ofscdn.com/TveeMovie/aniplus/idolmaster/idol_opening.mp4",
+            endSrc:"https://jjmp4.ofscdn.com/TveeMovie/aniplus/idolmaster/idol_ending.mp4",
+            promSrc:"",
+        },
+        desc: `아이돌그것은 영원한 소녀들의 동경.하지만 그 정점에 서는 것은 극히 일부에 불과하다.이것은 그러한 서바이벌의 세계에 도전해나가는13명 소녀들의 이야기...`,
+        thumSrc: "./images/content/thum/thum_02.jpg",
+        logoSrc: "./images/content/thum/logo_02.png",
+        epiTit: "26화 특별편 765프로덕션 이야기",
+        hashtag: ['#아이돌','#이세계'],
+        newEpi: "2022-10-04",
+        live:"",
+    },
+    {
+        rank: "3",
+        tit: `진격의 거인`,
+        director: "아라키 테츠로",
+        genre: "판타지",
+        company: "WIT STUDIO",
+        epiNum: "25화",
+        age: "19세 관람",
+        date: "2013.07",
+        videoSrc: {
+            openSrc:"https://jjmp4.ofscdn.com/TveeMovie/aniplus/shingeki/shingeki_op.mp4",
+            endSrc:"https://jjmp4.ofscdn.com/TveeMovie/aniplus/shingeki/shingeki_ed.mp4",
+            promSrc:"",
+        },
+        thumSrc: "./images/content/thum/thum_03.jpg",
+        logoSrc: "./images/content/thum/logo_03.png",
+        epiTit: "25화 벽 - 스토헤스 구 급습 3",
+        desc: `100여년 전, 갑자기 나타난 거인4들에 의해 멸종 위기에 처한 인류는 살아남기 위해 50m의 거대한 벽을 쌓고 그 안에서 숨죽이며 살아가고 있었다.^그러던 어느 날, 초대형 거인의 등장으로 벽은 무너지고, 거인들이 벽 안으로`,
+        hashtag: ['#스릴러','#요괴/오컬트',],
+        newEpi: "2013-09-29",
+        live:"",
+    },
+    {
+        rank: "4",
+        tit: `오늘부터 신령님`,
+        director: "다이치 아키타로",
+        genre: "드라마",
+        company: "TMS Entertainment",
+        epiNum: "13화",
+        age: "15세 관람",
+        date: "2012.10",
+        videoSrc: {
+            openSrc:"https://jjmp4.ofscdn.com/TVeeMovie/aniplus/kamisamakiss/kamisamakiss_op.mp4",
+            endSrc:"https://jjmp4.ofscdn.com/TVeeMovie/aniplus/kamisamakiss/kamisamakiss_ed.mp4",
+            promSrc:"",
+        },
+        thumSrc: "./images/content/thum/thum_04.jpg",
+        logoSrc: "./images/content/thum/logo_04.png",
+        epiTit: "13화 오늘부터 신령님",
+        desc: `빚 때문에 아버지는 가출하고 집은 압류당해^젊은 나이에 홈리스 신세가 된 여고생 모모조노 나나미.^^곤란해 하고 있는 나나미 앞에 집을 넘겨주겠다고 말하는 수상한 남자가 나타난다.^그 남자의 정체는`,
+        hashtag: ['#이세계','#요괴/오컬트',],
+        newEpi: "2012-12-29",
+        live:"",
+    },
+    {
+        rank: "5",
+        tit: `코드 기아스 반역의 를르슈`,
+        director: "타니구치 고로",
+        genre: "판타지",
+        company: "선라이즈",
+        epiNum: "미공개",
+        age: "15세 관람",
+        date: "2023.10",
+        videoSrc: {
+            openSrc:"https://jjmp4.ofscdn.com/TveeMovie/aniplus/geass/geass_op.mp4",
+            endSrc:"https://jjmp4.ofscdn.com/TveeMovie/aniplus/geass/geass_ed.mp4",
+            promSrc:"",
+        },
+        thumSrc: "./images/content/thum/thum_05.jpg",
+        logoSrc: "./images/content/thum/logo_05.png",
+        epiTit: "STAGE 14 기아스 대 기아스",
+        desc: `너를 지키기 위해, 세계를 파괴한다──.^초대국 브리타니아 제국에 점령당한 일본=에어리어11.^^그곳에서 살고 있는 소년 를르슈와 스자쿠.`,
+        hashtag: ['#아이돌','#이세계','#러브코미디','#액션/배틀','#스릴러','#순정/로맨스','#요괴/오컬트','#극장판',],
+        newEpi: "2023-12-04",
+        live:"매주(월) 02:30",
+    },
+    {
+        rank: "6",
+        tit: `마이 홈 히어로`,
+        director: "카메이 타카시",
+        genre: "드라마",
+        company: "데즈카 프로덕션",
+        epiNum: "12화",
+        age: "19세 관람",
+        date: "2023.04",
+        videoSrc: {
+            openSrc:"https://jjmp4.ofscdn.com/TveeMovie/aniplus/myhomehero/myhomehero_op.mp4",
+            endSrc:"https://jjmp4.ofscdn.com/TveeMovie/aniplus/myhomehero/myhomehero_ed.mp4",
+            promSrc:"https://jjmp4.ofscdn.com/PV/filler_myhomehero_e.mp4",
+        },
+        thumSrc: "./images/content/thum/thum_06.jpg",
+        logoSrc: "./images/content/thum/logo_06.png",
+        epiTit: "제12화 지금의 행복",
+        desc: `47년간 한 번도 법을 어기지 않고 살아왔다.^하지만, 오늘부터는 살인귀다. 아아......^^사람이 사람을 죽였을 때, 대체 어떤 기분일까를^보잘것없는 회사원, 47세의 '토`,
+        hashtag: ['#스릴러','#요괴/오컬트',],
+        newEpi: "2023-12-04",
+        live:"매주(월) 03:30",
+    },
+    {
+        rank: "7",
+        tit: `【최애의 아이】`,
+        director: "히라마키 다이스케",
+        genre: "드라마",
+        company: "동화공방",
+        epiNum: "11화",
+        age: "15세 관람",
+        date: "2023.04",
+        videoSrc: {
+            openSrc:"https://jjmp4.ofscdn.com/TveeMovie/aniplus/osiniko/osiniko_op.mp4",
+            endSrc:"https://jjmp4.ofscdn.com/TveeMovie/aniplus/osiniko/osiniko_ed.mp4",
+            promSrc:"",
+        },
+        thumSrc: "./images/content/thum/thum_07.jpg",
+        logoSrc: "./images/content/thum/logo_07.png",
+        epiTit: "제11화 아이돌",
+        desc: `이 연예계에서 거짓말은 무기다"^^지방 도시에서 일하는 산부인과 의사 고로.^어느 날, '최애' 아이돌 'B코마치'의 멤버 아이가 그의 앞에 나타난다.`,
+        hashtag: ['#아이돌','#이세계','#러브코미디','#순정/로맨스','#극장판',],
+        newEpi: "2023-12-04",
+        live:"매주(월) 04:30",
+    },
+    {
+        rank: "8",
+        tit: `장송의 프리렌`,
+        director: "사이토 케이이치로",
+        genre: "판타지",
+        company: "매드하우스",
+        epiNum: "미공개",
+        age: "15세 관람",
+        date: "2023.10",
+        videoSrc: {
+            openSrc:"https://jjmp4.ofscdn.com/TveeMovie/aniplus/frieren/frieren_op.mp4",
+            endSrc:"https://jjmp4.ofscdn.com/TveeMovie/aniplus/frieren/frieren_ed.mp4",
+            promSrc:"https://jjmp4.ofscdn.com/PV/filler_frieren_e.mp4",
+        },
+        thumSrc: "./images/content/thum/thum_08.jpg",
+        logoSrc: "./images/content/thum/logo_08.png",
+        epiTit: "제13화 동족 혐오",
+        desc: `용사 힘멜 일행과 함께 10년에 걸친 모험 끝에 마왕을 물리치고^세계에 평화를 가져온 마법사 프리렌.^^천 년을 넘게 사는 엘프인 그녀는 힘멜 일행과 재회를 약속하고 혼자 여행을 떠난다.`,
+        hashtag: ['#이세계','#액션/배틀','#극장판',],
+        newEpi: "2023-12-02",
+        live:"매주(토) 00:00",
+    },
+    {
+        rank: "9",
+        tit: `5등분의 신부 ∽`,
+        director: "미야모토 유키히로",
+        genre: "드라마",
+        company: "Safft",
+        epiNum: "2화",
+        age: "15세 관람",
         date: "",
-        videoSrc: "",
-        imgSrc: "",
-        logoSrc: "",
-        epiTit: "",
-        desc: ``,
-        rank: "",
-        hashtag: ['이세계','히어로','요괴'],
-        epiDate: "",
+        videoSrc: {
+            openSrc:"https://jjmp4.ofscdn.com/TveeMovie/aniplus/5hanayome_ova/5hanayome_ova_op.mp4",
+            endSrc:"https://jjmp4.ofscdn.com/TveeMovie/aniplus/5hanayome_ova/5hanayome_ova_ed.mp4",
+            promSrc:"",
+        },
+        thumSrc: "./images/content/thum/thum_09.jpg",
+        logoSrc: "./images/content/thum/logo_09.png",
+        epiTit: "제2화 우연이 없는 여름 방학 (후편)",
+        desc: `애니메이션 시리즈에서는 그려지지 않았던 원작 에피소드^알려지지 않은 자매들 각자의 마음은.^^낙제 직전에다 공부를 싫어하는 미소녀 다섯 쌍둥이를^아르바이트 가정교사로서 졸업 전까지 가르치게 된 후타`,
+        hashtag: ['#이세계','#러브코미디',],
+        newEpi: "2023-09-01",
+        live:"",
+    },
+    {
+        rank: "10",
+        tit: `SPY×FAMILY Season 2`,
+        director: "후루하시 카즈히로, 하라타 타카히로",
+        genre: "드라마",
+        company: "WIT STUDIO, CloverWorks",
+        epiNum: "미공개",
+        age: "15세 관람",
+        date: "2023.10",
+        videoSrc: {
+            openSrc:"https://jjmp4.ofscdn.com/TveeMovie/aniplus/spyfamily2/spyfamily2_op.mp4",
+            endSrc:"https://jjmp4.ofscdn.com/TveeMovie/aniplus/spyfamily2/spyfamily2_ed.mp4",
+            promSrc:"https://jjmp4.ofscdn.com/PV/filler_spyfamily2_e.mp4",
+        },
+        thumSrc: "./images/content/thum/thum_10.jpg",
+        logoSrc: "./images/content/thum/logo_10.png",
+        epiTit: "MISSION:34 미래를 잇는 손",
+        desc: `사람은 누구나 아무에게도 보여줄 수 없는 자신을 갖고 있다.^^세계 각국이 물밑에서 치열하게 정보전을 펼치는 시대.^오스타니아와 웨스탈리스는 십수 년간에 걸쳐 냉전 상태에 있었다.`,
+        hashtag: ['#러브코미디','#액션/배틀','#순정/로맨스',],
+        newEpi: "2023-11-26",
+        live:"매주(일) 00:00",
     },
 ];

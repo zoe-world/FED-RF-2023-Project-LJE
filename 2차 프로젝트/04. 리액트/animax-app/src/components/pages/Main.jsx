@@ -1,6 +1,6 @@
 // Animax 메인 컴포넌트
 
-import { ListSwipe } from "../modules/ListSwipe";
+import { ThumList } from "./ThumList";
 import { Promotion } from "./Promotion";
 import { Today } from "./Today";
 import { TopBanner } from "./TopBanner";
@@ -11,7 +11,7 @@ export function Main(props) {
       {/* 2-1. TOP배너 박스 */}
       <TopBanner cat={"main"+Math.ceil(Math.random()*5)}/>
       {/* 2-2. LIST배너 박스 */}
-      <ListSwipe cat="list"/>
+      <ThumList cat="list"/>
       {/* 2-3. 컨텐츠영역 */}
       <section className="content_wrap">
         <h2 className="sr-only">컨텐츠 영역</h2>
