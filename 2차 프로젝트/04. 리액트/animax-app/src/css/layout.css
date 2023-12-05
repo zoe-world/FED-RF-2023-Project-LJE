@@ -503,8 +503,20 @@
 .vod_area .info_bx {
     position: relative;
 }
+.vod_area .img_group{
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+}
 .vod_area .bg{
-    opacity: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    background:linear-gradient(180deg,transparent 0,rgba(0,0,0,.8));
+    transition: all .4s;
 }
 .vod_area .link_play{
     z-index: 1;
@@ -584,6 +596,27 @@
     border-right: 5px solid transparent;
     border-bottom: 5px solid rgb(0 0 0 / 0.5);
 }
+
+.vod_area h4{
+    position: absolute;
+    bottom: 20px;
+    left: 70px;
+    margin-top: 1rem;
+}
+.vod_area h4 span {
+    display: block;
+    width: 100%;
+
+}
+.vod_area .tit {
+    font-size: 1.5rem;
+}
+.vod_area .txt{
+    margin-top: 0.5rem;
+    line-height: 1.3;
+    color: #ccc;
+    font-size: 1.3rem;
+}
 /* 애니메이션 */
 @keyframes hover1 {
     to{
@@ -634,7 +667,11 @@
     opacity: .1;
 }
 /*2.3.2 today list */
-.list_wrap.today .list_box{
+.list-banner_box:hover .arrow_box .arrow_btn,
+.list_wrap:hover .arrow_box .arrow_btn{
+    opacity: 1;
+}
+.list_wrap:hover .list_box{
 
 }
 /*2.3.2 rank list */

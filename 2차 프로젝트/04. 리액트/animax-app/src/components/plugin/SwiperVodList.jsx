@@ -15,150 +15,154 @@ import "../plugin/css/video_list.css";
 import { VideoListData } from "../data/video_list";
 
 export function SwiperVodList() {
-const selData = VideoListData;
+  const selData = VideoListData;
 
-// 스와이퍼
-const [swiper, setSwiper] = useState();
-const [mainImgIndex, setMainImgIndex] = useState(0);
+  // 스와이퍼
+  const [swiper, setSwiper] = useState();
+  const [mainImgIndex, setMainImgIndex] = useState(0);
 
-SwiperCore.use([Navigation, Pagination, Autoplay]);
+  SwiperCore.use([Navigation, Pagination, Autoplay]);
 
-const navPrev = useRef();
-const navNext = useRef();
-const page = useRef();
+  const navPrev = useRef();
+  const navNext = useRef();
+  const page = useRef();
 
-const swiperParams = {
-navigation: { prevEl: navPrev.current, nextEl: navNext.current },
-containerModifierClass: "thum-list ",
-pagination: {
-el: ".swiper-paging_list",
-clickable: true,
-bulletClass: "paging_btn",
-bulletActiveClass: "on",
-renderCustom: function (index, className, total) {
-return (
-'<li class="' +
+  const swiperParams = {
+    navigation: { prevEl: navPrev.current, nextEl: navNext.current },
+    containerModifierClass: "thum-list ",
+    pagination: {
+      el: ".swiper-paging_list",
+      clickable: true,
+      bulletClass: "paging_btn",
+      bulletActiveClass: "on",
+      renderCustom: function (index, className, total) {
+        return (
+          '<li class="' +
           className +
           '"><span>' +
-    [index] +
-    "</span><span>" +
-    [total] +
-    "</span></li>"
-);
-},
-},
-onBeforeInit: (swiper) => {
-swiper.params.navigation.prevEl = navPrev.current;
-swiper.params.navigation.nextEl = navNext.current;
-swiper.params.pagination.el = page.current;
-swiper.activeIndex = mainImgIndex;
-swiper.navigation.update();
-},
-onSwiper: setSwiper,
-onSlideChange: (e) => setMainImgIndex(e.activeIndex),
-slidesPerView: 1,
-spaceBetween: 0,
-slidesPerGroup: 1,
-breakpoints: {
-// when window width is >= 320px
-320: {
-slidesPerView: 2,
-spaceBetween: 10,
-slidesPerGroup: 2,
-},
-// when window width is >= 480px
-468: {
-slidesPerView: 2,
-spaceBetween: 10,
-slidesPerGroup: 2,
-},
-// when window width is >= 640px
-640: {
-slidesPerView: 4,
-spaceBetween: 10,
-slidesPerGroup: 4,
-},
-1024: {
-slidesPerView: 6,
-spaceBetween: 10,
-slidesPerGroup: 6,
-},
-},
-};
-let tog = 0;
-$(".stop_btn").on("click", function (e) {
-if (tog == 0) {
-e.preventDefault();
-swiper.autoplay.stop();
-$(this)
-.removeClass("stop_btn")
-.addClass("play_btn")
-.attr("aria-label", "재생");
-$(this).find("img").attr("src", "./images/play.png");
-tog = 1;
-} else {
-e.preventDefault();
-swiper.autoplay.start();
-$(this)
-.removeClass("play_btn")
-.addClass("stop_btn")
-.attr("aria-label", "멈춤");
-$(this).find("img").attr("src", "./images/stop.png");
-tog = 0;
-}
-});
+          [index] +
+          "</span><span>" +
+          [total] +
+          "</span></li>"
+        );
+      },
+    },
+    onBeforeInit: (swiper) => {
+      swiper.params.navigation.prevEl = navPrev.current;
+      swiper.params.navigation.nextEl = navNext.current;
+      swiper.params.pagination.el = page.current;
+      swiper.activeIndex = mainImgIndex;
+      swiper.navigation.update();
+    },
+    onSwiper: setSwiper,
+    onSlideChange: (e) => setMainImgIndex(e.activeIndex),
+    slidesPerView: 1,
+    spaceBetween: 0,
+    slidesPerGroup: 1,
+    breakpoints: {
+      // when window width is >= 320px
+      320: {
+        slidesPerView: 2,
+        spaceBetween: 10,
+        slidesPerGroup: 2,
+      },
+      // when window width is >= 480px
+      468: {
+        slidesPerView: 2,
+        spaceBetween: 10,
+        slidesPerGroup: 2,
+      },
+      // when window width is >= 640px
+      640: {
+        slidesPerView: 4,
+        spaceBetween: 10,
+        slidesPerGroup: 4,
+      },
+      1024: {
+        slidesPerView: 6,
+        spaceBetween: 10,
+        slidesPerGroup: 6,
+      },
+    },
+  };
+  let tog = 0;
+  $(".stop_btn").on("click", function (e) {
+    if (tog == 0) {
+      e.preventDefault();
+      swiper.autoplay.stop();
+      $(this)
+        .removeClass("stop_btn")
+        .addClass("play_btn")
+        .attr("aria-label", "재생");
+      $(this).find("img").attr("src", "./images/play.png");
+      tog = 1;
+    } else {
+      e.preventDefault();
+      swiper.autoplay.start();
+      $(this)
+        .removeClass("play_btn")
+        .addClass("stop_btn")
+        .attr("aria-label", "멈춤");
+      $(this).find("img").attr("src", "./images/stop.png");
+      tog = 0;
+    }
+  });
 
-// hover 효과
-const [isAct, setIsAct] = useState();
-const handleMouseOver = (i) => {
-setIsAct(i);
-};
-const handleMouseOut = () => {
-setIsAct();
-};
-useEffect(() => {
-handleMouseOver();
-handleMouseOut();
-}, []);
+  // hover 효과
+  const [isAct, setIsAct] = useState();
+  const handleMouseOver = (i) => {
+    setIsAct(i);
+  };
+  const handleMouseOut = () => {
+    setIsAct();
+  };
+  useEffect(() => {
+    handleMouseOver();
+    handleMouseOut();
+  }, []);
 
-// 리턴코드 ////////////////////////////////////
-return (
-<>
-  <div className="arrow_box">
-    <a href="#" className="arrow_btn prev_btn" ref={navPrev}>
-      <span className="sr-only">이전 슬라이드 보기</span>
-    </a>
-    <a href="#" className="arrow_btn next_btn" ref={navNext}>
-      <span className="sr-only">다음 슬라이드 보기</span>
-    </a>
-  </div>
-  <div>
-    <Swiper {...swiperParams} ref={setSwiper}>
-      {selData.map((v, i) => (
-      <SwiperSlide key={i} className={isAct===i ? "on" : "" } onMouseOver={()=> handleMouseOver(i)}
-        onMouseOut={() => handleMouseOut()}
-        >
-        <a href="#" className="link_img">
-          <div className="img_group">
-            <div className="bg"></div>
-            <img src={v.thumSrc} alt={v.tit + " 포스터" } />
-          </div>
-          <h4>
-            <span className="tit">{v.tit}</span>
-            <span className="txt">{v.epiTit}</span>
-          </h4>
+  // 리턴코드 ////////////////////////////////////
+  return (
+    <>
+    <div className="list_box">
+    <div className="arrow_box">
+        <a href="#" className="arrow_btn prev_btn" ref={navPrev}>
+          <span className="sr-only">이전 슬라이드 보기</span>
         </a>
-      </SwiperSlide>
-      ))}
-    </Swiper>
-  </div>
+        <a href="#" className="arrow_btn next_btn" ref={navNext}>
+          <span className="sr-only">다음 슬라이드 보기</span>
+        </a>
+      </div>
+        <Swiper {...swiperParams} ref={setSwiper}>
+          {selData.map((v, i) => (
+            <SwiperSlide
+              key={i}
+              className={isAct === i ? "on" : ""}
+              onMouseOver={() => handleMouseOver(i)}
+              onMouseOut={() => handleMouseOut()}
+            >
+              <a href="#" className="link_img">
+                <div className="img_group">
+                  <div className="bg"></div>
+                  <img src={v.thumSrc} alt={v.tit + " 포스터"} />
+                </div>
+                <h4>
+                  <span className="tit">{v.tit}</span>
+                  <span className="txt">{v.epiTit}</span>
+                </h4>
+              </a>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+    </div>
 
-  <div className="list-ctl_box">
-    <ol className="paging_list swiper-paging_list"></ol>
-    <a href="#" title="오늘의 업데이트 더보기" className="more_btn">
-      더보기
-    </a>
-  </div>
-</>
-);
+
+      <div className="list-ctl_box">
+        <ol className="paging_list swiper-paging_list"></ol>
+        <a href="#" title="오늘의 업데이트 더보기" className="more_btn">
+          더보기
+        </a>
+      </div>
+    </>
+  );
 } /////////// SwiperVodList 컴포넌트 /////

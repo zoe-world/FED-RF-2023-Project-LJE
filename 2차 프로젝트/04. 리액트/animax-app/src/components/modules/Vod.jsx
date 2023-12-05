@@ -2,11 +2,18 @@
 import { VideoListData } from "../data/video_list"
 export function Vod({xy}){
     const selData = VideoListData;
-    console.log(xy)
+    console.log(xy.x);
+
     return(
         <>
         {/* 1. vod 정보창 */}
-        <section id="vod_area" className="vod_area">
+        <section id="vod_area" className="vod_area" style={{
+          position:"absolute",
+          top:xy.y,
+          left:xy.x,
+          transformOrigin:"center center",
+          transform:"scale(1)"
+          }}>
           {/* vod 중앙박스 */}
           <div className="info_bx">
             <a href="#" title="동영상 재생" className="link_play link_ico">

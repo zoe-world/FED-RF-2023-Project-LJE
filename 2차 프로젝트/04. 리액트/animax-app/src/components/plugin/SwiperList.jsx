@@ -85,6 +85,7 @@ export function SwiperList({cat}) {
   };
   let tog = 0;
   $('.stop_btn').on('click',function(e){
+    e.preventDefault();
     if(tog == 0){
       e.preventDefault(); 
       swiper.autoplay.stop();
@@ -101,7 +102,6 @@ export function SwiperList({cat}) {
       $(this).find('img').attr('src','./images/stop.png');
       tog = 0;
     }
-    
   });
 
   
