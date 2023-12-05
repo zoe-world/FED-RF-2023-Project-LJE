@@ -25,14 +25,23 @@ export function Layout() {
 
   // 마우스 위치
   const [xy, setXy] = useState({ x: 0, y: 0 });
-  const handleMouseMove = (e) => {
-    e.preventDefault();
-    setXy({ x: e.clientX, y: e.clientY });
-  };
+  useEffect(()=>{
+    const handleMouseMove = (e) => {
+      setXy({
+        x: e.clientX,
+        y: e.clienty
+      });
+    }
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    }
+  },[])
+  
 
   return (
     <>
-      <div className="wrap" onMouseMove={(e) => handleMouseMove(e)}>
+      <div className="wrap">
         <QuickArea chgPageFn={chgPage} />
         <TopArea />
         <MainArea />
