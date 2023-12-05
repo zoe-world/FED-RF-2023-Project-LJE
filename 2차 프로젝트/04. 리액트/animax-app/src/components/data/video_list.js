@@ -88,7 +88,7 @@ export const VideoListData = [
         logoSrc: "./images/content/thum/logo_02.png",
         epiTit: "26화 특별편 765프로덕션 이야기",
         hashtag: ['#아이돌','#이세계'],
-        newEpi: "2022-10-04",
+        newEpi: "2023-10-05",
         live:"",
     },
     {

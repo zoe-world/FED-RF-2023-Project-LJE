@@ -121,41 +121,66 @@ export function SwiperVodList() {
     handleMouseOut();
   }, []);
 
+  // 최신 한달 날짜 필터링 하기
+  // 오늘 날짜
+  const myDate = new Date();
+
+  // 날짜 변환 함수 ex) yyyy-mm-dd
+  const fm = (x) => `
+    ${x.getFullYear()}-${
+    x.getMonth() + 1 < 10 ? "0" + (x.getMonth() + 1) : x.getMonth() + 1
+  }-${x.getDate() < 10 ? "0" + x.getDate() : x.getDate()}`;
+
+  // 날짜 비교 함수
+  const getMonthDiff = (d1, d2) => {
+    const date1 = new Date(d1);
+    const date2 = new Date(d2);
+    const diffDate = date1.getTime() - date2.getTime();
+
+    return Math.floor(Math.abs(diffDate / (1000 * 60 * 60 * 24 * 30)));
+  };
+
+  const click = (e) => {
+    console.log(e.currentTarget.lastElementChild)
+    console.log(e.currentTarget.children)
+  }
   // 리턴코드 ////////////////////////////////////
   return (
     <>
-    <div className="list_box">
-    <div className="arrow_box">
-        <a href="#" className="arrow_btn prev_btn" ref={navPrev}>
-          <span className="sr-only">이전 슬라이드 보기</span>
-        </a>
-        <a href="#" className="arrow_btn next_btn" ref={navNext}>
-          <span className="sr-only">다음 슬라이드 보기</span>
-        </a>
-      </div>
+      <div className="list_box">
+        <div className="arrow_box">
+          <a href="#" className="arrow_btn prev_btn" ref={navPrev}>
+            <span className="sr-only">이전 슬라이드 보기</span>
+          </a>
+          <a href="#" className="arrow_btn next_btn" ref={navNext}>
+            <span className="sr-only">다음 슬라이드 보기</span>
+          </a>
+        </div>
         <Swiper {...swiperParams} ref={setSwiper}>
-          {selData.map((v, i) => (
-            <SwiperSlide
-              key={i}
-              className={isAct === i ? "on" : ""}
-              onMouseOver={() => handleMouseOver(i)}
-              onMouseOut={() => handleMouseOut()}
-            >
-              <a href="#" className="link_img">
-                <div className="img_group">
-                  <div className="bg"></div>
-                  <img src={v.thumSrc} alt={v.tit + " 포스터"} />
-                </div>
-                <h4>
-                  <span className="tit">{v.tit}</span>
-                  <span className="txt">{v.epiTit}</span>
-                </h4>
-              </a>
-            </SwiperSlide>
-          ))}
+          {selData
+            .filter((v) => getMonthDiff(fm(myDate), v.newEpi))
+            .map((v, i) => (
+              <SwiperSlide
+                key={i}
+                className={isAct === i ? "on" : ""}
+                onMouseOver={() => handleMouseOver(i)}
+                onMouseOut={() => handleMouseOut()}
+                
+              >
+                <a href="#" className="link_img" onClick={click}>
+                  <div className="img_group">
+                    <div className="bg"></div>
+                    <img src={v.thumSrc} alt={v.tit + " 포스터"} />
+                  </div>
+                  <h4>
+                    <span className="tit">{v.tit}</span>
+                    <span className="txt">{v.epiTit}</span>
+                  </h4>
+                </a>
+              </SwiperSlide>
+            ))}
         </Swiper>
-    </div>
-
+      </div>
 
       <div className="list-ctl_box">
         <ol className="paging_list swiper-paging_list"></ol>

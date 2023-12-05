@@ -25,27 +25,6 @@ export function Layout() {
   // 라우터 이동함수: pgName - 페이지이름 / param -전달값
   const chgPage = useCallback((pgName, param) => goNav(pgName, param), []);
 
-  // 마우스 위치
-  // const xy = useRef({ x: 0, y: 0 });
-  
-  // const handleMouseMove = (e) => {
-  //     xy.current={
-  //       x: e.clientX,
-  //       y: e.clientY
-  //     };
-  //     console.log(xy.current);
-  //   }
-
-
-  // useEffect(()=>{
-    
-  //   window.addEventListener('mousemove', handleMouseMove);
-  //   return () => {
-  //     window.removeEventListener('mousemove', handleMouseMove);
-  //   }
-  // },[])
-  
-
   return (
     <>
       <div className="wrap">
