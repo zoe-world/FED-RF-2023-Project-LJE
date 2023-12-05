@@ -3,6 +3,7 @@ import React, {
   useCallback,
   useEffect,
   useLayoutEffect,
+  useRef,
   useState,
 } from "react";
 import { TopArea } from "./TopArea";
@@ -11,6 +12,7 @@ import { QuickArea } from "./QuickArea";
 import { FooterArea } from "./FooterArea";
 import { useNavigate } from "react-router-dom";
 import { VodArea } from "./VodArea";
+
 
 export function Layout() {
   // 랜더링 후 (화면보이기전) 실행구역
@@ -24,19 +26,24 @@ export function Layout() {
   const chgPage = useCallback((pgName, param) => goNav(pgName, param), []);
 
   // 마우스 위치
-  const [xy, setXy] = useState({ x: 0, y: 0 });
-  useEffect(()=>{
-    const handleMouseMove = (e) => {
-      setXy({
-        x: e.clientX,
-        y: e.clienty
-      });
-    }
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-    }
-  },[])
+  // const xy = useRef({ x: 0, y: 0 });
+  
+  // const handleMouseMove = (e) => {
+  //     xy.current={
+  //       x: e.clientX,
+  //       y: e.clientY
+  //     };
+  //     console.log(xy.current);
+  //   }
+
+
+  // useEffect(()=>{
+    
+  //   window.addEventListener('mousemove', handleMouseMove);
+  //   return () => {
+  //     window.removeEventListener('mousemove', handleMouseMove);
+  //   }
+  // },[])
   
 
   return (
@@ -45,7 +52,7 @@ export function Layout() {
         <QuickArea chgPageFn={chgPage} />
         <TopArea />
         <MainArea />
-        <VodArea xy={xy} />
+        <VodArea />
         <FooterArea />
       </div>
     </>
