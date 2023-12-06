@@ -541,7 +541,7 @@
     background: url(../../public/images/play2.png) no-repeat;
     transition: .25s ease-in-out;
     opacity: 0;
-    animation: hover1 .5s .5s forwards;
+    ;
 }
 .vod_area .link_play:hover{
     background-image: url(../../public/images/play2_on.png);

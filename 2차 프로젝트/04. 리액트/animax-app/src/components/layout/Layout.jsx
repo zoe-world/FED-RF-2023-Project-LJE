@@ -11,7 +11,6 @@ import { MainArea } from "./MainArea";
 import { QuickArea } from "./QuickArea";
 import { FooterArea } from "./FooterArea";
 import { useNavigate } from "react-router-dom";
-import { VodArea } from "./VodArea";
 
 
 export function Layout() {
@@ -31,7 +30,6 @@ export function Layout() {
         <QuickArea chgPageFn={chgPage} />
         <TopArea />
         <MainArea />
-        <VodArea />
         <FooterArea />
       </div>
     </>

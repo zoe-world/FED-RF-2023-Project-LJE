@@ -4,231 +4,26 @@ import { ThumList } from "./ThumList";
 import { Promotion } from "./Promotion";
 import { Today } from "./Today";
 import { TopBanner } from "./TopBanner";
+import { Vod } from "../modules/Vod";
+import { Best } from "./Best";
 
 export function Main(props) {
+
   return (
     <>
       {/* 2-1. TOP배너 박스 */}
-      <TopBanner cat={"main"+Math.ceil(Math.random()*5)}/>
+      <TopBanner cat={"main" + Math.ceil(Math.random() * 5)} />
       {/* 2-2. LIST배너 박스 */}
-      <ThumList cat="list"/>
+      <ThumList cat="list" />
       {/* 2-3. 컨텐츠영역 */}
       <section className="content_wrap">
         <h2 className="sr-only">컨텐츠 영역</h2>
         {/* 2.3.1 프로모션배너 박스 */}
-        <Promotion cat={"sub"+Math.ceil(Math.random()*4)}/>
+        <Promotion cat={"sub" + Math.ceil(Math.random() * 4)} />
         {/* 2.3.2 오늘의 업데이트 리스트 */}
         <Today cat="today"/>
         {/* 2.3.2 인기 작품 리스트 */}
-        <article className="list_v2_wrap rank">
-          <h3>
-            인기 작품
-            <span className="tab_btn">
-              <button type="button" className="on">
-                월별
-              </button>
-              <button type="button">분기별</button>
-            </span>
-          </h3>
-          <div className="list-ctl_box">
-            <ol className="paging_list">
-              <li>
-                <a href="#" className="paging_btn">
-                  1
-                </a>
-              </li>
-              <li className="on">
-                <a href="#" className="paging_btn">
-                  2
-                </a>
-              </li>
-              <li>
-                <a href="#" className="paging_btn">
-                  3
-                </a>
-              </li>
-              <li>
-                <a href="#" className="paging_btn">
-                  4
-                </a>
-              </li>
-            </ol>
-          </div>
-          <div className="list_box">
-            <div className="arrow_box">
-              <a href="#" className="arrow_btn prev_btn">
-                <span className="sr-only">이전 슬라이드 보기</span>
-              </a>
-              <a href="#" className="arrow_btn next_btn">
-                <span className="sr-only">다음 슬라이드 보기</span>
-              </a>
-            </div>
-            <ul className="thum-list">
-              <li className="on">
-                <a href="#" className="link_img">
-                  <button title="찜하기" className="link_zzim link_ico">
-                    <span className="tootip">찜하기</span>
-                  </button>
-                  <div className="img_group">
-                    <button title="동영상 재생" className="link_play link_ico">
-                      <span className="tootip">재생하기</span>
-                    </button>
-                    <div className="ep_tit">
-                      <p>
-                        제1화 어둠의 콜로세움 <br /> 바로보기
-                      </p>
-                    </div>
-                    <div className="bg"></div>
-                    <img src="./images/banner/rank_banner01.jpg" alt="" />
-                  </div>
-                  <div className="txt_group">
-                    <h4>
-                      <button
-                        title="정보 더보기"
-                        className="link_info link_ico"
-                      >
-                        <span className="tootip">상세보기</span>
-                      </button>
-                      <span className="tit">
-                        무직전생 Ⅱ ~이세계에 갔으면 최선을 다한다~
-                      </span>
-                    </h4>
-                    <ul className="txt_list">
-                      <li>이용연령</li>
-                      <li>장르명</li>
-                      <li>작가명</li>
-                    </ul>
-                    <p className="desc">
-                      아직 보지 못한 꿈을 잡고 싶은 카스가 미라이.아이돌을
-                      동경하는 모가미 시즈카.진심으로 몰두할 수 있는
-                    </p>
-                  </div>
-                </a>
-              </li>
-
-              <li>
-                <a href="#" title="동영상 재생" className="link_play link_ico">
-                  <span className="tootip">재생하기</span>
-                </a>
-                <a href="#" title="정보 더보기" className="link_info link_ico">
-                  <span className="tootip">상세보기</span>
-                </a>
-                <a href="#" title="찜하기" className="link_zzim link_ico">
-                  <span className="tootip">찜하기</span>
-                </a>
-                <a href="#" className="link_img">
-                  <em className="em on">2</em>
-                  <div className="img_group">
-                    <div className="bg"></div>
-                    <img src="./images/banner/rank_banner01.jpg" alt="" />
-                  </div>
-                  <h4>
-                    <span className="tit">
-                      무직전생 Ⅱ ~이세계에 갔으면 최선을 다한다~
-                    </span>
-                    <span className="txt">판타지</span>
-                  </h4>
-                </a>
-              </li>
-              <li>
-                <a href="#" title="동영상 재생" className="link_play link_ico">
-                  <span className="tootip">재생하기</span>
-                </a>
-                <a href="#" title="정보 더보기" className="link_info link_ico">
-                  <span className="tootip">상세보기</span>
-                </a>
-                <a href="#" title="찜하기" className="link_zzim link_ico">
-                  <span className="tootip">찜하기</span>
-                </a>
-                <a href="#" className="link_img">
-                  <em className="em on">3</em>
-                  <div className="img_group">
-                    <div className="bg"></div>
-                    <img src="./images/banner/rank_banner01.jpg" alt="" />
-                  </div>
-                  <h4>
-                    <span className="tit">
-                      무직전생 Ⅱ ~이세계에 갔으면 최선을 다한다~
-                    </span>
-                    <span className="txt">판타지</span>
-                  </h4>
-                </a>
-              </li>
-              <li>
-                <a href="#" title="동영상 재생" className="link_play link_ico">
-                  <span className="tootip">재생하기</span>
-                </a>
-                <a href="#" title="정보 더보기" className="link_info link_ico">
-                  <span className="tootip">상세보기</span>
-                </a>
-                <a href="#" title="찜하기" className="link_zzim link_ico">
-                  <span className="tootip">찜하기</span>
-                </a>
-                <a href="#" className="link_img">
-                  <em className="em">4</em>
-                  <div className="img_group">
-                    <div className="bg"></div>
-                    <img src="./images/banner/rank_banner01.jpg" alt="" />
-                  </div>
-                  <h4>
-                    <span className="tit">
-                      무직전생 Ⅱ ~이세계에 갔으면 최선을 다한다~
-                    </span>
-                    <span className="txt">판타지</span>
-                  </h4>
-                </a>
-              </li>
-              <li>
-                <a href="#" title="동영상 재생" className="link_play link_ico">
-                  <span className="tootip">재생하기</span>
-                </a>
-                <a href="#" title="정보 더보기" className="link_info link_ico">
-                  <span className="tootip">상세보기</span>
-                </a>
-                <a href="#" title="찜하기" className="link_zzim link_ico">
-                  <span className="tootip">찜하기</span>
-                </a>
-                <a href="#" className="link_img">
-                  <em className="em">5</em>
-                  <div className="img_group">
-                    <div className="bg"></div>
-                    <img src="./images/banner/rank_banner01.jpg" alt="" />
-                  </div>
-                  <h4>
-                    <span className="tit">
-                      무직전생 Ⅱ ~이세계에 갔으면 최선을 다한다~
-                    </span>
-                    <span className="txt">판타지</span>
-                  </h4>
-                </a>
-              </li>
-              <li>
-                <a href="#" title="동영상 재생" className="link_play link_ico">
-                  <span className="tootip">재생하기</span>
-                </a>
-                <a href="#" title="정보 더보기" className="link_info link_ico">
-                  <span className="tootip">상세보기</span>
-                </a>
-                <a href="#" title="찜하기" className="link_zzim link_ico">
-                  <span className="tootip">찜하기</span>
-                </a>
-                <a href="#" className="link_img">
-                  <em className="em">6</em>
-                  <div className="img_group">
-                    <div className="bg"></div>
-                    <img src="./images/banner/rank_banner01.jpg" alt="" />
-                  </div>
-                  <h4>
-                    <span className="tit">
-                      무직전생 Ⅱ ~이세계에 갔으면 최선을 다한다~
-                    </span>
-                    <span className="txt">판타지</span>
-                  </h4>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </article>
+        <Best cat="best"/>
         {/* 2.3.3 라이브 방송 */}
         <article className="live_wrap">
           <h3>LIVE ON AIR!</h3>
@@ -576,6 +371,8 @@ export function Main(props) {
           </div>
         </article>
       </section>
+      {/* 3. VOD 정보박스 */}
+      <Vod />
     </>
   );
 }

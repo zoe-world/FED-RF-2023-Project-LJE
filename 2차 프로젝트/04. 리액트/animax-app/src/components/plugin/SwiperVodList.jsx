@@ -1,5 +1,5 @@
 // 스와이퍼 플러그인 컴포넌트
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import $, { event } from "jquery";
 
 import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
@@ -14,7 +14,11 @@ import "../plugin/css/video_list.css";
 
 import { VideoListData } from "../data/video_list";
 
-export function SwiperVodList() {
+export function SwiperVodList({ cat, getMonthDiff, fm, rank, test }) {
+  // cat - 카테고리명
+  // getMonthDiff - 날짜계산함수
+  // fm - 날짜 변환 함수(ex yyyy-mm-dd)
+  // rank - 순위 결정 함수
   const selData = VideoListData;
 
   // 스와이퍼
@@ -56,6 +60,7 @@ export function SwiperVodList() {
     },
     onSwiper: setSwiper,
     onSlideChange: (e) => setMainImgIndex(e.activeIndex),
+    touchRatio: 0,
     slidesPerView: 1,
     spaceBetween: 0,
     slidesPerGroup: 1,
@@ -85,6 +90,8 @@ export function SwiperVodList() {
       },
     },
   };
+  /////////////// swiperParams ///////////////
+  
   let tog = 0;
   $(".stop_btn").on("click", function (e) {
     if (tog == 0) {
@@ -108,42 +115,28 @@ export function SwiperVodList() {
     }
   });
 
-  // hover 효과
-  const [isAct, setIsAct] = useState();
-  const handleMouseOver = (i) => {
-    setIsAct(i);
-  };
-  const handleMouseOut = () => {
-    setIsAct();
-  };
-  useEffect(() => {
-    handleMouseOver();
-    handleMouseOut();
-  }, []);
+  // 오늘 날짜 변수
+  const myDate = new Date(); 
+  // const [isHover, setIsHover] = useState(0);
 
-  // 최신 한달 날짜 필터링 하기
-  // 오늘 날짜
-  const myDate = new Date();
+  // const onMouseOver = (e) => {
+  //   // const ele = e.currentTarget;
+  //   // const imgSrc = ele.childNodes[0].firstChild.lastChild.src;
+  //   setIsHover(1);
 
-  // 날짜 변환 함수 ex) yyyy-mm-dd
-  const fm = (x) => `
-    ${x.getFullYear()}-${
-    x.getMonth() + 1 < 10 ? "0" + (x.getMonth() + 1) : x.getMonth() + 1
-  }-${x.getDate() < 10 ? "0" + x.getDate() : x.getDate()}`;
-
-  // 날짜 비교 함수
-  const getMonthDiff = (d1, d2) => {
-    const date1 = new Date(d1);
-    const date2 = new Date(d2);
-    const diffDate = date1.getTime() - date2.getTime();
-
-    return Math.floor(Math.abs(diffDate / (1000 * 60 * 60 * 24 * 30)));
-  };
-
-  const click = (e) => {
-    console.log(e.currentTarget.lastElementChild)
-    console.log(e.currentTarget.children)
+  // }
+  // const onMouseOut = (e) => {
+  //   setIsHover(0);
+  // }
+    
+  const audio = {
+    sound : "test",
+    file : "test52",
   }
+  const chil = () => {
+    test(audio);
+  }
+
   // 리턴코드 ////////////////////////////////////
   return (
     <>
@@ -157,17 +150,16 @@ export function SwiperVodList() {
           </a>
         </div>
         <Swiper {...swiperParams} ref={setSwiper}>
-          {selData
+          {cat === "today" && 
+          selData
             .filter((v) => getMonthDiff(fm(myDate), v.newEpi))
             .map((v, i) => (
-              <SwiperSlide
+              <SwiperSlide 
                 key={i}
-                className={isAct === i ? "on" : ""}
-                onMouseOver={() => handleMouseOver(i)}
-                onMouseOut={() => handleMouseOut()}
-                
-              >
-                <a href="#" className="link_img" onClick={click}>
+                onMouseOver={chil}
+                /* className={} */
+                >
+                <a href="#" className="link_img">
                   <div className="img_group">
                     <div className="bg"></div>
                     <img src={v.thumSrc} alt={v.tit + " 포스터"} />
@@ -178,7 +170,29 @@ export function SwiperVodList() {
                   </h4>
                 </a>
               </SwiperSlide>
-            ))}
+              ))
+            }
+            {
+              cat === "best" &&
+              rank
+              .map((v, i) => (
+              <SwiperSlide 
+                key={i}
+                >
+                <a href="#" className="link_img">
+                  <div className="img_group">
+                    <div className="bg"></div>
+                    <img src={v.thumSrc} alt={v.tit + " 포스터"} />
+                  </div>
+                  <h4>
+                    <span className="tit">{v.tit}</span>
+                    <span className="txt">{v.epiTit}</span>
+                  </h4>
+                </a>
+              </SwiperSlide>
+              
+              ))
+            }
         </Swiper>
       </div>
 
