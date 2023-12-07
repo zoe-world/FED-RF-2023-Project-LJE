@@ -5,18 +5,18 @@ import ReactPlayer from "react-player";
 
 import $ from "jquery";
 
-export function Vod({item}) {
+export function Vod({item, onOverIsActFn}) {
+
   const selData = VideoListData;
 
-  const test = () => {
-
-  }
   // 마우스 위치
   // const xy = useRef({ x: 0, y: 0 });
+
+  
   return (
     <>
       {/* 1. vod 정보창 */}
-      <section id="vod_area" className="vod_area">
+      <section id="vod_area" className={onOverIsActFn == 1? "vod_area on":"vod_area"}>
         <div className="info_bx">
           <a href="#" title="동영상 재생" className="link_play link_ico">
             <span className="tootip">재생하기</span>

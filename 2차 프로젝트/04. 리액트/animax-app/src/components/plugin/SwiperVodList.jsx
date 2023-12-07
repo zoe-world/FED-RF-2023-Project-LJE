@@ -119,9 +119,10 @@ export function SwiperVodList({ cat, getMonthDiff, fm, rank, item, onOverIsActFn
 
   // 오늘 날짜 변수
   const myDate = new Date(); 
-  
+  const [ishover,setIsHover] = useState(false);
+
   // 마우스오버 상태변수
-  const onMouseOver = (e) => {
+    const onMouseOver = (e) => {
     const ele = e.currentTarget;  
     const top = ele.getBoundingClientRect().top;  
     const left = ele.getBoundingClientRect().left;  
@@ -140,6 +141,7 @@ export function SwiperVodList({ cat, getMonthDiff, fm, rank, item, onOverIsActFn
     });
   }
 
+  
   // 리턴코드 ////////////////////////////////////
   return (
     <>
@@ -159,7 +161,8 @@ export function SwiperVodList({ cat, getMonthDiff, fm, rank, item, onOverIsActFn
             .map((v, i) => (
               <SwiperSlide 
                 key={i}
-                onMouseOver={(e)=>{onMouseOver(e); onOverIsActFn();}}
+                onMouseOver={(e)=>{onMouseOver(e); onOverIsActFn(e);}}
+                onMouseOut={(e)=>{onOverIsActFn(e);}}
                 >
                 <a href="#" className="link_img">
                   <div className="img_group">
@@ -180,7 +183,8 @@ export function SwiperVodList({ cat, getMonthDiff, fm, rank, item, onOverIsActFn
               .map((v, i) => (
               <SwiperSlide 
                 key={i}
-                onMouseOver={onMouseOver}
+                onMouseOver={(e)=>{onMouseOver(e); onOverIsActFn(e);}}
+                onMouseOut={(e)=>{onOverIsActFn(e);}}
                 >
                 <a href="#" className="link_img">
                   <div className="img_group">

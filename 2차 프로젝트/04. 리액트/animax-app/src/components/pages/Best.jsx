@@ -4,7 +4,7 @@ import { SwiperVodList } from "../plugin/SwiperVodList";
 import { VideoListData } from "../data/video_list";
 
 // 배너데이터
-export function Best({ cat, item2 }) {
+export function Best({ cat, item, onOverIsActFn }) {
   // cat = 카테고리명
 
   // 랭킹 정렬 함수
@@ -13,9 +13,9 @@ export function Best({ cat, item2 }) {
     return a.rank - b.rank;
   });
   rank = rank.slice(0, 10);
-  // 마우스 호버시 얻어오는 정보 함수
-  const info = (x) => {
-    console.log(x);
+  
+  const getItem = (x) => {
+    item(x);
   };
 
   return (
@@ -31,7 +31,8 @@ export function Best({ cat, item2 }) {
           </span>
         </h3>
         {/* 1. 스와이퍼 컴포넌트 */}
-        <SwiperVodList cat={cat} rank={rank} item2={info} />
+        <SwiperVodList 
+          cat={cat} rank={rank} item={getItem} onOverIsActFn={onOverIsActFn} />
       </article>
     </>
   );

@@ -11,16 +11,11 @@ import { useState } from "react";
 export function Main(props) {
 
   //vod 활성화 상태변수
-  const [isAct, setIsAct] = useState(false);
+  const [isAct, setIsAct] = useState(true);
 
   const onOverIsAct = () => {
     setIsAct(!isAct);
-    console.log(isAct)
   }
-  // const onOutIsAct = () => {
-  //   setIsAct(false);
-  //   console.log(isAct)
-  // }
 
   const getInfo = (x) => {
     console.log(x.left)
@@ -39,7 +34,7 @@ export function Main(props) {
         {/* 2.3.2 오늘의 업데이트 리스트 */}
         <Today cat="today" item={getInfo} onOverIsActFn={onOverIsAct}/>
         {/* 2.3.2 인기 작품 리스트 */}
-        <Best cat="best"/>
+        <Best cat="best" item={getInfo} onOverIsActFn={onOverIsAct}/>
         {/* 2.3.3 라이브 방송 */}
         <article className="live_wrap">
           <h3>LIVE ON AIR!</h3>
@@ -388,7 +383,7 @@ export function Main(props) {
         </article>
       </section>
       {/* 3. VOD 정보박스 */}
-      <Vod item={getInfo}/>
+      <Vod item={getInfo} onOverIsActFn={onOverIsAct}/>
     </>
   );
 }
