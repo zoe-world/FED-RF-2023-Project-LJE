@@ -14,11 +14,13 @@ import "../plugin/css/video_list.css";
 
 import { VideoListData } from "../data/video_list";
 
-export function SwiperVodList({ cat, getMonthDiff, fm, rank, test }) {
+export function SwiperVodList({ cat, getMonthDiff, fm, rank, item, onOverIsActFn}) {
   // cat - 카테고리명
   // getMonthDiff - 날짜계산함수
   // fm - 날짜 변환 함수(ex yyyy-mm-dd)
   // rank - 순위 결정 함수
+  // item - 마우스 오버시, 해당 타켓 객체 정보값
+   
   const selData = VideoListData;
 
   // 스와이퍼
@@ -117,24 +119,25 @@ export function SwiperVodList({ cat, getMonthDiff, fm, rank, test }) {
 
   // 오늘 날짜 변수
   const myDate = new Date(); 
-  // const [isHover, setIsHover] = useState(0);
+  
+  // 마우스오버 상태변수
+  const onMouseOver = (e) => {
+    const ele = e.currentTarget;  
+    const top = ele.getBoundingClientRect().top;  
+    const left = ele.getBoundingClientRect().left;  
+    const imgSrc = ele.querySelector('.img').src;
+    const tit = ele.querySelector('.tit').innerText;
+    const txt = ele.querySelector('.txt').innerText;
 
-  // const onMouseOver = (e) => {
-  //   // const ele = e.currentTarget;
-  //   // const imgSrc = ele.childNodes[0].firstChild.lastChild.src;
-  //   setIsHover(1);
-
-  // }
-  // const onMouseOut = (e) => {
-  //   setIsHover(0);
-  // }
-    
-  const audio = {
-    sound : "test",
-    file : "test52",
-  }
-  const chil = () => {
-    test(audio);
+    // 마우스 오버된 아이템 정보
+    item({
+      // 이미지 src, 제목, 에피소드 txt
+      top:top,
+      left:left,
+      img:imgSrc,
+      tit:tit,
+      txt:txt
+    });
   }
 
   // 리턴코드 ////////////////////////////////////
@@ -156,13 +159,12 @@ export function SwiperVodList({ cat, getMonthDiff, fm, rank, test }) {
             .map((v, i) => (
               <SwiperSlide 
                 key={i}
-                onMouseOver={chil}
-                /* className={} */
+                onMouseOver={(e)=>{onMouseOver(e); onOverIsActFn();}}
                 >
                 <a href="#" className="link_img">
                   <div className="img_group">
                     <div className="bg"></div>
-                    <img src={v.thumSrc} alt={v.tit + " 포스터"} />
+                    <img className="img" src={v.thumSrc} alt={v.tit + " 포스터"} />
                   </div>
                   <h4>
                     <span className="tit">{v.tit}</span>
@@ -178,11 +180,12 @@ export function SwiperVodList({ cat, getMonthDiff, fm, rank, test }) {
               .map((v, i) => (
               <SwiperSlide 
                 key={i}
+                onMouseOver={onMouseOver}
                 >
                 <a href="#" className="link_img">
                   <div className="img_group">
                     <div className="bg"></div>
-                    <img src={v.thumSrc} alt={v.tit + " 포스터"} />
+                    <img className="img" src={v.thumSrc} alt={v.tit + " 포스터"} />
                   </div>
                   <h4>
                     <span className="tit">{v.tit}</span>

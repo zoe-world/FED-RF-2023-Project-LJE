@@ -5,12 +5,14 @@ import ReactPlayer from "react-player";
 
 import $ from "jquery";
 
-export function Vod() {
+export function Vod({item}) {
   const selData = VideoListData;
 
+  const test = () => {
+
+  }
   // 마우스 위치
   // const xy = useRef({ x: 0, y: 0 });
-
   return (
     <>
       {/* 1. vod 정보창 */}
@@ -28,11 +30,11 @@ export function Vod() {
           <a href="#" className="img_bx">
             <div className="img_group">
               <div className="bg"></div>
-              <img src="" alt="" />
+              <img src={item.img} alt="" />
             </div>
             <h4>
-              <span className="tit"></span>
-              <span className="txt"></span>
+              <span className="tit">{item.tit}</span>
+              <span className="txt">{item.txt}</span>
             </h4>
           </a>
         </div>

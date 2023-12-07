@@ -17,7 +17,7 @@ export function Banner({ cat }) {
   const fileName = imgSrc.substring(imgSrc.length - 3);
   // 내용 텍스트
   const conts = selData[0]["cont"];
-  console.log(selData);
+  // console.log(selData);
   return (
     <>
       {

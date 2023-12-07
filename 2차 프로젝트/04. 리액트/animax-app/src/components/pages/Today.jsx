@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { SwiperVodList } from "../plugin/SwiperVodList";
 
 // 배너데이터
-export function Today({ cat }) {
+export function Today({ cat, item, onOverIsActFn}) {
 
   // cat = 카테고리명
 
@@ -25,8 +25,6 @@ export function Today({ cat }) {
     return Math.floor(Math.abs(diffDate / (1000 * 60 * 60 * 24 * 30)));
   };
 
-  // // class on 상태변수
-  const [isAct, setIsAct] = useState();
   // const evtEle = document.querySelector(".list_box .swiper-slide");
 
   // console.log(evtEle);
@@ -35,17 +33,6 @@ export function Today({ cat }) {
   // // let sizeH = Math.floor(ele.height());
   // // let posT = Math.floor(ele.offset().top);
   // // let posL = Math.floor(ele.offset().left);
-
-  const onMouseOver = (i) => {
-    setIsAct(i);
-  };
-  const onMouseOut = () => {
-    setIsAct();
-  };
-  const hover = useEffect(() => {
-    onMouseOver();
-    onMouseOut();
-  }, [isAct]);
 
   // useEffect(() => {
   //   const tgEle = $(".vod_area");
@@ -85,11 +72,9 @@ export function Today({ cat }) {
 
   // }, []);
 
-  // 마우스 호버시 얻어오는 정보 함수
-  const test = (x) => {
-    console.log(x)
-  }
-  
+  const getItem = (x) => {
+    item(x);
+  };
   return (
     <>
       <article className="list_wrap today">
@@ -99,7 +84,8 @@ export function Today({ cat }) {
           cat={cat}
           getMonthDiff={getMonthDiff}
           fm={fm}
-          test={test}
+          item={getItem}
+          onOverIsActFn={onOverIsActFn}
         />
       </article>
     </>

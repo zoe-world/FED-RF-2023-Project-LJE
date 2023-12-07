@@ -6,9 +6,25 @@ import { Today } from "./Today";
 import { TopBanner } from "./TopBanner";
 import { Vod } from "../modules/Vod";
 import { Best } from "./Best";
+import { useState } from "react";
 
 export function Main(props) {
 
+  //vod 활성화 상태변수
+  const [isAct, setIsAct] = useState(false);
+
+  const onOverIsAct = () => {
+    setIsAct(!isAct);
+    console.log(isAct)
+  }
+  // const onOutIsAct = () => {
+  //   setIsAct(false);
+  //   console.log(isAct)
+  // }
+
+  const getInfo = (x) => {
+    console.log(x.left)
+  }
   return (
     <>
       {/* 2-1. TOP배너 박스 */}
@@ -21,7 +37,7 @@ export function Main(props) {
         {/* 2.3.1 프로모션배너 박스 */}
         <Promotion cat={"sub" + Math.ceil(Math.random() * 4)} />
         {/* 2.3.2 오늘의 업데이트 리스트 */}
-        <Today cat="today"/>
+        <Today cat="today" item={getInfo} onOverIsActFn={onOverIsAct}/>
         {/* 2.3.2 인기 작품 리스트 */}
         <Best cat="best"/>
         {/* 2.3.3 라이브 방송 */}
@@ -372,7 +388,7 @@ export function Main(props) {
         </article>
       </section>
       {/* 3. VOD 정보박스 */}
-      <Vod />
+      <Vod item={getInfo}/>
     </>
   );
 }

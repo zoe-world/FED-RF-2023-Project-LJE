@@ -192,7 +192,7 @@
 .top-banner_box .txt_bx img{
     display: block;
     margin-bottom: 1.8vw;
-    width: max(30vw,250px);
+    width: max(20vw,250px);
 }
 .top-banner_box .txt_bx .view_btn{
     margin-top: 3rem;
