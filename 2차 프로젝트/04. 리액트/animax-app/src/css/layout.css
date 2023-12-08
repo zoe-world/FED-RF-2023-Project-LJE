@@ -503,10 +503,14 @@
 .thum-list .on em{
     display: none;
 }
+body{
+    position: relative;
+}
 .vod_area {
-    /* position: absolute; */
-    will-change: transform;  
-    opacity: 1; 
+    position: absolute;
+    transform: scale(1.2);
+    /* pointer-events: none; */
+    z-index: 999999;
 }
 .vod_area .info_bx {
     position: relative;

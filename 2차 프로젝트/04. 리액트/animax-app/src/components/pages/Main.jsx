@@ -31,14 +31,14 @@ export function Main(props) {
   return (
     <>
       {/* 2-1. TOP배너 박스 */}
-      <TopBanner cat={"main" + Math.ceil(Math.random() * 5)} />
+      <TopBanner cat={"main"} />
       {/* 2-2. LIST배너 박스 */}
       <ThumList cat="list" />
       {/* 2-3. 컨텐츠영역 */}
       <section className="content_wrap">
         <h2 className="sr-only">컨텐츠 영역</h2>
         {/* 2.3.1 프로모션배너 박스 */}
-        <Promotion cat={"sub" + Math.ceil(Math.random() * 4)} />
+        <Promotion cat={"sub"} />
         {/* 2.3.2 오늘의 업데이트 리스트 */}
         <Today cat="today" item={getInfo}/>
         {/* 2.3.2 인기 작품 리스트 */}

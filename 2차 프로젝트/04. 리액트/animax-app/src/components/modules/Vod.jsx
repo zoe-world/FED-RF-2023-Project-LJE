@@ -1,21 +1,48 @@
 // Animax VOD 정보 컴포넌트
 import { memo, useContext, useEffect, useRef, useState } from "react";
 import { VideoListData } from "../data/video_list";
-import ReactPlayer from "react-player";
 
 import $ from "jquery";
-import { useSelector } from "react-redux";
 
-export const Vod = memo(({item}) => {
-
+export function Vod({ item }) {
   const selData = VideoListData;
 
   // 마우스 위치
-  const vodBox = useRef({ left: 0, top: 0 });
-  const ele = vodBox;
+  const vodBox = useRef(null);
+  const ele = vodBox.current;
   const mouseLeft = item.left;
-  ele.style.left = mouseLeft + 'px';
-  console.log(item.left,mouseLeft)
+  const mouseTop = item.top;
+  console.log(mouseTop, mouseLeft, ele);
+
+
+  const showEle = (e) => {
+    console.log("여기", ele, mouseTop, mouseLeft);
+    const evtEle = $(e.currentTarget);
+
+    $(ele)
+    .css({
+      top: evtEle.offset().top + "px",
+      left: evtEle.offset().left + "px",
+      width: evtEle.width() +'px',
+    })
+    .stop()
+    .delay(100)
+    .fadeIn(300)
+  }
+
+  const hideEle = () => {
+    $(ele).hide();
+  }
+
+  useEffect(() => {
+
+    const evtEle = $('.swiper-slide');
+
+    evtEle.on('mouseenter',showEle);
+    $(ele).on('mouseleave',hideEle);
+    
+  }); ////////// useEffect /////////////
+
   return (
     <>
       {/* 1. vod 정보창 */}
@@ -44,4 +71,4 @@ export const Vod = memo(({item}) => {
       </section>
     </>
   );
-});
+}

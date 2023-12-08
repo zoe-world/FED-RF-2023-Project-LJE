@@ -1,6 +1,6 @@
 // 스와이퍼 플러그인 컴포넌트
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import $, { event } from "jquery";
+import $ from "jquery";
 
 import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
 
@@ -124,8 +124,8 @@ export function SwiperVodList({ cat, getMonthDiff, fm, rank, item, tag }) {
   // 마우스오버 상태변수
   const onMouseOver = (e) => {
     const ele = e.currentTarget;  
-    const top = ele.getBoundingClientRect().top;  
-    const left = ele.getBoundingClientRect().left;  
+    const top = $(ele).offset().top;  
+    const left = $(ele).offset().left;  
     const imgSrc = ele.querySelector('.img').src;
     const tit = ele.querySelector('.tit').innerText;
     const txt = ele.querySelector('.txt').innerText;

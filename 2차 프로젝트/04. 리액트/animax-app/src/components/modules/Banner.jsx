@@ -6,8 +6,10 @@ import { banData } from "../data/banner";
 
 import $ from "jquery";
 
-export function Banner ({ cat }) {
+export const Banner = memo(({ cat }) => {
   // cat = 카테고리명
+  if(cat==='main') cat = cat +  + Math.ceil(Math.random() * 5);
+  else if (cat==='sub') cat = cat +  + Math.ceil(Math.random() * 4);
 
   // 선택데이터
   const selData = banData[cat];
@@ -60,4 +62,4 @@ export function Banner ({ cat }) {
       </div>
     </>
   );
-}
+}); 
