@@ -30,8 +30,8 @@ export const TopArea = memo(({chgPageFn})=>{
             <header className={"top_area"+(isScrollTop?" fixed":"")}>
                 {/* 1-1.로고박스 */}
                 <h1 className="logo">
-                    <Link to="/">
-                        <img src="/images/logo.png" alt="Animax" />
+                    <Link to="/main">
+                        <img src="./images/logo.png" alt="Animax" />
                     </Link>
                 </h1>
                 {/* 1-2.GNB박스 */}

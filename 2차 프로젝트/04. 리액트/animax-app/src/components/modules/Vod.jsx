@@ -36,7 +36,7 @@ export function Vod({ item }) {
 
   useEffect(() => {
 
-    const evtEle = $('.swiper-slide');
+    const evtEle = $('.list_box .swiper-slide');
 
     evtEle.on('mouseenter',showEle);
     $(ele).on('mouseleave',hideEle);
