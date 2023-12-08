@@ -9,7 +9,7 @@ import { Main } from "./components/pages/Main";
 import { Program } from "./components/pages/Program";
 import { Live } from "./components/pages/Live";
 import { Customer } from "./components/pages/Customer";
-
+import { Login } from "./components/pages/Login";
 function App(){
   return(
     <>
@@ -19,6 +19,7 @@ function App(){
             <Route index element={<Main/>}/>
             <Route path="/program" element={<Program />}/>
             <Route path="/live" element={<Live />}/>
+            <Route path="/login" element={<Login/>} />
             <Route path="/customer" element={<Customer cat="customer"/>} />
           </Route>
         </Routes>

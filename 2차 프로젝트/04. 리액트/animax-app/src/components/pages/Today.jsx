@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { SwiperVodList } from "../plugin/SwiperVodList";
 
 // 배너데이터
-export function Today({ cat, item, onOverIsActFn}) {
+export function Today({ cat, item, }) {
 
   // cat = 카테고리명
 
@@ -85,7 +85,7 @@ export function Today({ cat, item, onOverIsActFn}) {
           getMonthDiff={getMonthDiff}
           fm={fm}
           item={getItem}
-          onOverIsActFn={onOverIsActFn}
+          
         />
       </article>
     </>

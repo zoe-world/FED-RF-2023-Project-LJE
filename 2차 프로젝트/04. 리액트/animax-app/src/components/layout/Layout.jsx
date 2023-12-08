@@ -12,7 +12,6 @@ import { QuickArea } from "./QuickArea";
 import { FooterArea } from "./FooterArea";
 import { useNavigate } from "react-router-dom";
 
-
 export function Layout() {
   // 랜더링 후 (화면보이기전) 실행구역
   useLayoutEffect(() => {
@@ -26,12 +25,12 @@ export function Layout() {
 
   return (
     <>
-      <div className="wrap">
-        <QuickArea chgPageFn={chgPage} />
-        <TopArea />
-        <MainArea />
-        <FooterArea />
-      </div>
+        <div className="wrap">
+          <QuickArea chgPageFn={chgPage} />
+          <TopArea />
+          <MainArea />
+          <FooterArea />
+        </div>
     </>
   );
 }

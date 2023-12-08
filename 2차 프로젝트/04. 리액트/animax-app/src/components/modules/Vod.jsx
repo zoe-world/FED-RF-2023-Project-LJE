@@ -1,22 +1,25 @@
 // Animax VOD 정보 컴포넌트
-import { useContext, useEffect, useRef, useState } from "react";
+import { memo, useContext, useEffect, useRef, useState } from "react";
 import { VideoListData } from "../data/video_list";
 import ReactPlayer from "react-player";
 
 import $ from "jquery";
+import { useSelector } from "react-redux";
 
-export function Vod({item, onOverIsActFn}) {
+export const Vod = memo(({item}) => {
 
   const selData = VideoListData;
 
   // 마우스 위치
-  // const xy = useRef({ x: 0, y: 0 });
-
-  
+  const vodBox = useRef({ left: 0, top: 0 });
+  const ele = vodBox;
+  const mouseLeft = item.left;
+  ele.style.left = mouseLeft + 'px';
+  console.log(item.left,mouseLeft)
   return (
     <>
       {/* 1. vod 정보창 */}
-      <section id="vod_area" className={onOverIsActFn == 1? "vod_area on":"vod_area"}>
+      <section id="vod_area" className="vod_area" ref={vodBox}>
         <div className="info_bx">
           <a href="#" title="동영상 재생" className="link_play link_ico">
             <span className="tootip">재생하기</span>
@@ -41,4 +44,4 @@ export function Vod({item, onOverIsActFn}) {
       </section>
     </>
   );
-}
+});
