@@ -3,7 +3,7 @@ import "./css/index.css";
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {HashRouter, Route, Routes} from 'react-router-dom';
+import {BrowserRouter, HashRouter, Route, Routes} from 'react-router-dom';
 import { Layout } from "./components/layout/Layout";
 import { Main } from "./components/pages/Main";
 import { Program } from "./components/pages/Program";
@@ -13,6 +13,7 @@ import { Login } from "./components/pages/Login";
 function App(){
   return(
     <>
+      {/* "homepage": "https://zoe-world.github.io/FED-RF-2023-Dist-LJE/" */}
       <HashRouter>
         <Routes>
           <Route path="/" element={<Layout/>}>
