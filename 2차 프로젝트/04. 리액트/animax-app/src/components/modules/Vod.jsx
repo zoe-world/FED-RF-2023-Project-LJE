@@ -8,40 +8,31 @@ export function Vod({ item }) {
   const selData = VideoListData;
 
   // 마우스 위치
-  const vodBox = useRef(null);
-  const ele = vodBox.current;
+  const vodBox = useRef();
+  const ele = item.ele;
+  const eleW = item.eleW;
   const mouseLeft = item.left;
   const mouseTop = item.top;
-  console.log(mouseTop, mouseLeft, ele);
+  console.log(mouseTop, mouseLeft, ele,vodBox , eleW);
 
 
   const showEle = (e) => {
-    console.log("여기", ele, mouseTop, mouseLeft);
-    const evtEle = $(e.currentTarget);
-
-    $(ele)
-    .css({
-      top: evtEle.offset().top + "px",
-      left: evtEle.offset().left + "px",
-      width: evtEle.width() +'px',
+    $(vodBox.current).css ({
+      top: mouseTop + 'px',
+      left: mouseLeft + 'px',
+      // width: eleW + 'px'
     })
-    .stop()
-    .delay(100)
-    .fadeIn(300)
   }
 
   const hideEle = () => {
-    $(ele).hide();
+    $(vodBox).hide();
   }
 
   useEffect(() => {
-
-    const evtEle = $('.list_box .swiper-slide');
-
-    evtEle.on('mouseenter',showEle);
+    $(ele).on('mouseenter',showEle);
     $(ele).on('mouseleave',hideEle);
     
-  }); ////////// useEffect /////////////
+  },[ele]); ////////// useEffect /////////////
 
   return (
     <>

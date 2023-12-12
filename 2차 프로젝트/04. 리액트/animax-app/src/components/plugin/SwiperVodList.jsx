@@ -124,6 +124,7 @@ export function SwiperVodList({ cat, getMonthDiff, fm, rank, item, tag }) {
   // 마우스오버 상태변수
   const onMouseOver = (e) => {
     const ele = e.currentTarget;  
+    const eleW = $(ele).offsetWidth;  
     const top = $(ele).offset().top;  
     const left = $(ele).offset().left;  
     const imgSrc = ele.querySelector('.img').src;
@@ -137,7 +138,9 @@ export function SwiperVodList({ cat, getMonthDiff, fm, rank, item, tag }) {
       left:left,
       img:imgSrc,
       tit:tit,
-      txt:txt
+      txt:txt,
+      ele :ele,
+      eleW :eleW,
     });
   }
 
