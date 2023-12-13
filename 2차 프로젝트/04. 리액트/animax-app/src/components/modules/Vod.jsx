@@ -4,35 +4,44 @@ import { VideoListData } from "../data/video_list";
 
 import $ from "jquery";
 
-export function Vod({ item }) {
+export function Vod({ item, vodState }) {
+  // vodState - 정보박스 상태변수
   const selData = VideoListData;
 
   // 마우스 위치
-  const vodBox = useRef();
+  const vodBox = useRef()
   const ele = item.ele;
-  const eleW = item.eleW;
+  const eleW = item.eleW
   const mouseLeft = item.left;
   const mouseTop = item.top;
-  console.log(mouseTop, mouseLeft, ele,vodBox , eleW);
+  console.log(mouseTop, mouseLeft, eleW, vodState);
 
 
-  const showEle = (e) => {
+  const showEle = () => {
     $(vodBox.current).css ({
+      opacity:1,
       top: mouseTop + 'px',
       left: mouseLeft + 'px',
-      // width: eleW + 'px'
-    })
+      width: eleW + 'px',
+      transition: 'opacity .5s 0.5s'
+    });
+    // vodState.current(true);
   }
 
   const hideEle = () => {
-    $(vodBox).hide();
+    $(vodBox.current).attr ('style','');
+    $(vodBox.current).css ({
+      opacity:0,
+    });
+    // vodState.current(false);
+    // $(vodBox.current).hide();
   }
 
   useEffect(() => {
     $(ele).on('mouseenter',showEle);
     $(ele).on('mouseleave',hideEle);
     
-  },[ele]); ////////// useEffect /////////////
+  }); ////////// useEffect /////////////
 
   return (
     <>

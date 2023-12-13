@@ -12,7 +12,7 @@ import { BestTag } from "./BestTag";
 export function Main(props) {
 
   //vod 활성화 상태변수
-  const [isAct, setIsAct] = useState(true);
+  const vodState = useRef(false);
 
   const [objInfo,setObjInfo] = useState({
     top:'',
@@ -145,7 +145,7 @@ export function Main(props) {
         <BestTag cat="tag" item={getInfo}/>
       </section>
       {/* 3. VOD 정보박스 */}
-      <Vod item={objInfo}/>
+      <Vod item={objInfo} vodState={vodState}/>
     </>
   );
 }

@@ -509,7 +509,7 @@ body{
 .vod_area {
     position: absolute;
     transform: scale(1.2);
-    /* pointer-events: none; */
+    pointer-events: none;
     z-index: 999999;
 }
 .vod_area .info_bx {
