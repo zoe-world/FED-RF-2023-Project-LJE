@@ -4,8 +4,7 @@ import { VideoListData } from "../data/video_list";
 
 import $ from "jquery";
 
-export function Vod({ item, vodState }) {
-  // vodState - 정보박스 상태변수
+export function Vod({ item }) {
   const selData = VideoListData;
 
   // 마우스 위치
@@ -14,32 +13,35 @@ export function Vod({ item, vodState }) {
   const eleW = item.eleW
   const mouseLeft = item.left;
   const mouseTop = item.top;
-  console.log(mouseTop, mouseLeft, eleW, vodState);
 
 
-  const showEle = () => {
-    $(vodBox.current).css ({
-      opacity:1,
-      top: mouseTop + 'px',
-      left: mouseLeft + 'px',
-      width: eleW + 'px',
-      transition: 'opacity .5s 0.5s'
-    });
-    // vodState.current(true);
+  const showEle = (e) => {
+    e.preventDefault();
+    $(vodBox.current).addClass('on');
+    setTimeout(() => {
+      if($(vodBox.current).hasClass('on')){
+        $(vodBox.current).css ({
+          opacity:1,
+          top: mouseTop + 25 + 'px',
+          left: mouseLeft + 'px',
+          width: eleW + 'px',
+          transition: 'opacity .3s linear .2s',
+        });
+      }
+    }, 100);
   }
 
   const hideEle = () => {
+    $(vodBox.current).removeClass('on');
     $(vodBox.current).attr ('style','');
     $(vodBox.current).css ({
-      opacity:0,
+      opacity:0
     });
-    // vodState.current(false);
-    // $(vodBox.current).hide();
   }
 
   useEffect(() => {
     $(ele).on('mouseenter',showEle);
-    $(ele).on('mouseleave',hideEle);
+    $(vodBox.current).on('mouseleave scroll',hideEle);
     
   }); ////////// useEffect /////////////
 
@@ -58,6 +60,9 @@ export function Vod({ item, vodState }) {
             <span className="tootip">찜하기</span>
           </a>
           <a href="#" className="img_bx">
+            {
+              
+            }
             <div className="img_group">
               <div className="bg"></div>
               <img src={item.img} alt="" />

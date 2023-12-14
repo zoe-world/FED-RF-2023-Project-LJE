@@ -124,15 +124,15 @@ export function SwiperVodList({ cat, getMonthDiff, fm, rank, item, tag }) {
 
   // 마우스오버 상태변수
   const onMouseOver = (e) => {
+    e.preventDefault();
     const ele = e.currentTarget;  
-    const eleW = ele.offsetWidth
-    const top = $(ele).offset().top;  
-    const left = $(ele).offset().left;  
+    const eleW = Math.floor(ele.offsetWidth)
+    const top = Math.floor($(ele).offset().top);  
+    const left = Math.floor($(ele).offset().left);  
     const imgSrc = ele.querySelector('.img').src;
     const tit = ele.querySelector('.tit').innerText;
     const txt = ele.querySelector('.txt').innerText;
 
-    console.log(eleW)
     // 마우스 오버된 아이템 정보
     item({
       // 이미지 src, 제목, 에피소드 txt
