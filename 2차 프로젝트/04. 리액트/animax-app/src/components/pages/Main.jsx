@@ -8,6 +8,7 @@ import { Vod } from "../modules/Vod";
 import { Best } from "./Best";
 import { useEffect, useRef, useState } from "react";
 import { BestTag } from "./BestTag";
+import Modal from "../modules/Modal";
 
 export function Main(props) {
 
@@ -23,7 +24,10 @@ export function Main(props) {
     setObjInfo(x);
   }
 
-
+  const [isOpen, setOpen] = useState(false);
+  const openModal = () => {
+    setOpen(true);
+  }
   return (
     <>
       {/* 2-1. TOP배너 박스 */}
@@ -141,7 +145,9 @@ export function Main(props) {
         <BestTag cat="tag" item={getInfo}/>
       </section>
       {/* 3. VOD 정보박스 */}
-      <Vod item={objInfo} />
+      <Vod item={objInfo} openModal={openModal}/>
+      {/* 4. 모달박스 */}
+      <Modal isOpen={isOpen}/>
     </>
   );
 }
