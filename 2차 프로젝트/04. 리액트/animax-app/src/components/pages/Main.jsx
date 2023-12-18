@@ -9,6 +9,7 @@ import { Best } from "./Best";
 import { useEffect, useRef, useState } from "react";
 import { BestTag } from "./BestTag";
 import Modal from "../modules/Modal";
+import useModals from "../modules/useModals";
 
 export function Main(props) {
 
@@ -25,9 +26,12 @@ export function Main(props) {
   }
 
   const [isOpen, setOpen] = useState(false);
-  const openModal = () => {
+  const { openModal } = useModals();
+  const handleClick = () => {
+    openModal(Modal, { foo: 'bar' });
     setOpen(true);
   }
+
   return (
     <>
       {/* 2-1. TOP배너 박스 */}
@@ -145,7 +149,7 @@ export function Main(props) {
         <BestTag cat="tag" item={getInfo}/>
       </section>
       {/* 3. VOD 정보박스 */}
-      <Vod item={objInfo} openModal={openModal}/>
+      <Vod item={objInfo} handleClick={handleClick}/>
       {/* 4. 모달박스 */}
       <Modal isOpen={isOpen}/>
     </>

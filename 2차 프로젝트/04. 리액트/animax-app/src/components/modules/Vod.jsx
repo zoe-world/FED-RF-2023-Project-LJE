@@ -4,7 +4,7 @@ import { VideoListData } from "../data/video_list";
 
 import $ from "jquery";
 
-export function Vod({ item, openModal }) {
+export function Vod({ item,handleClick }) {
   const selData = VideoListData;
 
   // 마우스 위치
@@ -50,7 +50,7 @@ export function Vod({ item, openModal }) {
   return (
     <>
       {/* 1. vod 정보창 */}
-      <section id="vod_area" className="vod_area" ref={vodBox} onClick={openModal}>
+      <section id="vod_area" className="vod_area" ref={vodBox} onClick={handleClick}>
         <div className="info_bx">
           <a href="#" title="동영상 재생" className="link_play link_ico">
             <span className="tootip">재생하기</span>
