@@ -510,6 +510,8 @@ body{
     position: absolute;
     top: 0;
     left: 0;
+    width: 0;
+    opacity: 0;
     transform: scale(1.2);
     z-index: 10;
 }

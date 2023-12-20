@@ -8,8 +8,9 @@ import { Vod } from "../modules/Vod";
 import { Best } from "./Best";
 import { useEffect, useRef, useState } from "react";
 import { BestTag } from "./BestTag";
-import Modal from "../modules/Modal";
+import MyModal from "../modules/MyModal";
 import useModals from "../modules/useModals";
+import { modals } from "../modules/Modals";
 
 export function Main(props) {
 
@@ -28,9 +29,13 @@ export function Main(props) {
   const [isOpen, setOpen] = useState(false);
   const { openModal } = useModals();
   const handleClick = () => {
-    openModal(Modal, { foo: 'bar' });
+    openModal(modals.myModal, {
+      onSubmit: () => {
+        console.log('비지니스 로직 처리...');
+      }
+    });
     setOpen(true);
-  }
+  };
 
   return (
     <>
@@ -150,8 +155,6 @@ export function Main(props) {
       </section>
       {/* 3. VOD 정보박스 */}
       <Vod item={objInfo} handleClick={handleClick}/>
-      {/* 4. 모달박스 */}
-      <Modal isOpen={isOpen}/>
     </>
   );
 }

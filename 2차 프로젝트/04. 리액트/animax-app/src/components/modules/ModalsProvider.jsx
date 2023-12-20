@@ -18,29 +18,32 @@ const ableScroll = () => {
   window.scrollTo(0, parseInt(scrollY || "0", 10) * -1);
 };
 
-const ModalsProvider = ({children}) => {
-
-    const [openedModals, setOpenedModals] = useState([]);
-    const open = (component, props) => {    
-      disableScroll();
+const ModalsProvider = ({ children }) => {
+  const [openedModals, setOpenedModals] = useState([]);
+  const open = (Component, props) => {
+    disableScroll();
     setOpenedModals((modals) => {
-      const modalIndex = modals.findIndex((modal) => modal.component === component);
+      const modalIndex = modals.findIndex(
+        (modal) => modal.Component === Component
+      );
       if (modalIndex !== -1) {
         // 모달이 이미 배열에 있는 경우, 해당 모달의 isOpen 값을 true로 변경
         modals[modalIndex].isOpen = true;
         modals[modalIndex].props = props;
         return [...modals];
       }
-      return [...modals, { component, props, isOpen: true }];
+      return [...modals, { Component, props, isOpen: true }];
     });
-    };
-    const close = (component) => {
-      ableScroll();
-      setOpenedModals((modals) =>
-        modals.map((modal) => (modal.component === component ? { ...modal, isOpen: false } : modal)),
-      );
-    };
-    const dispatch = useMemo(()=> ({open,close}), []) ;
+  };
+  const close = (Component) => {
+    ableScroll();
+    setOpenedModals((modals) =>
+      modals.map((modal) =>
+        modal.Component === Component ? { ...modal, isOpen: false } : modal
+      )
+    );
+  };
+  const dispatch = useMemo(() => ({ open, close }), []);
   return (
     <ModalsStateContext.Provider value={openedModals}>
       <ModalsDispatchContext.Provider value={dispatch}>
