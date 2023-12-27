@@ -3,6 +3,7 @@ import "./css/index.css";
 
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
 import { HashRouter, Route, Routes } from "react-router-dom";
 import { Layout } from "./components/layout/Layout";
 import { Main } from "./components/pages/Main";
@@ -12,8 +13,7 @@ import { Customer } from "./components/pages/Customer";
 import { Login } from "./components/pages/Login";
 import ReactModal from "react-modal";
 import ModalsProvider from "./components/modules/ModalsProvider";
-import { Provider } from "react-redux";
-import { store } from "./redux/store";
+import store from "./redux/store";
 ReactModal.setAppElement("#root");
 function App() {
   return (

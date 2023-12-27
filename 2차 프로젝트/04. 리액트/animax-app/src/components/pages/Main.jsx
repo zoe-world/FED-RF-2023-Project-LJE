@@ -14,10 +14,12 @@ import { modals } from "../modules/Modals";
 
 export function Main(props) {
 
+
   const [objInfo,setObjInfo] = useState({
     top:'',
     left:'',
-    img:'',
+    logoSrc:'',
+    thumSrc:'',
     tit:'',
     txt:''
   });
@@ -31,11 +33,12 @@ export function Main(props) {
   const handleClick = () => {
     openModal(modals.myModal, {
       onSubmit: () => {
-        console.log('비지니스 로직 처리...');
+        // console.log('비지니스 로직 처리...');
       }
     });
     setOpen(true);
   };
+
 
   return (
     <>

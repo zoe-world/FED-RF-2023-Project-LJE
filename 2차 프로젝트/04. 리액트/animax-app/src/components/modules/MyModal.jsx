@@ -1,6 +1,8 @@
 import ReactModal from "react-modal";
 import React from "react";
 import { VideoListData } from "../data/video_list";
+import { useSelector } from "react-redux";
+
 
 const ModalStyle = {
   overlay: {
@@ -27,6 +29,8 @@ const MyModal = ({ children, isOpen, onClose, onSubmit }) => {
     onClose();
   };
 
+  const item = useSelector((state)=> state.item.value);
+  console.log(item);
   return (
     <ReactModal
       isOpen={isOpen}
@@ -37,14 +41,14 @@ const MyModal = ({ children, isOpen, onClose, onSubmit }) => {
     >
       <div className="previewModal-player">
         <div className="logo_bx">
-          <img src="./images/content/logo/logo_01.png" alt="" />
+          <img src={item.img} alt={item.tit} />
         </div>
         <div className="rank_bx">
           <span className="rank"><em>15</em>위</span>
         </div>
       <div className="previewModal-info_bx">
         <div className="thum_bx">
-          <img src="./images/content/thum/thum_01.jpg" alt="" />
+          <img src={item.thumSrc} alt="" />
         </div>
         <div className="txt_bx">
           <h3 className="tit">{vData.idx}</h3>

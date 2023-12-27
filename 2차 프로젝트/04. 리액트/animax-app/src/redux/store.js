@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { slideReducer } from "./reducers/item";
+import itemReducer from './reducers/item'
 
-export const store =  configureStore({
+export default configureStore({
     reducer:{
-        items: itemSlice,
+        item: itemReducer,
     }
 })

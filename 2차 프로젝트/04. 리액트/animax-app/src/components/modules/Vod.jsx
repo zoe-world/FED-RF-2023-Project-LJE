@@ -3,9 +3,13 @@ import { memo, useContext, useEffect, useRef, useState } from "react";
 import { VideoListData } from "../data/video_list";
 
 import $ from "jquery";
+import { useDispatch } from "react-redux";
+import { itemOver } from "../../redux/reducers/item";
 
 export function Vod({ item, handleClick }) {
   const selData = VideoListData;
+  // redux
+  const dispatch = useDispatch();
 
   // 마우스 위치
   const vodBox = useRef();
@@ -53,6 +57,12 @@ export function Vod({ item, handleClick }) {
         className="vod_area"
         ref={vodBox}
         onClick={handleClick}
+        onMouseOver={()=>dispatch(itemOver({
+          logoSrc: item.logoSrc,
+          thumSrc: item.thumSrc,
+          tit: item.tit,
+          txt:item.txt,
+        }))}
       >
         <div className="info_bx">
           <a href="#" title="동영상 재생" className="link_play link_ico">
@@ -68,7 +78,7 @@ export function Vod({ item, handleClick }) {
             {}
             <div className="img_group">
               <div className="bg"></div>
-              <img src={item.img} alt="" />
+              <img src={item.thumSrc} alt="" />
             </div>
             <h4>
               <span className="tit">{item.tit}</span>
