@@ -21,7 +21,7 @@ export function SwiperVodList({ cat, getMonthDiff, fm, rank, item, tag }) {
   // rank - 순위 결정 함수
   // item - 마우스 오버시, 해당 타켓 객체 정보값
   // tag - 해시태그 분류함수
-   
+
   const selData = VideoListData;
 
   // 스와이퍼
@@ -33,7 +33,6 @@ export function SwiperVodList({ cat, getMonthDiff, fm, rank, item, tag }) {
   const navPrev = useRef();
   const navNext = useRef();
   const page = useRef();
-  const slide = useRef();
 
   const swiperParams = {
     navigation: { prevEl: navPrev.current, nextEl: navNext.current },
@@ -95,7 +94,7 @@ export function SwiperVodList({ cat, getMonthDiff, fm, rank, item, tag }) {
     },
   };
   /////////////// swiperParams ///////////////
-  
+
   let tog = 0;
   $(".stop_btn").on("click", function (e) {
     if (tog == 0) {
@@ -120,36 +119,35 @@ export function SwiperVodList({ cat, getMonthDiff, fm, rank, item, tag }) {
   });
 
   // 오늘 날짜 변수
-  const myDate = new Date(); 
-  
-  const todayList = cat === "today" && selData.filter((v) => getMonthDiff(fm(myDate), v.newEpi));
-  todayList = todayList.sort((a,b)=> a.idx > b.idx? )
+  const myDate = new Date();
+
+  let todayList =
+    cat === "today" &&
+    selData.filter((v) => getMonthDiff(fm(myDate), v.newEpi));
+
   // 마우스오버 상태변수
   const onMouseOver = (e) => {
     e.preventDefault();
-    const ele = e.currentTarget;  
-    const eleW = Math.floor(ele.offsetWidth)
-    const top = Math.floor($(ele).offset().top);  
-    const left = Math.floor($(ele).offset().left);  
-    const thumSrc = ele.querySelector('.img').src;
-    const tit = ele.querySelector('.tit').innerText;
-    const txt = ele.querySelector('.txt').innerText;
-    const logoSrc = 
-    
-    console.log(logoSrc)
+    const ele = e.currentTarget;
+    const eleW = Math.floor(ele.offsetWidth);
+    const top = Math.floor($(ele).offset().top);
+    const left = Math.floor($(ele).offset().left);
+    const tit = ele.querySelector(".tit").innerText;
+
+    // 마우스오버한 데이터와 기존 데이터 제목값으로 비교 후 리턴
+    let itemInfo;
+    itemInfo = selData.find((v) => (tit === v.tit ? v : ""));
+
     // 마우스 오버된 아이템 정보
     item({
-      // 이미지 src, 제목, 에피소드 txt
-      top:top,
-      left:left,
-      logoSrc:logoSrc,
-      thumSrc:thumSrc,
-      tit:tit,
-      txt:txt,
-      ele :ele,
-      eleW :eleW,
+      top: top,
+      left: left,
+      tit: tit,
+      ele: ele,
+      eleW: eleW,
+      itemInfo: itemInfo,
     });
-  }
+  };
 
   // 리턴코드 ////////////////////////////////////
   return (
@@ -164,40 +162,49 @@ export function SwiperVodList({ cat, getMonthDiff, fm, rank, item, tag }) {
           </a>
         </div>
         <Swiper {...swiperParams} ref={setSwiper}>
-          {cat === "today" && 
-          selData
-            .filter((v) => getMonthDiff(fm(myDate), v.newEpi))
-            .map((v, i) => (
-              <SwiperSlide 
-                key={i}
-                onMouseOver={(e)=>{onMouseOver(e)}}
-                ref={slide}
-                >
-                <a href="#" className="link_img">
-                  <div className="img_group">
-                    <div className="bg"></div>
-                    <img className="img" src={v.thumSrc} alt={v.tit + " 포스터"} />
-                  </div>
-                  <h4>
-                    <span className="tit">{v.tit}</span>
-                    <span className="txt">{v.epiTit}</span>
-                  </h4>
-                </a>
-              </SwiperSlide>
-              ))
-            }
-            {
-              cat === "best" &&
-              rank
+          {cat === "today" &&
+            selData
+              .filter((v) => getMonthDiff(fm(myDate), v.newEpi))
               .map((v, i) => (
-              <SwiperSlide 
+                <SwiperSlide key={i}>
+                  <a
+                    href="#"
+                    className="link_img"
+                    onMouseOver={(e) => {
+                      onMouseOver(e);
+                    }}
+                  >
+                    <div className="img_group">
+                      <div className="bg"></div>
+                      <img
+                        className="img"
+                        src={v.thumSrc}
+                        alt={v.tit + " 포스터"}
+                      />
+                    </div>
+                    <h4>
+                      <span className="tit">{v.tit}</span>
+                      <span className="txt">{v.epiTit}</span>
+                    </h4>
+                  </a>
+                </SwiperSlide>
+              ))}
+          {cat === "best" &&
+            rank.map((v, i) => (
+              <SwiperSlide
                 key={i}
-                onMouseOver={(e)=>{onMouseOver(e);}}
-                >
+                onMouseOver={(e) => {
+                  onMouseOver(e);
+                }}
+              >
                 <a href="#" className="link_img">
                   <div className="img_group">
                     <div className="bg"></div>
-                    <img className="img" src={v.thumSrc} alt={v.tit + " 포스터"} />
+                    <img
+                      className="img"
+                      src={v.thumSrc}
+                      alt={v.tit + " 포스터"}
+                    />
                   </div>
                   <h4>
                     <span className="tit">{v.tit}</span>
@@ -205,21 +212,23 @@ export function SwiperVodList({ cat, getMonthDiff, fm, rank, item, tag }) {
                   </h4>
                 </a>
               </SwiperSlide>
-              
-              ))
-            }
-            {
-              cat === "tag" &&
-              tag
-              .map((v, i) => (
-              <SwiperSlide 
+            ))}
+          {cat === "tag" &&
+            tag.map((v, i) => (
+              <SwiperSlide
                 key={i}
-                onMouseOver={(e)=>{onMouseOver(e);}}
-                >
+                onMouseOver={(e) => {
+                  onMouseOver(e);
+                }}
+              >
                 <a href="#" className="link_img">
                   <div className="img_group">
                     <div className="bg"></div>
-                    <img className="img" src={v.thumSrc} alt={v.tit + " 포스터"} />
+                    <img
+                      className="img"
+                      src={v.thumSrc}
+                      alt={v.tit + " 포스터"}
+                    />
                   </div>
                   <h4>
                     <span className="tit">{v.tit}</span>
@@ -227,9 +236,7 @@ export function SwiperVodList({ cat, getMonthDiff, fm, rank, item, tag }) {
                   </h4>
                 </a>
               </SwiperSlide>
-              
-              ))
-            }
+            ))}
         </Swiper>
       </div>
 

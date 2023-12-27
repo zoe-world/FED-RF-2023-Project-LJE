@@ -13,10 +13,12 @@ const ModalStyle = {
     bottom: 0,
     backgroundColor: "rgba(0,0,0,.8)",
     zIndex: 9999,
+    overflowY:'scroll'
   },
   content: {
+    overflow:'visible',
     backgroundColor: "transparent",
-    borderRadius: "6px",
+    border: "none",
   },
 };
 
@@ -29,8 +31,26 @@ const MyModal = ({ children, isOpen, onClose, onSubmit }) => {
     onClose();
   };
 
-  const item = useSelector((state)=> state.item.value);
-  console.log(item);
+  const itemInfo = useSelector((state)=> state.item.value);
+  
+  const item = Object.values(itemInfo)[0];
+  const itemIdx = item.idx;
+  const itemRank = item.rank;
+  const itemTit = item.tit;
+  const itemDirector = item.director;
+  const itemGenre = item.genre;
+  const itemCompany = item.company;
+  const itemEpiNum = item.epiNum;
+  const itemAge = item.age;
+  const itemDate = item.date;
+  const itemEpiTit = item.epiTit;
+  const itemDesc = item.desc;
+  const itemNewEpi = item.newEpi;
+  const itemLive = item.live;
+  const itemLogoSrc = item.logoSrc;
+  const itemThumSrc = item.thumSrc;
+
+  
   return (
     <ReactModal
       isOpen={isOpen}
@@ -41,17 +61,32 @@ const MyModal = ({ children, isOpen, onClose, onSubmit }) => {
     >
       <div className="previewModal-player">
         <div className="logo_bx">
-          <img src={item.img} alt={item.tit} />
+          <img src={itemLogoSrc} alt={itemInfo.tit} />
         </div>
         <div className="rank_bx">
           <span className="rank"><em>15</em>위</span>
         </div>
       <div className="previewModal-info_bx">
         <div className="thum_bx">
-          <img src={item.thumSrc} alt="" />
+          <img src={itemThumSrc} alt="" />
         </div>
         <div className="txt_bx">
           <h3 className="tit">{vData.idx}</h3>
+          <span>
+            {itemIdx}
+            {itemRank}
+            {itemTit}
+            {itemDirector}
+            {itemGenre}
+            {itemCompany}
+            {itemEpiNum}
+            {itemAge}
+            {itemDate}
+            {itemEpiTit}
+            {itemDesc}
+            {itemNewEpi}
+            {itemLive}
+          </span>
         </div>
       </div>
       </div>

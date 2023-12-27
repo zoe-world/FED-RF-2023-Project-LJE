@@ -3,8 +3,8 @@ import { memo, useContext, useEffect, useRef, useState } from "react";
 import { VideoListData } from "../data/video_list";
 
 import $ from "jquery";
-import { useDispatch } from "react-redux";
-import { itemOver } from "../../redux/reducers/item";
+import { useDispatch, useSelector } from "react-redux";
+import { itemOut, itemOver } from "../../redux/reducers/item";
 
 export function Vod({ item, handleClick }) {
   const selData = VideoListData;
@@ -49,6 +49,11 @@ export function Vod({ item, handleClick }) {
     $(vodBox.current).on("mouseleave scroll", hideEle);
   }); ////////// useEffect /////////////
 
+  const itemInfo = useSelector((state)=> state.item.value);
+  const itemThumSrc = Object.values(itemInfo)[0].thumSrc;
+  console.log(item, itemInfo, item.itemInfo, item.itemInfo?.thumSrc);
+
+
   return (
     <>
       {/* 1. vod 정보창 */}
@@ -58,11 +63,11 @@ export function Vod({ item, handleClick }) {
         ref={vodBox}
         onClick={handleClick}
         onMouseOver={()=>dispatch(itemOver({
-          logoSrc: item.logoSrc,
-          thumSrc: item.thumSrc,
-          tit: item.tit,
-          txt:item.txt,
+          itemInfo: item.itemInfo,
         }))}
+        // onMouseOut={()=>dispatch(itemOut({
+        //   itemInfo:item.initialStateValue,
+        // }))}
       >
         <div className="info_bx">
           <a href="#" title="동영상 재생" className="link_play link_ico">
@@ -78,7 +83,7 @@ export function Vod({ item, handleClick }) {
             {}
             <div className="img_group">
               <div className="bg"></div>
-              <img src={item.thumSrc} alt="" />
+              <img src={itemThumSrc} alt="" />
             </div>
             <h4>
               <span className="tit">{item.tit}</span>

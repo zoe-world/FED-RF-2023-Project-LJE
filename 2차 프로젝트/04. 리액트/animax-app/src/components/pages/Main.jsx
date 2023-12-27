@@ -15,15 +15,8 @@ import { modals } from "../modules/Modals";
 export function Main(props) {
 
 
-  const [objInfo,setObjInfo] = useState({
-    top:'',
-    left:'',
-    logoSrc:'',
-    thumSrc:'',
-    tit:'',
-    txt:''
-  });
-
+  const [objInfo,setObjInfo] = useState({});
+  console.log(objInfo)
   const getInfo = (x) => {
     setObjInfo(x);
   }

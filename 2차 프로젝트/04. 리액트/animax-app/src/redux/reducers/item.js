@@ -3,10 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 const initialStateValue = {
-  // logoSrc:"",
-  thumSrc: "",
-  tit: ``,
-  txt:``,
+  itemInfo: {},
 }
 
 export const itemSlice = createSlice({
