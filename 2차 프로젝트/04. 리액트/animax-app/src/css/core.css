@@ -39,7 +39,6 @@
   4. bgi - background image 관련 속성
 */
 
-/* 공사중 표시 */
 body::-webkit-scrollbar {
     width: 8px;  /* 스크롤바의 너비 */
 }
@@ -54,9 +53,7 @@ body::-webkit-scrollbar-thumb {
 body::-webkit-scrollbar-track {
     background: transparent;  /*스크롤바 뒷 배경 색상*/
 }
-/* body *{
-    outline: 1px dashed gray;
-} */
+
 html{
     font-size: 62.5%;
 }
