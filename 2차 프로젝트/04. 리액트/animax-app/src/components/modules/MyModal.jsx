@@ -3,6 +3,15 @@ import React, { useMemo, useRef, useState } from "react";
 import { VideoListData } from "../data/video_list";
 import { useSelector } from "react-redux";
 import "../../css/modal.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faAngleDown,
+  faArrowDown,
+  faArrowUp,
+  faCircleXmark,
+  faXmark,
+} from "@fortawesome/free-solid-svg-icons";
+import { Fragment } from "react";
 
 const vData = VideoListData;
 
@@ -61,33 +70,34 @@ const MyModal = ({ children, isOpen, onClose, onSubmit }) => {
   /***************************** 
     줄거리 더보기
   *****************************/
-  // 더보기 열고닫는 스위치 
-  const [isShowMore,setIsShowMore] = useState(false);
+  // 더보기 열고닫는 스위치
+  const [isShowMore, setIsShowMore] = useState(false);
+
   // 공백제거
-  let trimTxt = itemDesc.split('^').map(v=>{
+  let trimTxt = itemDesc.split("^").map((v) => {
     return (
       <>
         {v}
-        <br/>
+        <br />
       </>
-    )
+    );
   });
+
   // 글자수 제한 선언
   const textLimit = useRef(10);
   // 조건에 따라 줄거리를 보여주는 함수
-  const commenter = useMemo(()=>{
+  const commenter = () => {
     // 원본에서 글자수 만큼 자른 짧은 버전
-    let shortReview = trimTxt.slice(0, textLimit.current); 
-    console.log(shortReview,trimTxt.length )
-    if(trimTxt.length > textLimit.current){
-      if(isShowMore){
-        return trimTxt
+    let shortReview = trimTxt.slice(0, textLimit.current);
+    if (trimTxt.length > textLimit.current) {
+      if (isShowMore) {
+        return trimTxt;
       }
       return shortReview;
     }
     return trimTxt;
     // 공백 넣기
-  },[isShowMore]);
+  };
 
   // 리턴코드
   return (
@@ -177,11 +187,23 @@ const MyModal = ({ children, isOpen, onClose, onSubmit }) => {
                 </li>
                 <li className="desc">
                   <span className="tit">줄거리</span>
-                  <em className="txt">
-                    {commenter}
-                  </em>
-                  <button onClick={()=>setIsShowMore(!isShowMore)} className="moreBtn">
-                    {(itemDesc.length > textLimit.current) && (isShowMore? '접기' : '더보기')}
+                  <em className="txt">{commenter()}</em>
+                  <button
+                    onClick={() => setIsShowMore(!isShowMore)}
+                    className="moreBtn"
+                  >
+                    {trimTxt.length > textLimit.current
+                      ? itemDesc.length > textLimit.current &&
+                        (isShowMore ? (
+                          <>
+                            접기 <FontAwesomeIcon icon={faArrowUp} />
+                          </>
+                        ) : (
+                          <>
+                            더보기 <FontAwesomeIcon icon={faArrowDown} />
+                          </>
+                        ))
+                      : ""}
                   </button>
                 </li>
               </ul>
@@ -189,9 +211,10 @@ const MyModal = ({ children, isOpen, onClose, onSubmit }) => {
           </div>
         </div>
       </div>
-      <div className="previewModal-close" onClick={handleClickCancle}></div>
-      <button onClick={handleClickSubmit}>확인</button>
-      <button onClick={handleClickCancle}>취소</button>
+      <button className="previewModal-close" onClick={handleClickCancle}>
+        <FontAwesomeIcon icon={faXmark} />
+      </button>
+      <span className="sr-only">창닫기</span>
     </ReactModal>
   );
 };

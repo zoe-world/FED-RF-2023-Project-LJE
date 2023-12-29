@@ -51,7 +51,6 @@ export function Vod({ item, handleClick }) {
 
   const itemInfo = useSelector((state)=> state.item.value);
   const itemThumSrc = Object.values(itemInfo)[0].thumSrc;
-  console.log(item, itemInfo, item.itemInfo, item.itemInfo?.thumSrc);
 
 
   return (
@@ -65,9 +64,6 @@ export function Vod({ item, handleClick }) {
         onMouseOver={()=>dispatch(itemOver({
           itemInfo: item.itemInfo,
         }))}
-        // onMouseOut={()=>dispatch(itemOut({
-        //   itemInfo:item.initialStateValue,
-        // }))}
       >
         <div className="info_bx">
           <a href="#" title="동영상 재생" className="link_play link_ico">
