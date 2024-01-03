@@ -11,7 +11,8 @@ import {
   faCircleXmark,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-import { Fragment } from "react";
+import useModals from "./useModals";
+import { modals } from "./Modals";
 
 const vData = VideoListData;
 
@@ -37,17 +38,13 @@ const ModalStyle = {
   },
 };
 
-const MyModal = ({ children, isOpen, onClose, onSubmit }) => {
-  const handleClickSubmit = () => {
-    onSubmit();
-  };
-  const handleClickCancle = () => {
+const MyModal = ({ children, isOpen, onClose }) => {
+  const handleClickCancle = (e) => {
+    e.preventDefault();
+    console.log('모달닫힘')
     onClose();
   };
 
-  const handleMoreBtn = () => {
-    console.log("test");
-  };
 
   const itemInfo = useSelector((state) => state.item.value);
   const item = Object.values(itemInfo)[0];
@@ -61,12 +58,12 @@ const MyModal = ({ children, isOpen, onClose, onSubmit }) => {
   const itemDate = item.date;
   const itemEpiTit = item.epiTit;
   const itemVideoSrc = item.videoSrc;
-  let itemDesc = item.desc;
+  const itemDesc = item.desc;
   const itemNewEpi = item.newEpi;
   const itemLive = item.live;
   const itemLogoSrc = item.logoSrc;
   const itemThumSrc = item.thumSrc;
-
+  console.log(itemInfo)
   /***************************** 
     줄거리 더보기
   *****************************/
@@ -105,7 +102,7 @@ const MyModal = ({ children, isOpen, onClose, onSubmit }) => {
       isOpen={isOpen}
       contentLabel="modal"
       closeTimeoutMS={150}
-      onClose={onClose}
+      onRequestClose={onClose}
       style={ModalStyle}
     >
       <div className="previewModal-player">

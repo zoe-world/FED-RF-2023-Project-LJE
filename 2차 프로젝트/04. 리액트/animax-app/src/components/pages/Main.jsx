@@ -8,12 +8,11 @@ import { Vod } from "../modules/Vod";
 import { Best } from "./Best";
 import { useEffect, useRef, useState } from "react";
 import { BestTag } from "./BestTag";
-import MyModal from "../modules/MyModal";
 import useModals from "../modules/useModals";
 import { modals } from "../modules/Modals";
 
 export function Main(props) {
-
+  console.log('메인 리랜더링')
 
   const [objInfo,setObjInfo] = useState({});
   console.log(objInfo)
@@ -21,15 +20,11 @@ export function Main(props) {
     setObjInfo(x);
   }
 
-  const [isOpen, setOpen] = useState(false);
-  const { openModal } = useModals();
-  const handleClick = () => {
-    openModal(modals.myModal, {
-      onSubmit: () => {
-        // console.log('비지니스 로직 처리...');
-      }
-    });
-    setOpen(true);
+  const { openModal,closeModal } = useModals();
+  const handleClick = (e) => {
+    e.preventDefault();
+    console.log('모달열림')
+    openModal(modals.myModal, {});
   };
 
 

@@ -14,56 +14,53 @@ export function Vod({ item, handleClick }) {
   // 마우스 위치
   const vodBox = useRef();
   const ele = item.ele;
-  const eleW = item.eleW;
-  const mouseLeft = item.left;
-  const mouseTop = item.top;
+  const itemInfo = item.itemInfo;
+  const itemThumSrc = itemInfo!=null ? itemInfo.thumSrc : '';
+  const itemTit = itemInfo!=null ? itemInfo.tit:''
+  const itemEpiTit = itemInfo!=null ? itemInfo.epiTit:''
 
-  $(vodBox.current).css({
-    opacity: 0,
-  });
+  const [isClass, setIsClass] = useState(false);
   const showEle = (e) => {
     e.preventDefault();
-    $(vodBox.current).addClass("on");
+    setIsClass(true);
+    // setInterval()
   };
-  setTimeout(() => {
-    if ($(vodBox.current).hasClass("on")) {
-      $(vodBox.current).css({
-        opacity: 1,
-        top: mouseTop + 25 + "px",
-        left: mouseLeft + "px",
-        width: eleW + "px",
-        transition: "opacity .3s linear .2s",
-      });
-    }
-  }, 50);
-  const hideEle = () => {
-    $(vodBox.current).removeClass("on");
-    $(vodBox.current).attr("style", "");
-    $(vodBox.current).css({
-      opacity: 0,
-    });
+
+  const hideEle = (e) => {
+    e.preventDefault();
+    setIsClass(false);
   };
 
   useEffect(() => {
     $(ele).on("mouseenter", showEle);
-    $(vodBox.current).on("mouseleave scroll", hideEle);
+    $(vodBox.current).on("mouseleave", hideEle);
   }); ////////// useEffect /////////////
-
-  const itemInfo = useSelector((state)=> state.item.value);
-  const itemThumSrc = Object.values(itemInfo)[0].thumSrc;
-
 
   return (
     <>
       {/* 1. vod 정보창 */}
       <section
         id="vod_area"
-        className="vod_area"
+        className={isClass ? "vod_area on" : "vod_area"}
         ref={vodBox}
-        onClick={handleClick}
-        onMouseOver={()=>dispatch(itemOver({
-          itemInfo: item.itemInfo,
-        }))}
+        onMouseOver={() =>
+          dispatch(
+            itemOver({
+              itemInfo: item.itemInfo,
+            })
+          )
+        }
+        style={
+          isClass
+            ? {
+                opacity: 1,
+                top: item.top + 25 + "px",
+                left: item.left + "px",
+                width: item.eleW + "px",
+                transition: "opacity .3s linear .2s",
+              }
+            : { opacity: 0 }
+        }
       >
         <div className="info_bx">
           <a href="#" title="동영상 재생" className="link_play link_ico">
@@ -75,15 +72,15 @@ export function Vod({ item, handleClick }) {
           <a href="#" title="찜하기" className="link_zzim link_ico">
             <span className="tootip">찜하기</span>
           </a>
-          <a href="#" className="img_bx">
+          <a href="#" className="img_bx" onClick={handleClick}>
             {}
             <div className="img_group">
               <div className="bg"></div>
               <img src={itemThumSrc} alt="" />
             </div>
             <h4>
-              <span className="tit">{item.tit}</span>
-              <span className="txt">{item.txt}</span>
+              <span className="tit">{itemTit}</span>
+              <span className="txt">{itemEpiTit}</span>
             </h4>
           </a>
         </div>

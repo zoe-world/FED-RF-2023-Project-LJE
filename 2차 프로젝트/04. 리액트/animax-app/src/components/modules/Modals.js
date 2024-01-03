@@ -20,19 +20,11 @@ const Modals = () => {
       close(Component);
     };
 
-    const handleSubmit = async () => {
-      if (typeof onSubmit === "function") {
-        await onSubmit();
-      }
-      onClose();
-    };
-
     return (
       <Component
         key={index}
         isOpen={isOpen}
         onClose={onClose}
-        onSubmit={handleSubmit}
         {...rest}
       />
     );
