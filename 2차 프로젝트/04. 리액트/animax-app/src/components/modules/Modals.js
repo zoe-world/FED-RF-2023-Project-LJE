@@ -14,7 +14,7 @@ const Modals = () => {
     const { Component, props, isOpen } = modal;
     if (!props) return null;
 
-    const { onSubmit, ...rest } = props;
+    const { onSubmit, ...restProps } = props;
 
     const onClose = () => {
       close(Component);
@@ -25,7 +25,7 @@ const Modals = () => {
         key={index}
         isOpen={isOpen}
         onClose={onClose}
-        {...rest}
+        {...restProps}
       />
     );
   });

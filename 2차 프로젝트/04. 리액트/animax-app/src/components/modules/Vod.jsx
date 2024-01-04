@@ -23,7 +23,6 @@ export function Vod({ item, handleClick }) {
   const showEle = (e) => {
     e.preventDefault();
     setIsClass(true);
-    // setInterval()
   };
 
   const hideEle = (e) => {
@@ -35,7 +34,7 @@ export function Vod({ item, handleClick }) {
     $(ele).on("mouseenter", showEle);
     $(vodBox.current).on("mouseleave", hideEle);
   }); ////////// useEffect /////////////
-
+  console.log('vod창')
   return (
     <>
       {/* 1. vod 정보창 */}

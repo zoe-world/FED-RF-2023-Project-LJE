@@ -17,7 +17,6 @@ export function Best({ cat, item, onOverIsActFn }) {
   const getItem = (x) => {
     item(x);
   };
-
   return (
     <>
       <article className="list_v2_wrap rank">

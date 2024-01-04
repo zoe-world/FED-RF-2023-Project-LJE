@@ -1,7 +1,7 @@
 import ReactModal from "react-modal";
 import React, { useMemo, useRef, useState } from "react";
 import { VideoListData } from "../data/video_list";
-import { useSelector } from "react-redux";
+import { shallowEqual, useSelector } from "react-redux";
 import "../../css/modal.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -41,12 +41,10 @@ const ModalStyle = {
 const MyModal = ({ children, isOpen, onClose }) => {
   const handleClickCancle = (e) => {
     e.preventDefault();
-    console.log('모달닫힘')
     onClose();
   };
 
-
-  const itemInfo = useSelector((state) => state.item.value);
+  const itemInfo = useSelector((state) => state.item.value,shallowEqual);
   const item = Object.values(itemInfo)[0];
   const itemRank = item.rank;
   const itemTit = item.tit;
@@ -63,7 +61,7 @@ const MyModal = ({ children, isOpen, onClose }) => {
   const itemLive = item.live;
   const itemLogoSrc = item.logoSrc;
   const itemThumSrc = item.thumSrc;
-  console.log(itemInfo)
+  
   /***************************** 
     줄거리 더보기
   *****************************/
@@ -95,7 +93,6 @@ const MyModal = ({ children, isOpen, onClose }) => {
     return trimTxt;
     // 공백 넣기
   };
-
   // 리턴코드
   return (
     <ReactModal
@@ -103,6 +100,7 @@ const MyModal = ({ children, isOpen, onClose }) => {
       contentLabel="modal"
       closeTimeoutMS={150}
       onRequestClose={onClose}
+      shouldReturnFocusAfterClose={false}
       style={ModalStyle}
     >
       <div className="previewModal-player">

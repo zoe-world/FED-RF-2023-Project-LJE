@@ -5,7 +5,6 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialStateValue = {
   itemInfo: {},
 }
-
 export const itemSlice = createSlice({
   name: "item",
   // 초기값

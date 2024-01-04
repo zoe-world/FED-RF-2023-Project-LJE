@@ -148,7 +148,6 @@ export function SwiperVodList({ cat, getMonthDiff, fm, rank, item, tag }) {
       itemInfo: itemInfo,
     });
   };
-
   // 리턴코드 ////////////////////////////////////
   return (
     <>

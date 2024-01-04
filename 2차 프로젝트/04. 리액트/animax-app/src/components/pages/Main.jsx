@@ -12,15 +12,13 @@ import useModals from "../modules/useModals";
 import { modals } from "../modules/Modals";
 
 export function Main(props) {
-  console.log('메인 리랜더링')
-
   const [objInfo,setObjInfo] = useState({});
   console.log(objInfo)
   const getInfo = (x) => {
     setObjInfo(x);
   }
 
-  const { openModal,closeModal } = useModals();
+  const { openModal } = useModals();
   const handleClick = (e) => {
     e.preventDefault();
     console.log('모달열림')
