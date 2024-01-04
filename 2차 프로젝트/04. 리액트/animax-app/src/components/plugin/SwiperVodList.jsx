@@ -121,10 +121,6 @@ export function SwiperVodList({ cat, getMonthDiff, fm, rank, item, tag }) {
   // 오늘 날짜 변수
   const myDate = new Date();
 
-  let todayList =
-    cat === "today" &&
-    selData.filter((v) => getMonthDiff(fm(myDate), v.newEpi));
-
   // 마우스오버 상태변수
   const onMouseOver = (e) => {
     e.preventDefault();

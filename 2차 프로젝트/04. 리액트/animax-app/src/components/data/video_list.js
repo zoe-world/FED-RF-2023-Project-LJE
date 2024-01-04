@@ -77,7 +77,7 @@ export const VideoListData = [
         director: "니시고리 아츠시",
         genre: "드라마",
         company: "A-1 Pictures",
-        epiNum: "26화",
+        epiNum: 6,
         age: "15세 관람",
         date: "2011.07",
         videoSrc: {
@@ -100,7 +100,7 @@ export const VideoListData = [
         director: "아라키 테츠로",
         genre: "판타지",
         company: "WIT STUDIO",
-        epiNum: "25화",
+        epiNum: 5,
         age: "19세 관람",
         date: "2013.07",
         videoSrc: {
@@ -123,7 +123,7 @@ export const VideoListData = [
         director: "다이치 아키타로",
         genre: "드라마",
         company: "TMS Entertainment",
-        epiNum: "13화",
+        epiNum: 3,
         age: "15세 관람",
         date: "2012.10",
         videoSrc: {
@@ -169,7 +169,7 @@ export const VideoListData = [
         director: "카메이 타카시",
         genre: "드라마",
         company: "데즈카 프로덕션",
-        epiNum: "12화",
+        epiNum: 2,
         age: "19세 관람",
         date: "2023.04",
         videoSrc: {
@@ -192,7 +192,7 @@ export const VideoListData = [
         director: "히라마키 다이스케",
         genre: "드라마",
         company: "동화공방",
-        epiNum: "11화",
+        epiNum: 1,
         age: "15세 관람",
         date: "2023.04",
         videoSrc: {
@@ -240,7 +240,7 @@ export const VideoListData = [
         director: "미야모토 유키히로",
         genre: "드라마",
         company: "Safft",
-        epiNum: "2화",
+        epiNum:2,
         age: "15세 관람",
         date: "",
         videoSrc: {
@@ -355,7 +355,7 @@ export const VideoListData = [
         director: "안도 마사오미",
         genre: "판타지",
         company: "Lerche",
-        epiNum: "12화",
+        epiNum: 2,
         age: "15세 관람",
         date: "2020.01",
         videoSrc: {

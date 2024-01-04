@@ -1,12 +1,12 @@
 // Animax VOD 정보 컴포넌트
-import { memo, useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { VideoListData } from "../data/video_list";
 
 import $ from "jquery";
-import { useDispatch, useSelector } from "react-redux";
-import { itemOut, itemOver } from "../../redux/reducers/item";
+import { useDispatch } from "react-redux";
+import { itemOver } from "../../redux/reducers/item";
 
-export function Vod({ item, handleClick }) {
+export function Vod({ item, onClickVodHandler }) {
   const selData = VideoListData;
   // redux
   const dispatch = useDispatch();
@@ -19,28 +19,28 @@ export function Vod({ item, handleClick }) {
   const itemTit = itemInfo!=null ? itemInfo.tit:''
   const itemEpiTit = itemInfo!=null ? itemInfo.epiTit:''
 
-  const [isClass, setIsClass] = useState(false);
+  const [isAct, setIsAct] = useState(false);
   const showEle = (e) => {
     e.preventDefault();
-    setIsClass(true);
+    setIsAct(true);
   };
 
   const hideEle = (e) => {
     e.preventDefault();
-    setIsClass(false);
+    setIsAct(false);
   };
 
   useEffect(() => {
     $(ele).on("mouseenter", showEle);
     $(vodBox.current).on("mouseleave", hideEle);
   }); ////////// useEffect /////////////
-  console.log('vod창')
+
   return (
     <>
       {/* 1. vod 정보창 */}
       <section
         id="vod_area"
-        className={isClass ? "vod_area on" : "vod_area"}
+        className={isAct ? "vod_area on" : "vod_area"}
         ref={vodBox}
         onMouseOver={() =>
           dispatch(
@@ -50,7 +50,7 @@ export function Vod({ item, handleClick }) {
           )
         }
         style={
-          isClass
+          isAct
             ? {
                 opacity: 1,
                 top: item.top + 25 + "px",
@@ -71,7 +71,7 @@ export function Vod({ item, handleClick }) {
           <a href="#" title="찜하기" className="link_zzim link_ico">
             <span className="tootip">찜하기</span>
           </a>
-          <a href="#" className="img_bx" onClick={handleClick}>
+          <a href="#" className="img_bx" onClick={onClickVodHandler}>
             {}
             <div className="img_group">
               <div className="bg"></div>

@@ -4,11 +4,9 @@ import { useEffect, useState } from "react";
 import { SwiperVodList } from "../plugin/SwiperVodList";
 
 // 배너데이터
-export function Today({ cat, item}) {
+export function Today({ cat, item, }) {
   // cat = 카테고리명
-
   // 최신 한달 날짜 필터링 하기
-
   // 날짜 변환 함수 ex) yyyy-mm-dd
   const fm = (x) => `
     ${x.getFullYear()}-${
@@ -37,7 +35,6 @@ export function Today({ cat, item}) {
           getMonthDiff={getMonthDiff}
           fm={fm}
           item={getItem}
-          
         />
       </article>
     </>

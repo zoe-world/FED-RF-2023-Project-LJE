@@ -11,8 +11,6 @@ import {
   faCircleXmark,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-import useModals from "./useModals";
-import { modals } from "./Modals";
 
 const vData = VideoListData;
 
@@ -26,8 +24,10 @@ const ModalStyle = {
     backgroundColor: "rgba(0,0,0,.8)",
     zIndex: 9999,
     overflowY: "auto",
+    padding: '2vw 10vw',
   },
   content: {
+    position:'static',
     overflow: "visible",
     backgroundColor: "transparent",
     border: "none",
@@ -188,7 +188,7 @@ const MyModal = ({ children, isOpen, onClose }) => {
                     className="moreBtn"
                   >
                     {trimTxt.length > textLimit.current
-                      ? itemDesc.length > textLimit.current &&
+                       ? itemDesc.length > textLimit.current &&
                         (isShowMore ? (
                           <>
                             접기 <FontAwesomeIcon icon={faArrowUp} />

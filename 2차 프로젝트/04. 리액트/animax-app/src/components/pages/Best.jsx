@@ -1,19 +1,15 @@
 // Animax 오늘의 업데이트 리스트 컴포넌트
 
 import { SwiperVodList } from "../plugin/SwiperVodList";
-import { VideoListData } from "../data/video_list";
 
 // 배너데이터
-export function Best({ cat, item, onOverIsActFn }) {
+export function Best({ cat, item, VodListData }) {
   // cat = 카테고리명
-
   // 랭킹 정렬 함수
-  const selData = VideoListData;
-  let rank = selData.sort(function (a, b) {
+  let rank = VodListData.sort(function (a, b) {
     return a.rank - b.rank;
   });
   rank = rank.slice(0, 10);
-  
   const getItem = (x) => {
     item(x);
   };
@@ -30,8 +26,7 @@ export function Best({ cat, item, onOverIsActFn }) {
           </span>
         </h3>
         {/* 1. 스와이퍼 컴포넌트 */}
-        <SwiperVodList 
-          cat={cat} rank={rank} item={getItem} onOverIsActFn={onOverIsActFn} />
+        <SwiperVodList cat={cat} rank={rank} item={getItem} />
       </article>
     </>
   );

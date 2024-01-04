@@ -776,37 +776,37 @@ body{
     font-size: 1.7rem;
 }
 
-/*2.3.3 live-on-air */
-.live_bx{
+/*2.3.3 goodVod */
+.good_bx{
     display: flex;
 }
-.live_img_bx{
+.good_img_bx{
     flex: 1 1 0;
 }
-.live_video{
+.good_video{
     position: relative;
     height: 100%;
 }
-.live_video img{
+.good_video img{
     display: inline-block;
     height: 100%;
     width: auto;
 }
-.live_video video{
+.good_video video{
     width: 100%;
     height: 100%;
 }
 
-.live_video .ctl_box{
+.good_video .ctl_box{
     position: absolute;
     bottom: 10px;
     left: 10px;
 }
-.live_cont{
+.good_cont{
     flex: 1.3 1 0;
     background-color: #101010;
 }
-.live_cont .text-group{
+.good_cont .text-group{
     padding: max(2vw, 20px) max(1.5vw, 15px);
 }
 .text-group .sm-logo img{

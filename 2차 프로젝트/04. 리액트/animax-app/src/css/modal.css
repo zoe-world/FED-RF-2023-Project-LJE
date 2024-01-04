@@ -1,25 +1,24 @@
-body::-webkit-scrollbar {
+.ReactModal__Overlay::-webkit-scrollbar {
   width: 8px; /* 스크롤바의 너비 */
 }
 
-body::-webkit-scrollbar-thumb {
+.ReactModal__Overlay::-webkit-scrollbar-thumb {
   height: 30%; /* 스크롤바의 길이 */
   background: #217af4; /* 스크롤바의 색상 */
 
   border-radius: 10px;
 }
 
-body::-webkit-scrollbar-track {
+.ReactModal__Overlay::-webkit-scrollbar-track {
   background: transparent; /*스크롤바 뒷 배경 색상*/
 }
 .previewModal-player {
   position: relative;
-  padding: 2vw 10vw;
-  margin-top: 15rem;
+  margin-top: 5vw;
 }
 .previewModal-player .logo_bx {
   position: absolute;
-  top: -1.5vw;
+  top: -10%;
   left: 50%;
   z-index: 1;
   transform: translateX(-50%);

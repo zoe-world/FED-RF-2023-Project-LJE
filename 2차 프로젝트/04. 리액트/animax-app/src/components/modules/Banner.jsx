@@ -4,8 +4,6 @@
 import { memo } from "react";
 import { banData } from "../data/banner";
 
-import $ from "jquery";
-
 export const Banner = memo(({ cat }) => {
   // cat = 카테고리명
   if(cat==='main') cat = cat +  + Math.ceil(Math.random() * 5);
@@ -13,7 +11,6 @@ export const Banner = memo(({ cat }) => {
 
   // 선택데이터
   const selData = banData[cat];
-
   // 이미지 src
   const imgSrc = selData[0]["src"];
   // 이미지 src 확장자명 잘라내기
