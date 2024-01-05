@@ -22,7 +22,7 @@ export function SwiperVodList({ cat, getMonthDiff, fm, rank, item, tag }) {
   // item - 마우스 오버시, 해당 타켓 객체 정보값
   // tag - 해시태그 분류함수
 
-  const selData = VideoListData;
+  const selData = [...VideoListData];
 
   // 스와이퍼
   const [swiper, setSwiper] = useState();

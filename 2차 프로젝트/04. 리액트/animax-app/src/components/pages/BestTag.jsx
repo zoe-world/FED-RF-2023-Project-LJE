@@ -5,9 +5,9 @@ import { SwiperVodList } from "../plugin/SwiperVodList";
 // 배너데이터
 export function BestTag({ cat, item, VodListData }) {
   // cat = 카테고리명
-
+  let bestTagData = [...VodListData];
   // 키워드 필터링 함수
-  let tag = VodListData.filter((v) => v.hashtag.includes("#이세계"));
+  let tag = bestTagData.filter((v) => v.hashtag.includes("#이세계"));
   tag = tag.sort(function (a, b) {
     return a.idx - b.idx;
   });

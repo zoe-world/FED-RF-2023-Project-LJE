@@ -5,8 +5,9 @@ import { SwiperVodList } from "../plugin/SwiperVodList";
 // 배너데이터
 export function Best({ cat, item, VodListData }) {
   // cat = 카테고리명
+  const rankData = [...VodListData];
   // 랭킹 정렬 함수
-  let rank = VodListData.sort(function (a, b) {
+  let rank = rankData.sort(function (a, b) {
     return a.rank - b.rank;
   });
   rank = rank.slice(0, 10);

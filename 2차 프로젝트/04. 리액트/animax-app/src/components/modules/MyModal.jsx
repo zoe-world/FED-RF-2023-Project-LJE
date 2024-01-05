@@ -11,6 +11,9 @@ import {
   faCircleXmark,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
+import { Cast } from "../pages/Cast";
+import { StillCut } from "../pages/StillCut";
+import { StarRate } from "../pages/StarRate";
 
 const vData = VideoListData;
 
@@ -24,10 +27,10 @@ const ModalStyle = {
     backgroundColor: "rgba(0,0,0,.8)",
     zIndex: 9999,
     overflowY: "auto",
-    padding: '2vw 10vw',
+    padding: "2vw 10vw",
   },
   content: {
-    position:'static',
+    position: "static",
     overflow: "visible",
     backgroundColor: "transparent",
     border: "none",
@@ -44,7 +47,7 @@ const MyModal = ({ children, isOpen, onClose }) => {
     onClose();
   };
 
-  const itemInfo = useSelector((state) => state.item.value,shallowEqual);
+  const itemInfo = useSelector((state) => state.item.value, shallowEqual);
   const item = Object.values(itemInfo)[0];
   const itemRank = item.rank;
   const itemTit = item.tit;
@@ -61,7 +64,7 @@ const MyModal = ({ children, isOpen, onClose }) => {
   const itemLive = item.live;
   const itemLogoSrc = item.logoSrc;
   const itemThumSrc = item.thumSrc;
-  
+
   /***************************** 
     줄거리 더보기
   *****************************/
@@ -93,6 +96,22 @@ const MyModal = ({ children, isOpen, onClose }) => {
     return trimTxt;
     // 공백 넣기
   };
+
+  /*
+    tab-menu
+  */
+  const [currentTab, setCurrentTab] = useState(0);
+
+  const menuArr = [
+    { name: "등장인물", content: <Cast /> },
+    { name: "스틸컷", content: <StillCut /> },
+    { name: "작품평", content: <StarRate /> },
+  ];
+
+  const selectMenuHandler = (index) => {
+    setCurrentTab(index);
+  };
+
   // 리턴코드
   return (
     <ReactModal
@@ -188,7 +207,7 @@ const MyModal = ({ children, isOpen, onClose }) => {
                     className="moreBtn"
                   >
                     {trimTxt.length > textLimit.current
-                       ? itemDesc.length > textLimit.current &&
+                      ? itemDesc.length > textLimit.current &&
                         (isShowMore ? (
                           <>
                             접기 <FontAwesomeIcon icon={faArrowUp} />
@@ -204,6 +223,26 @@ const MyModal = ({ children, isOpen, onClose }) => {
               </ul>
             </div>
           </div>
+        </div>
+        {/* tab menu */}
+        <div className="previewModal-tab_bx">
+          <ul className="tab_list">
+            {menuArr.map((v, i) => {
+              return (
+                <li
+                  key={i}
+                >
+                  <a href="#"
+                    onClick={() => selectMenuHandler(i)}
+                    className={currentTab === i ? "tab_item active" : "tab_item"}  
+                  >
+                    {v.name}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+          <div className="tab_content">{menuArr[currentTab].content}</div>
         </div>
       </div>
       <button className="previewModal-close" onClick={handleClickCancle}>
