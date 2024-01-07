@@ -138,3 +138,6 @@
   border-left: 1px solid #000;
   background: linear-gradient(180deg,#363636 0,#252525 50%,#1f1f1f);
 }
+.previewModal-tab_bx .tab_list > li:first-child .tab_item{
+  border-left: none;
+}
