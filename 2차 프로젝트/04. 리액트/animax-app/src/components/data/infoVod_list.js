@@ -23,13 +23,13 @@ export const infoVodData = [
   {
     tit: `우리들의 비 내리는 프로토콜`,
     idx: "1",
-    cast: null,
+    cast: [],
     still: ["/images/content/gallery/01/still/01.jpg",],
   },
   {
     tit: `아이돌 마스터`,
     idx: "2",
-    cast: null,
+    cast: [],
     still: [
         "/images/content/gallery/02/still/01.jpg",
         "/images/content/gallery/02/still/02.jpg",
@@ -111,7 +111,7 @@ export const infoVodData = [
   {
     tit: `코드 기아스 반역의 를르슈`,
     idx: "5",
-    cast: null,
+    cast: [],
     still: [
         "/images/content/gallery/05/still/01.jpg",
         "/images/content/gallery/05/still/02.jpg",
@@ -497,7 +497,7 @@ export const infoVodData = [
   {
     tit: `어떤 아재의 VRMMO 활동기`,
     idx: "15",
-    cast: null,
+    cast: [],
     still: ["/images/content/gallery/15/still/01.jpg"],
   },
 ];

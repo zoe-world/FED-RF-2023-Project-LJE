@@ -14,6 +14,7 @@ import {
 import { Cast } from "../pages/Cast";
 import { StillCut } from "../pages/StillCut";
 import { StarRate } from "../pages/StarRate";
+import { infoVodData } from "../data/infoVod_list";
 
 const vData = VideoListData;
 
@@ -102,9 +103,18 @@ const MyModal = ({ children, isOpen, onClose }) => {
   */
   const [currentTab, setCurrentTab] = useState(0);
 
+  // video 등장인물, 이미지 데이터
+  let ifVodData = infoVodData;
+  ifVodData = [...infoVodData];
+
+  // 현재 모달창에 띄워진 vod 제목 정보와 등장인물 데이터 tit 값 비교 후 맞으면 추출
+  const infoTit = ifVodData.find((v) => (v.tit === itemTit ? v.tit : null));
+  let castLength = infoTit.cast.length;
+  let stillLength = infoTit.still.length;
+
   const menuArr = [
-    { name: "등장인물", content: <Cast /> },
-    { name: "스틸컷", content: <StillCut /> },
+    { name: "등장인물", content: castLength !== 0 ? <Cast ifVodData={ifVodData} /> : '' },
+    { name: "스틸컷", content: stillLength !== null ? <StillCut /> : ''},
     { name: "작품평", content: <StarRate /> },
   ];
 
@@ -228,13 +238,52 @@ const MyModal = ({ children, isOpen, onClose }) => {
         <div className="previewModal-tab_bx">
           <ul className="tab_list">
             {menuArr.map((v, i) => {
+              if (i === 0) {
+                if(castLength !== 0) {
+                  return(
+                    <li key={i}>
+                      <a
+                        href="#"
+                        onClick={() => selectMenuHandler(i)}
+                        className={
+                          currentTab === 0 ? "tab_item active" : "tab_item"
+                        }
+                      >
+                        {v.name}
+                      </a>
+                    </li>
+                    )
+                } else if (castLength === 0) {
+                  return(null)
+                }
+              } 
+              if (i === 1) {
+                if(stillLength !== 0) {
+                  return(
+                    <li key={i}>
+                      <a
+                        href="#"
+                        onClick={() => selectMenuHandler(i)}
+                        className={
+                          currentTab === 1 ? "tab_item active" : "tab_item"
+                        }
+                      >
+                        {v.name}
+                      </a>
+                    </li>
+                    )
+                } else if (stillLength === 0) {
+                  return(null)
+                }
+              }                
               return (
-                <li
-                  key={i}
-                >
-                  <a href="#"
+                <li key={i}>
+                  <a
+                    href="#"
                     onClick={() => selectMenuHandler(i)}
-                    className={currentTab === i ? "tab_item active" : "tab_item"}  
+                    className={
+                      currentTab === i ? "tab_item active" : "tab_item"
+                    }
                   >
                     {v.name}
                   </a>

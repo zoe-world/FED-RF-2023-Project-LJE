@@ -1,6 +1,6 @@
 // Animax 추천 TV프로그램 컴포넌트
 
-import { useMemo, useRef, useState } from 'react';
+import { useMemo, useRef, useState } from "react";
 
 export function GoodVod({ VodListData, ifVodData }) {
   let goodItemData = [...VodListData];
@@ -12,7 +12,7 @@ export function GoodVod({ VodListData, ifVodData }) {
   });
   // 에피소드 회차수 미공개 제외 && 1화 이상인 아이템
   const epi = goodItemData.filter((v) =>
-    v.epiNum !== '미공개' && v.epiNum > 1 ? v : null
+    v.epiNum !== "미공개" && v.epiNum > 1 ? v : null
   );
   // 위에 필터링된 아이템 제목
   const epiTxt = epi.map((v) => v.tit);
@@ -32,11 +32,11 @@ export function GoodVod({ VodListData, ifVodData }) {
 
   // 연령체크
   const ageChk = {
-    all: <em className='age_badge bd-all'>ALL</em>,
-    7: <em className='age_badge bd-7'>7</em>,
-    12: <em className='age_badge bd-12'>12</em>,
-    15: <em className='age_badge bd-15'>15</em>,
-    19: <em className='age_badge bd-19'>19</em>,
+    all: <em className="age_badge bd-all">ALL</em>,
+    7: <em className="age_badge bd-7">7</em>,
+    12: <em className="age_badge bd-12">12</em>,
+    15: <em className="age_badge bd-15">15</em>,
+    19: <em className="age_badge bd-19">19</em>,
   };
 
   /***************************** 
@@ -46,7 +46,7 @@ export function GoodVod({ VodListData, ifVodData }) {
   const [isShowMore, setIsShowMore] = useState(false);
 
   // 공백제거
-  let trimTxt = epi[random].desc.split('^').map((v) => {
+  let trimTxt = epi[random].desc.split("^").map((v) => {
     return (
       <>
         {v}
@@ -68,30 +68,30 @@ export function GoodVod({ VodListData, ifVodData }) {
     // 공백 넣기
   };
   return (
-    <article className='good_wrap'>
+    <article className="good_wrap">
       <h3>추천! TV 프로그램</h3>
-      <div className='good_bx_wrap'>
-        <dl className='good_bx'>
-          <dt className='good_img_bx'>
-            <img src={castItem.still[0]} alt='' />
+      <div className="good_bx_wrap">
+        <dl className="good_bx">
+          <dt className="good_img_bx">
+            <img src={castItem.still[0]} alt="" />
           </dt>
-          <dd className='good_cont'>
-            <div className='text-group'>
-              <h4 className='tit'>
+          <dd className="good_cont">
+            <div className="text-group">
+              <h4 className="tit">
                 {epi[random].tit}
                 {ageChk[age]}
               </h4>
-              <ul className='detail_list'>
+              <ul className="detail_list">
                 <li>{epi[random].genre}</li>
                 <li>총 {epi[random].epiNum} 화</li>
               </ul>
-              <p className='txt'>{commenter()}</p>
-              <span className='btn_wrap'>
-                <a href='#' className='btn play_btn'>
-                  <span className='txt'>지금 감상하기</span>
+              <p className="txt">{commenter()}</p>
+              <span className="btn_wrap">
+                <a href="#" className="btn play_btn">
+                  <span className="txt">지금 감상하기</span>
                 </a>
-                <a href='#' className='btn info_btn'>
-                  <span className='txt'>작품 상세보기</span>
+                <a href="#" className="btn info_btn">
+                  <span className="txt">작품 상세보기</span>
                 </a>
               </span>
             </div>
