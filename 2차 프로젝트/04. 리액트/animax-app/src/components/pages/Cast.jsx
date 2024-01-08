@@ -22,8 +22,8 @@ export function Cast({ ifVodData }) {
           <img src={infoTit.cast[i].thum} alt="" />
         </dt>
         <dd className="info">
-          <h3 className="name"></h3>
-          <em className="voice"></em>
+          <h3 className="name">{infoTit.cast[i].name}</h3>
+          <em className="voice">성우 : {infoTit.cast[i].voice}</em>
           <p className="desc"></p>
         </dd>
       </dl>

@@ -113,22 +113,27 @@ const MyModal = ({ children, isOpen, onClose }) => {
   let stillLength = infoTit.still.length;
 
   const menuArr = [
-    { name: "등장인물", content: castLength !== 0 ? <Cast ifVodData={ifVodData} /> : '' },
-    { name: "스틸컷", content: stillLength !== null ? <StillCut /> : ''},
+    {
+      name: "등장인물",
+      content: castLength !== 0 ? <Cast ifVodData={ifVodData} /> : "",
+    },
+    { name: "스틸컷", content: stillLength !== null ? <StillCut /> : "" },
     { name: "작품평", content: <StarRate /> },
   ];
 
   const selectMenuHandler = (index) => {
     setCurrentTab(index);
   };
+  const reset = () => {
 
+  }
   // 리턴코드
   return (
     <ReactModal
       isOpen={isOpen}
       contentLabel="modal"
       closeTimeoutMS={150}
-      onRequestClose={onClose}
+      onRequestClose={()=>{onClose(); reset()}}
       shouldReturnFocusAfterClose={false}
       style={ModalStyle}
     >
@@ -239,8 +244,8 @@ const MyModal = ({ children, isOpen, onClose }) => {
           <ul className="tab_list">
             {menuArr.map((v, i) => {
               if (i === 0) {
-                if(castLength !== 0) {
-                  return(
+                if (castLength !== 0) {
+                  return (
                     <li key={i}>
                       <a
                         href="#"
@@ -252,14 +257,13 @@ const MyModal = ({ children, isOpen, onClose }) => {
                         {v.name}
                       </a>
                     </li>
-                    )
+                  );
                 } else if (castLength === 0) {
-                  return(null)
+                  return null;
                 }
-              } 
-              if (i === 1) {
-                if(stillLength !== 0) {
-                  return(
+              } else if (i === 1) {
+                if (stillLength !== 0) {
+                  return (
                     <li key={i}>
                       <a
                         href="#"
@@ -271,11 +275,25 @@ const MyModal = ({ children, isOpen, onClose }) => {
                         {v.name}
                       </a>
                     </li>
-                    )
+                  );
                 } else if (stillLength === 0) {
-                  return(null)
+                  return null;
                 }
-              }                
+              } else if (i === 2) {
+                return (
+                  <li key={i}>
+                    <a
+                      href="#"
+                      onClick={() => selectMenuHandler(i)}
+                      className={
+                        currentTab === 2 ? "tab_item active" : "tab_item"
+                      }
+                    >
+                      {v.name}
+                    </a>
+                  </li>
+                );
+              }
               return (
                 <li key={i}>
                   <a
