@@ -1,5 +1,5 @@
 import ReactModal from "react-modal";
-import React, { useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { VideoListData } from "../data/video_list";
 import { shallowEqual, useSelector } from "react-redux";
 import "../../css/modal.css";
@@ -42,7 +42,12 @@ const ModalStyle = {
   },
 };
 
-const MyModal = ({ children, isOpen, onClose }) => {
+
+const MyModal = ({ children, isOpen, onClose, setTab, currentTab }) => {
+  console.log(currentTab);
+
+
+
   const handleClickCancle = (e) => {
     e.preventDefault();
     onClose();
@@ -101,7 +106,6 @@ const MyModal = ({ children, isOpen, onClose }) => {
   /*
     tab-menu
   */
-  const [currentTab, setCurrentTab] = useState(0);
 
   // video 등장인물, 이미지 데이터
   let ifVodData = infoVodData;
@@ -122,7 +126,7 @@ const MyModal = ({ children, isOpen, onClose }) => {
   ];
 
   const selectMenuHandler = (index) => {
-    setCurrentTab(index);
+    setTab(index);
   };
   const reset = () => {
 
@@ -258,7 +262,8 @@ const MyModal = ({ children, isOpen, onClose }) => {
                       </a>
                     </li>
                   );
-                } else if (castLength === 0) {
+                } 
+                else if (castLength === 0) {
                   return null;
                 }
               } else if (i === 1) {
@@ -269,7 +274,7 @@ const MyModal = ({ children, isOpen, onClose }) => {
                         href="#"
                         onClick={() => selectMenuHandler(i)}
                         className={
-                          currentTab === 1 ? "tab_item active" : "tab_item"
+                          currentTab === 1  ? "tab_item active" : "tab_item"
                         }
                       >
                         {v.name}

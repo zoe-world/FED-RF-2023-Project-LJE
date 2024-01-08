@@ -32,7 +32,9 @@ export function Main(props) {
   const { openModal } = useModals();
   const onClickVodHandler = (e) => {
     e.preventDefault();
-    openModal(modals.myModal, {});
+    openModal(modals.myModal, {
+      state:{val:'1'}
+    });
   };
 
   return (
