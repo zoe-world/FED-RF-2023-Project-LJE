@@ -25,6 +25,7 @@ export function Main(props) {
   ifVodData = [...infoVodData];
 
   const [objInfo, setObjInfo] = useState({});
+  const [onReset, setOnReset] = useState();
   const getInfo = (x) => {
     setObjInfo(x);
   };
@@ -33,9 +34,13 @@ export function Main(props) {
   const onClickVodHandler = (e) => {
     e.preventDefault();
     openModal(modals.myModal, {
-      state:{val:'1'}
+      onReset: () => {
+        console.log('됨');
+      }
     });
   };
+
+  
 
   return (
     <>

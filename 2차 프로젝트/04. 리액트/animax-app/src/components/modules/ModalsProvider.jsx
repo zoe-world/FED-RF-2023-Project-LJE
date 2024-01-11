@@ -1,5 +1,9 @@
-import React from "react";
-import { ModalsDispatchContext, ModalsStateContext } from "./ModalsContext";
+import React, { Component } from "react";
+import {
+  ModalsDispatchContext,
+  ModalsStateContext,
+  TabStateContext,
+} from "./ModalsContext";
 import { useState } from "react";
 import { useMemo } from "react";
 import Modals from "./Modals";
@@ -19,6 +23,7 @@ const ableScroll = () => {
 
 const ModalsProvider = ({ children }) => {
   const [openedModals, setOpenedModals] = useState([]);
+
   const open = (Component, props) => {
     disableScroll();
     setOpenedModals((modals) => {
@@ -43,11 +48,13 @@ const ModalsProvider = ({ children }) => {
     );
   };
   const dispatch = useMemo(() => ({ open, close }), []);
+  const [user, setUser] = useState(null)
+
   return (
     <ModalsStateContext.Provider value={openedModals}>
       <ModalsDispatchContext.Provider value={dispatch}>
-        {children}
-        <Modals />
+          {children}
+          <Modals />
       </ModalsDispatchContext.Provider>
     </ModalsStateContext.Provider>
   );

@@ -1,14 +1,12 @@
 import ReactModal from "react-modal";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { Fragment, useEffect, useMemo, useRef, useState } from "react";
 import { VideoListData } from "../data/video_list";
 import { shallowEqual, useSelector } from "react-redux";
 import "../../css/modal.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faAngleDown,
   faArrowDown,
   faArrowUp,
-  faCircleXmark,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { Cast } from "../pages/Cast";
@@ -42,12 +40,7 @@ const ModalStyle = {
   },
 };
 
-
-const MyModal = ({ children, isOpen, onClose, setTab, currentTab }) => {
-  console.log(currentTab);
-
-
-
+const MyModal = ({ index, isOpen, onClose }) => {
   const handleClickCancle = (e) => {
     e.preventDefault();
     onClose();
@@ -78,12 +71,12 @@ const MyModal = ({ children, isOpen, onClose, setTab, currentTab }) => {
   const [isShowMore, setIsShowMore] = useState(false);
 
   // 공백제거
-  let trimTxt = itemDesc.split("^").map((v) => {
+  let trimTxt = itemDesc.split("^").map((v, i) => {
     return (
-      <>
+      <Fragment key={i}>
         {v}
         <br />
-      </>
+      </Fragment>
     );
   });
 
@@ -111,35 +104,43 @@ const MyModal = ({ children, isOpen, onClose, setTab, currentTab }) => {
   let ifVodData = infoVodData;
   ifVodData = [...infoVodData];
 
-  // 현재 모달창에 띄워진 vod 제목 정보와 등장인물 데이터 tit 값 비교 후 맞으면 추출
+  // tab 컨텐츠
   const infoTit = ifVodData.find((v) => (v.tit === itemTit ? v.tit : null));
-  let castLength = infoTit.cast.length;
-  let stillLength = infoTit.still.length;
 
-  const menuArr = [
+  let castLength = infoTit.cast.length;
+
+  const tabData = [
     {
-      name: "등장인물",
-      content: castLength !== 0 ? <Cast ifVodData={ifVodData} /> : "",
+      id: 1,
+      name: "등장인물", 
     },
-    { name: "스틸컷", content: stillLength !== null ? <StillCut /> : "" },
-    { name: "작품평", content: <StarRate /> },
+    {
+      id: 2,
+      name: "스틸컷",
+    },
+    {
+      id: 3,
+      name: "작품평",
+    },
   ];
 
-  const selectMenuHandler = (index) => {
-    setTab(index);
-  };
-  const reset = () => {
+  const [activeTab, setActiveTab] = useState(tabData[0].id);
 
-  }
+  const tabClickHandler = (tabId) => {
+    setActiveTab(tabId);
+    console.log(`${tabId}번째 탭이 눌림`);
+  };
+
   // 리턴코드
   return (
     <ReactModal
       isOpen={isOpen}
       contentLabel="modal"
       closeTimeoutMS={150}
-      onRequestClose={()=>{onClose(); reset()}}
+      onRequestClose={() => {onClose();}}
       shouldReturnFocusAfterClose={false}
       style={ModalStyle}
+      index={index}
     >
       <div className="previewModal-player">
         <div className="logo_bx">
@@ -156,7 +157,7 @@ const MyModal = ({ children, isOpen, onClose, setTab, currentTab }) => {
               <img src={itemThumSrc} alt="" />
             </div>
             <div className="txt_bx">
-              <h3 className="tit">{vData.idx}</h3>
+              <h3 className="tit">{itemTit}</h3>
               <ul className="txt_list">
                 <li>
                   <span className="tit">감독</span>
@@ -246,75 +247,40 @@ const MyModal = ({ children, isOpen, onClose, setTab, currentTab }) => {
         {/* tab menu */}
         <div className="previewModal-tab_bx">
           <ul className="tab_list">
-            {menuArr.map((v, i) => {
-              if (i === 0) {
-                if (castLength !== 0) {
-                  return (
-                    <li key={i}>
-                      <a
-                        href="#"
-                        onClick={() => selectMenuHandler(i)}
-                        className={
-                          currentTab === 0 ? "tab_item active" : "tab_item"
-                        }
-                      >
-                        {v.name}
-                      </a>
-                    </li>
-                  );
-                } 
-                else if (castLength === 0) {
-                  return null;
-                }
-              } else if (i === 1) {
-                if (stillLength !== 0) {
-                  return (
-                    <li key={i}>
-                      <a
-                        href="#"
-                        onClick={() => selectMenuHandler(i)}
-                        className={
-                          currentTab === 1  ? "tab_item active" : "tab_item"
-                        }
-                      >
-                        {v.name}
-                      </a>
-                    </li>
-                  );
-                } else if (stillLength === 0) {
-                  return null;
-                }
-              } else if (i === 2) {
+            {castLength === 0 && 
+              tabData.map((tab, index) => {
                 return (
-                  <li key={i}>
-                    <a
-                      href="#"
-                      onClick={() => selectMenuHandler(i)}
-                      className={
-                        currentTab === 2 ? "tab_item active" : "tab_item"
-                      }
+                  tab.id > 1 && (
+                    <li
+                      key={index}
+                      onClick={() => tabClickHandler(index)}
+                      className={index === activeTab ? "active" : ""}
                     >
-                      {v.name}
+                      <a href="#" className="tab_item">
+                        {tab.name}
+                      </a>
+                    </li>
+                  )
+                );
+              })}
+            {castLength > 0 &&
+              tabData.map((tab,index) => {
+                return (
+                  <li
+                    key={index}
+                    onClick={() => tabClickHandler(index)}
+                    className={index === activeTab ? "active" : ""}
+                  >
+                    <a href="#" className="tab_item">
+                      {tab.name}
                     </a>
                   </li>
                 );
-              }
-              return (
-                <li key={i}>
-                  <a
-                    href="#"
-                    onClick={() => selectMenuHandler(i)}
-                    className={
-                      currentTab === i ? "tab_item active" : "tab_item"
-                    }
-                  >
-                    {v.name}
-                  </a>
-                </li>
-              );
-            })}
+              })}
           </ul>
-          <div className="tab_content">{menuArr[currentTab].content}</div>
+          <div className="tab_content">
+            {activeTab}
+          </div>
         </div>
       </div>
       <button className="previewModal-close" onClick={handleClickCancle}>

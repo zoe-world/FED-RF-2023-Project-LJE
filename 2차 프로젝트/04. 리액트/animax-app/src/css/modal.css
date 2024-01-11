@@ -87,11 +87,16 @@
   height: 15px;
   background-color: #777;
 }
-.previewModal-info_bx .txt_bx .tit {
+.previewModal-info_bx .txt_bx h3.tit {
+  margin-bottom: 2rem;
+  font-size: max(2rem, 1.7vw);
+}
+.previewModal-info_bx .txt_list .tit {
   padding-right: 1vw;
   color: #777;
   font-weight: bold;
 }
+
 .previewModal-info_bx .txt_bx em {
   font-weight: 400;
   font-size: 1.5rem;
