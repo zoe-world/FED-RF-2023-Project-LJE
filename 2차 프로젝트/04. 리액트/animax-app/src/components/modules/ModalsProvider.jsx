@@ -48,7 +48,6 @@ const ModalsProvider = ({ children }) => {
     );
   };
   const dispatch = useMemo(() => ({ open, close }), []);
-  const [user, setUser] = useState(null)
 
   return (
     <ModalsStateContext.Provider value={openedModals}>

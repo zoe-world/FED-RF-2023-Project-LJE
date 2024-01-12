@@ -20,19 +20,22 @@ function App() {
     <>
       <Provider store={store}>
         <ModalsProvider>
-          {/* "homepage": "https://zoe-world.github.io/FED-RF-2023-Dist-LJE/" */}
-          <HashRouter>
-            <Routes>
-              <Route path="/" element={<Layout />}>
-                <Route index element={<Main />} />
-                <Route path="main" element={<Main />} />
-                <Route path="/program" element={<Program />} />
-                <Route path="/live" element={<Live />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/customer" element={<Customer cat="customer" />} />
-              </Route>
-            </Routes>
-          </HashRouter>
+            {/* "homepage": "https://zoe-world.github.io/FED-RF-2023-Dist-LJE/" */}
+            <HashRouter>
+              <Routes>
+                <Route path="/" element={<Layout />}>
+                  <Route index element={<Main />} />
+                  <Route path="main" element={<Main />} />
+                  <Route path="/program" element={<Program />} />
+                  <Route path="/live" element={<Live />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route
+                    path="/customer"
+                    element={<Customer cat="customer" />}
+                  />
+                </Route>
+              </Routes>
+            </HashRouter>
         </ModalsProvider>
       </Provider>
     </>

@@ -13,6 +13,7 @@ import { Cast } from "../pages/Cast";
 import { StillCut } from "../pages/StillCut";
 import { StarRate } from "../pages/StarRate";
 import { infoVodData } from "../data/infoVod_list";
+import { Tabs } from "../pages/Tabs";
 
 const vData = VideoListData;
 
@@ -56,11 +57,8 @@ const MyModal = ({ index, isOpen, onClose }) => {
   const itemEpiNum = item.epiNum;
   const itemAge = item.age;
   const itemDate = item.date;
-  const itemEpiTit = item.epiTit;
   const itemVideoSrc = item.videoSrc;
   const itemDesc = item.desc;
-  const itemNewEpi = item.newEpi;
-  const itemLive = item.live;
   const itemLogoSrc = item.logoSrc;
   const itemThumSrc = item.thumSrc;
 
@@ -105,31 +103,8 @@ const MyModal = ({ index, isOpen, onClose }) => {
   ifVodData = [...infoVodData];
 
   // tab 컨텐츠
-  const infoTit = ifVodData.find((v) => (v.tit === itemTit ? v.tit : null));
-
-  let castLength = infoTit.cast.length;
-
-  const tabData = [
-    {
-      id: 1,
-      name: "등장인물", 
-    },
-    {
-      id: 2,
-      name: "스틸컷",
-    },
-    {
-      id: 3,
-      name: "작품평",
-    },
-  ];
-
-  const [activeTab, setActiveTab] = useState(tabData[0].id);
-
-  const tabClickHandler = (tabId) => {
-    setActiveTab(tabId);
-    console.log(`${tabId}번째 탭이 눌림`);
-  };
+  const tabItem = ifVodData.find((v) => (v.tit === itemTit ? v.tit : null));
+  const castLength = tabItem.cast.length;
 
   // 리턴코드
   return (
@@ -246,41 +221,7 @@ const MyModal = ({ index, isOpen, onClose }) => {
         </div>
         {/* tab menu */}
         <div className="previewModal-tab_bx">
-          <ul className="tab_list">
-            {castLength === 0 && 
-              tabData.map((tab, index) => {
-                return (
-                  tab.id > 1 && (
-                    <li
-                      key={index}
-                      onClick={() => tabClickHandler(index)}
-                      className={index === activeTab ? "active" : ""}
-                    >
-                      <a href="#" className="tab_item">
-                        {tab.name}
-                      </a>
-                    </li>
-                  )
-                );
-              })}
-            {castLength > 0 &&
-              tabData.map((tab,index) => {
-                return (
-                  <li
-                    key={index}
-                    onClick={() => tabClickHandler(index)}
-                    className={index === activeTab ? "active" : ""}
-                  >
-                    <a href="#" className="tab_item">
-                      {tab.name}
-                    </a>
-                  </li>
-                );
-              })}
-          </ul>
-          <div className="tab_content">
-            {activeTab}
-          </div>
+          <Tabs tabItem={tabItem} castLength={castLength}/>
         </div>
       </div>
       <button className="previewModal-close" onClick={handleClickCancle}>
