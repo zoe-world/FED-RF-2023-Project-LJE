@@ -11,14 +11,17 @@ export function Tabs({ tabItem, castLength }) {
     {
       id: 0,
       name: "등장인물",
+      disabled: castLength > 0 ? true : false,
     },
     {
       id: 1,
       name: "스틸컷",
+      disabled: true,
     },
     {
       id: 2,
       name: "작품평",
+      disabled: true,
     },
   ];
 
@@ -32,49 +35,36 @@ export function Tabs({ tabItem, castLength }) {
 
   useEffect(() => {
     dispatch(changeTab(activeTab));
-  }, [tabIndex]);
+  }, []);
+  console.log(changeTab(activeTab).payload);
 
   return (
     <>
       <ul className="tab_list">
-        {castLength !== 0 &&
-          tabData.map((tab, index) => {
-            return (
-              <li
-                key={index}
-                onClick={() => {
-                  tabClickHandler(index);
-                }}
-                className={index === activeTab ? "active" : ""}
-              >
-                <a href="#" className="tab_item">
-                  {tab.name}
-                </a>
-              </li>
-            );
-          })}
-        {castLength === 0 &&
-            tabData.map((tab, index) => {
-                return index > tab.id && (
-                  <li
-                    key={index}
-                    onClick={() => {
-                      tabClickHandler(index);
-                    }}
-                    className={index === activeTab ? "active" : ""}
-                  >
-                    <a href="#" className="tab_item">
-                      {tab.name}
-                    </a>
-                  </li>
-                );
-              })}
+        {tabData.map((tab, index) => {
+          return (
+            tab.disabled && (<li
+              key={index}
+              onClick={() => {
+                tabClickHandler(index);
+              }}
+              className={index === activeTab ? "active" : ""}
+            >
+              <a href="#" className="tab_item">
+                {tab.name}
+              </a>
+            </li>)
+          );
+        })}
       </ul>
       <div className="tab_content">
-        {activeTab === 0 && <Cast castLength={castLength} tabItem={tabItem} />}
+        {activeTab === 0 && castLength > 0 && (
+          <Cast castLength={castLength} tabItem={tabItem} />
+        )}
         {activeTab === 1 && <StillCut />}
         {activeTab === 2 && <StarRate />}
       </div>
+
     </>
   );
 }

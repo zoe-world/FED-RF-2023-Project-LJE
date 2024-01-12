@@ -1,9 +1,9 @@
 // redux/slide.js
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice, } from "@reduxjs/toolkit";
 
 const initialStateValue = {
   
-  tabIndex:0,
+  tabIndex: 0,
 };
 export const tabSlice = createSlice({
   name: "tab",
