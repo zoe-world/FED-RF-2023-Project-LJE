@@ -1,70 +1,64 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Cast } from "./Cast";
 import { StillCut } from "./StillCut";
 import { StarRate } from "./StarRate";
-import { useDispatch, useSelector } from "react-redux";
-import { changeTab } from "../../redux/reducers/tab";
 
-export function Tabs({ tabItem, castLength }) {
+export function Tabs({ tabItem, castLength, stLength }) {
   // tabItem - 탭 아이템
   const tabData = [
     {
-      id: 0,
+      id: 1,
       name: "등장인물",
       disabled: castLength > 0 ? true : false,
     },
     {
-      id: 1,
+      id: 2,
       name: "스틸컷",
       disabled: true,
     },
     {
-      id: 2,
+      id: 3,
       name: "작품평",
       disabled: true,
     },
   ];
 
-  const [activeTab, setActiveTab] = useState(tabData[0].id);
-  const dispatch = useDispatch();
-  let tabIndex = useSelector((state) => state.tab.value);
-
+  const [activeTab, setActiveTab] = useState(castLength > 0 ? 1 : 2);
   const tabClickHandler = (tabIndex) => {
     setActiveTab(tabIndex);
   };
-
-  useEffect(() => {
-    dispatch(changeTab(activeTab));
-  }, []);
-  console.log(changeTab(activeTab).payload);
-
+  console.log(activeTab);
   return (
     <>
       <ul className="tab_list">
-        {tabData.map((tab, index) => {
+        {tabData.map((tab) => {
           return (
-            tab.disabled && (<li
-              key={index}
-              onClick={() => {
-                tabClickHandler(index);
-              }}
-              className={index === activeTab ? "active" : ""}
-            >
-              <a href="#" className="tab_item">
-                {tab.name}
-              </a>
-            </li>)
+            tab.disabled && (
+              <li
+                key={tab.id}
+                onClick={() => {
+                  tabClickHandler(tab.id);
+                }}
+                className={tab.id === activeTab ? "active" : ""}
+              >
+                <a href="#" className="tab_item">
+                  {tab.name}
+                </a>
+              </li>
+            )
           );
         })}
       </ul>
       <div className="tab_content">
-        {activeTab === 0 && castLength > 0 && (
-          <Cast castLength={castLength} tabItem={tabItem} />
-        )}
-        {activeTab === 1 && <StillCut />}
-        {activeTab === 2 && <StarRate />}
-      </div>
+        <section className="tab_cont">
+          {activeTab === 1 && castLength > 0 && (
 
+            <Cast castLength={castLength} tabItem={tabItem} />
+          )}
+          {activeTab === 2 && stLength > 0 && <StillCut tabItem={tabItem}/>}
+          {activeTab === 3 && <StarRate />}
+        </section>
+      </div>
     </>
   );
 }

@@ -1,5 +1,5 @@
 // 스와이퍼 플러그인 컴포넌트
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import $ from "jquery";
 
 import SwiperCore, { Autoplay, Navigation, Pagination } from "swiper";
@@ -14,13 +14,13 @@ import "../plugin/css/video_list.css";
 
 import { VideoListData } from "../data/video_list";
 
-export function SwiperVodList({ cat, getMonthDiff, fm, rank, item, tag }) {
+export function SwiperVodList({ cat, getMonthDiff, fm, rank, item, tagItem }) {
   // cat - 카테고리명
   // getMonthDiff - 날짜계산함수
   // fm - 날짜 변환 함수(ex yyyy-mm-dd)
   // rank - 순위 결정 함수
   // item - 마우스 오버시, 해당 타켓 객체 정보값
-  // tag - 해시태그 분류함수
+  // tagItem - 해시태그 분류함수
 
   const selData = [...VideoListData];
 
@@ -209,7 +209,7 @@ export function SwiperVodList({ cat, getMonthDiff, fm, rank, item, tag }) {
               </SwiperSlide>
             ))}
           {cat === "tag" &&
-            tag.map((v, i) => (
+            tagItem.map((v, i) => (
               <SwiperSlide
                 key={i}
                 onMouseOver={(e) => {
@@ -235,12 +235,14 @@ export function SwiperVodList({ cat, getMonthDiff, fm, rank, item, tag }) {
         </Swiper>
       </div>
 
-      <div className="list-ctl_box">
-        <ol className="paging_list swiper-paging_list"></ol>
-        <a href="#" title="오늘의 업데이트 더보기" className="more_btn">
-          더보기
-        </a>
-      </div>
+      { cat!== 'tag' &&
+        <div className="list-ctl_box">
+          <ol className="paging_list swiper-paging_list"></ol>
+          <a href="#" title="오늘의 업데이트 더보기" className="more_btn">
+            더보기
+          </a>
+        </div>
+      }
     </>
   );
 } /////////// SwiperVodList 컴포넌트 /////

@@ -1,16 +1,13 @@
 // Animax 오늘의 업데이트 리스트 컴포넌트
 
 import { SwiperVodList } from "../plugin/SwiperVodList";
+import { BestTagBtn } from "./BestTagBtn";
 
 // 배너데이터
-export function BestTag({ cat, item, VodListData }) {
+export function BestTag({ cat, item, tagItem, setTagItem }) {
   // cat = 카테고리명
-  let bestTagData = [...VodListData];
-  // 키워드 필터링 함수
-  let tag = bestTagData.filter((v) => v.hashtag.includes("#이세계"));
-  tag = tag.sort(function (a, b) {
-    return a.idx - b.idx;
-  });
+  // tagItem = 베스트태그 아이템 상태변수
+
   // 마우스오버 함수
   const getItem = (x) => {
     item(x);
@@ -22,17 +19,10 @@ export function BestTag({ cat, item, VodListData }) {
         <h3>
           인기 태그 작품
           <span className="tab_btn">
-            <button type="button" className="on">
-              #이능력
-            </button>
-            <button type="button">#액션/배틀</button>
-            <button type="button">#일상물</button>
-            <button type="button">#아이돌</button>
-            <button type="button">#이세계</button>
-            <button type="button">#요괴/오컬트</button>
+            <BestTagBtn tagItem={tagItem} setTagItem={setTagItem}/>
           </span>
         </h3>
-        <SwiperVodList cat={cat} item={getItem} tag={tag} />
+        <SwiperVodList cat={cat} item={getItem} tagItem={tagItem}/>
       </article>
     </>
   );

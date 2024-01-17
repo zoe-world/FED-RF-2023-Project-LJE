@@ -14,6 +14,7 @@ import { StillCut } from "../pages/StillCut";
 import { StarRate } from "../pages/StarRate";
 import { infoVodData } from "../data/infoVod_list";
 import { Tabs } from "../pages/Tabs";
+import { BestTag } from "../pages/BestTag";
 
 const vData = VideoListData;
 
@@ -77,7 +78,6 @@ const MyModal = ({ index, isOpen, onClose }) => {
       </Fragment>
     );
   });
-
   // 글자수 제한 선언
   const textLimit = useRef(10);
   // 조건에 따라 줄거리를 보여주는 함수
@@ -105,7 +105,16 @@ const MyModal = ({ index, isOpen, onClose }) => {
   // tab 컨텐츠
   const tabItem = ifVodData.find((v) => (v.tit === itemTit ? v.tit : null));
   const castLength = tabItem.cast.length;
-
+  const stLength = tabItem.still.length;
+  // video 전체 데이터
+  let VodListData = VideoListData;
+  VodListData = [...VodListData];
+  
+  const [objInfo, setObjInfo] = useState({});
+  const [onReset, setOnReset] = useState();
+  const getInfo = (x) => {
+    setObjInfo(x);
+  };
   // 리턴코드
   return (
     <ReactModal
@@ -221,8 +230,9 @@ const MyModal = ({ index, isOpen, onClose }) => {
         </div>
         {/* tab menu */}
         <div className="previewModal-tab_bx">
-          <Tabs tabItem={tabItem} castLength={castLength}/>
+          <Tabs tabItem={tabItem} castLength={castLength} stLength={stLength}/>
         </div>
+        <BestTag   cat="tag" item={getInfo}  VodListData={VodListData}/>
       </div>
       <button className="previewModal-close" onClick={handleClickCancle}>
         <FontAwesomeIcon icon={faXmark} />

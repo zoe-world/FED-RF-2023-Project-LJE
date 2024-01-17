@@ -20,7 +20,7 @@ table caption { overflow: hidden; font-size: 0; line-height: 0; font-size: 0;hei
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display:block } 
 
 section, main { display:block } 
-img { max-width: 100%; vertical-align: middle; display: inline-block;}
+img { max-width: 100%;vertical-align: middle; display: inline-block;}
 h1, h2, h3, h4, h5, h6, em, strong { font-weight:600;} 
 
 html {

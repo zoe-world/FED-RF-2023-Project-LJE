@@ -20,6 +20,10 @@ export function Main(props) {
   // video 전체 데이터
   let VodListData = VideoListData;
   VodListData = [...VodListData];
+
+  // bestTag 데이터
+  const [tagItem,setTagItem]= useState(VodListData);
+
   // video 등장인물, 이미지 데이터
   let ifVodData = infoVodData;
   ifVodData = [...infoVodData];
@@ -60,7 +64,7 @@ export function Main(props) {
         {/* 2.3.3 추천 vod */}
         <GoodVod VodListData={VodListData} ifVodData={ifVodData} />
         {/* 2.3.4 인기 태그 작품 */}
-        <BestTag cat="tag" item={getInfo} VodListData={VodListData}/>
+        <BestTag cat="tag" item={getInfo} tagItem={tagItem} setTagItem={setTagItem}/>
       </section>
       {/* 3. VOD 정보박스 */}
       <Vod item={objInfo} onClickVodHandler={onClickVodHandler} />

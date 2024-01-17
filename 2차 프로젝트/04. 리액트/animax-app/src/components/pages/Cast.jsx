@@ -1,18 +1,10 @@
-import { shallowEqual, useSelector } from "react-redux";
+import { Fragment } from "react";
 
-export function Cast({ ifVodData,tabItem }) {
-  // ifVodData - ifVodData등장인물 데이터 
-
-  const itemInfo = useSelector((state) => state.item.value, shallowEqual);
-  const item = Object.values(itemInfo)[0];
-  const itemTit = item.tit;
-
-  let castLength = tabItem.cast.length;
-  
+export function Cast({ castLength, tabItem }) {
   const makeList = () => {
     return hCode;
   };
-  // console.log(item, itemTit, tabItem, castLength);
+
   let hCode = [];
   for (let i = 0; i < castLength; i++) {
     hCode.push(
@@ -23,15 +15,26 @@ export function Cast({ ifVodData,tabItem }) {
         <dd className="info">
           <h3 className="name">{tabItem.cast[i].name}</h3>
           <em className="voice">성우 : {tabItem.cast[i].voice}</em>
-          <p className="desc"></p>
+          <p className="desc">
+            {tabItem.cast[i].info.split("^").map((v, i) => {
+              return (
+                <Fragment key={i}>
+                  {v}
+                  <br />
+                </Fragment>
+              );
+            })}
+          </p>
         </dd>
       </dl>
     );
   }
   return (
-    <section className="tab_cont">
-      <h2 className="tit">등장인물</h2>
+    <>
+      <h2 className="tit">
+        등장인물 <span>총 {tabItem.cast.length}명</span>
+      </h2>
       {makeList()}
-    </section>
+    </>
   );
 }
