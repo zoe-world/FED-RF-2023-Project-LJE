@@ -158,7 +158,7 @@
 .previewModal-tab_bx .tab_cont{
   position: relative;
   margin: 0 7rem;
-  padding: max(3.5vw, 7rem);
+  padding: max(3.5vw, 5rem);
   max-width: 76.5625vw;
   background-color: #1f1f1f;
   box-shadow: 0 4px 5px rgba(0,0,0,.5);
@@ -220,6 +220,9 @@
   }
   .previewModal-tab_bx .thum_bx .gallery_swiper {
     margin-top: 1rem;
+  }
+  .previewModal-tab_bx .thum_bx .gallery_swiper .swiper-slide img{
+    width: 100%;
   }
   .previewModal-tab_bx .thum_bx .swiper-button-next, .swiper-button-prev {
     margin-top: 0;

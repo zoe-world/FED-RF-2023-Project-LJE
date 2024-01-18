@@ -21,15 +21,12 @@ export function Main(props) {
   let VodListData = VideoListData;
   VodListData = [...VodListData];
 
-  // bestTag 데이터
-  const [tagItem,setTagItem]= useState(VodListData);
-
   // video 등장인물, 이미지 데이터
   let ifVodData = infoVodData;
   ifVodData = [...infoVodData];
 
   const [objInfo, setObjInfo] = useState({});
-  const [onReset, setOnReset] = useState();
+
   const getInfo = (x) => {
     setObjInfo(x);
   };
@@ -43,9 +40,7 @@ export function Main(props) {
       }
     });
   };
-
-  
-
+  console.log(VodListData)
   return (
     <>
       {/* 2-1. TOP배너 박스 */}
@@ -60,11 +55,11 @@ export function Main(props) {
         {/* 2.3.2 오늘의 업데이트 리스트 */}
         <Today cat="today" item={getInfo} />
         {/* 2.3.2 인기 작품 리스트 */}
-        <Best cat="best" item={getInfo} VodListData={VodListData}/>
+        <Best cat="best" item={getInfo} VodListData={VodListData} />
         {/* 2.3.3 추천 vod */}
         <GoodVod VodListData={VodListData} ifVodData={ifVodData} />
         {/* 2.3.4 인기 태그 작품 */}
-        <BestTag cat="tag" item={getInfo} tagItem={tagItem} setTagItem={setTagItem}/>
+        <BestTag cat="tag" item={getInfo} VodListData={VodListData} />
       </section>
       {/* 3. VOD 정보박스 */}
       <Vod item={objInfo} onClickVodHandler={onClickVodHandler} />

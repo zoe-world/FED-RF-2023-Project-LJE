@@ -1,21 +1,18 @@
 import React from "react";
 
-export function BestTagBtn({tagItem, setTagItem}) {
-  const tagItems = [...new Set(tagItem.map((v) => v.hashtag))]; 
-//   const tagItems2 = tagItems.has('#이세계');
-  const newTag = tagItems.filter(v=>v.includes('#이세계'));
-  console.log(tagItems,newTag)
+export function BestTagBtn({ filterItem, tagTotalItem, VodListData, tagItem ,setTagItem, tagBtn }) {
   return (
     <>
-        {
-            tagItems.map((v,i)=>{
-                return (
-                    <button key={i}>
-                        {v}
-                    </button>
-                )
-            })
-        }
+      <button onClick={() => setTagItem(VodListData)}>
+        전체
+      </button>
+      {tagTotalItem.map((v, i) => {
+        return (
+          <button key={i} onClick={() => filterItem(v)} className={`${setTagItem(v) === tagBtn ? 'on' : ''}`}>
+            {v}
+          </button>
+        );
+      })}
       {/* <button type="button" className="on">
         #이능력
       </button>
