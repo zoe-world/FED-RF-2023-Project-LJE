@@ -34,13 +34,16 @@ export function Main(props) {
   const { openModal } = useModals();
   const onClickVodHandler = (e) => {
     e.preventDefault();
-    openModal(modals.myModal, {
+    openModal(modals.infoModal, {
       onReset: () => {
         console.log('됨');
       }
     });
   };
-  console.log(VodListData)
+  const onClickVideoHandler = (e) => {
+    e.preventDefault();
+    openModal(modals.videoModal,{});
+  };
   return (
     <>
       {/* 2-1. TOP배너 박스 */}
@@ -62,7 +65,7 @@ export function Main(props) {
         <BestTag cat="tag" item={getInfo} VodListData={VodListData} />
       </section>
       {/* 3. VOD 정보박스 */}
-      <Vod item={objInfo} onClickVodHandler={onClickVodHandler} />
+      <Vod item={objInfo} onClickVodHandler={onClickVodHandler} onClickVideoHandler={onClickVideoHandler}/>
     </>
   );
 }

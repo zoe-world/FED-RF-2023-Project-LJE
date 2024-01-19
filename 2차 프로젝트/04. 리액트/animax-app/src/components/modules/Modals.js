@@ -1,9 +1,11 @@
 import { useContext, useState } from "react";
-import { ModalsDispatchContext, ModalsStateContext, TabStateContext } from "./ModalsContext";
-import MyModal from "./MyModal";
+import { ModalsDispatchContext, ModalsStateContext } from "./ModalsContext";
+import InfoModal from "./InfoModal";
+import VideoModal from "./VideoModal";
 
 export const modals = {
-  myModal: MyModal,
+  infoModal: InfoModal,
+  videoModal: VideoModal,
 };
 
 const Modals = () => {

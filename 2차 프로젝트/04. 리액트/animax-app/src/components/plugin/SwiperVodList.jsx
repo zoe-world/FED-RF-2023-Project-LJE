@@ -194,6 +194,7 @@ export function SwiperVodList({ cat, getMonthDiff, fm, rank, item, tagItem }) {
               >
                 <a href="#" className="link_img">
                   <div className="img_group">
+                    <em className={v.rank <=3 ? 'on':''}>{v.rank}</em>
                     <div className="bg"></div>
                     <img
                       className="img"

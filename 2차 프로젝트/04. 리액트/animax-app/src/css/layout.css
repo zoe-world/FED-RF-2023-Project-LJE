@@ -717,8 +717,8 @@ body{
     width: 96px;
     height: 65px;
     background: url(../../public/images/bg.png) no-repeat 50% top;
-    color: #fff;
-    font-size: 3.5rem;
+    color: #b2b2b2;
+    font-size: min(2.1vw, 3.1rem);
 }
 .list_v2_wrap .link_img em.on{
     color: #00B8FF;
@@ -763,18 +763,7 @@ body{
     font-size: 1.4rem;
     font-family: 'Pretendard';
 }
-.list_v2_wrap .thum-list .on{
-    width: 20vw;
-}
-.list_v2_wrap .thum-list .on .img_group {
-    height: 15vw;
-}
-.list_v2_wrap .thum-list .on h4 {
-    margin-top: 0;
-}
-.list_v2_wrap .thum-list .on .tit {
-    font-size: 1.7rem;
-}
+
 
 /*2.3.3 goodVod */
 .good_bx{

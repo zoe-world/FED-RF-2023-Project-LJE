@@ -1,5 +1,5 @@
 import ReactModal from "react-modal";
-import React, { Fragment, useEffect, useMemo, useRef, useState } from "react";
+import React, { Fragment, useRef, useState } from "react";
 import { VideoListData } from "../data/video_list";
 import { shallowEqual, useSelector } from "react-redux";
 import "../../css/modal.css";
@@ -9,9 +9,6 @@ import {
   faArrowUp,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-import { Cast } from "../pages/Cast";
-import { StillCut } from "../pages/StillCut";
-import { StarRate } from "../pages/StarRate";
 import { infoVodData } from "../data/infoVod_list";
 import { Tabs } from "../pages/Tabs";
 import { BestTag } from "../pages/BestTag";
@@ -42,7 +39,7 @@ const ModalStyle = {
   },
 };
 
-const MyModal = ({ index, isOpen, onClose }) => {
+const InfoModal = ({ index, isOpen, onClose }) => {
   const handleClickCancle = (e) => {
     e.preventDefault();
     onClose();
@@ -242,4 +239,4 @@ const MyModal = ({ index, isOpen, onClose }) => {
   );
 };
 
-export default MyModal;
+export default InfoModal;

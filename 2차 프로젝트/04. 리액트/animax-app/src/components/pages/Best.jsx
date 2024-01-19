@@ -17,15 +17,7 @@ export function Best({ cat, item, VodListData }) {
   return (
     <>
       <article className="list_v2_wrap rank">
-        <h3>
-          인기 작품
-          <span className="tab_btn">
-            <button type="button" className="on">
-              월별
-            </button>
-            <button type="button">분기별</button>
-          </span>
-        </h3>
+        <h3>인기 작품</h3>
         {/* 1. 스와이퍼 컴포넌트 */}
         <SwiperVodList cat={cat} rank={rank} item={getItem} />
       </article>

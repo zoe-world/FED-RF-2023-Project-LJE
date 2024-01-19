@@ -6,7 +6,7 @@ import $ from "jquery";
 import { useDispatch } from "react-redux";
 import { itemOver } from "../../redux/reducers/item";
 
-export function Vod({ item, onClickVodHandler }) {
+export function Vod({ item, onClickVodHandler,onClickVideoHandler }) {
   const selData = VideoListData;
   // redux
   const dispatch = useDispatch();
@@ -15,9 +15,9 @@ export function Vod({ item, onClickVodHandler }) {
   const vodBox = useRef();
   const ele = item.ele;
   const itemInfo = item.itemInfo;
-  const itemThumSrc = itemInfo!=null ? itemInfo.thumSrc : '';
-  const itemTit = itemInfo!=null ? itemInfo.tit:''
-  const itemEpiTit = itemInfo!=null ? itemInfo.epiTit:''
+  const itemThumSrc = itemInfo != null ? itemInfo.thumSrc : "";
+  const itemTit = itemInfo != null ? itemInfo.tit : "";
+  const itemEpiTit = itemInfo != null ? itemInfo.epiTit : "";
 
   const [isAct, setIsAct] = useState(false);
   const showEle = (e) => {
@@ -62,10 +62,15 @@ export function Vod({ item, onClickVodHandler }) {
         }
       >
         <div className="info_bx">
-          <a href="#" title="동영상 재생" className="link_play link_ico">
+          <a href="#" title="동영상 재생" className="link_play link_ico" onClick={onClickVideoHandler}>
             <span className="tootip">재생하기</span>
           </a>
-          <a href="#" title="정보 더보기" className="link_info link_ico">
+          <a
+            href="#"
+            title="정보 더보기"
+            className="link_info link_ico"
+            onClick={onClickVodHandler}
+          >
             <span className="tootip">상세보기</span>
           </a>
           <a href="#" title="찜하기" className="link_zzim link_ico">

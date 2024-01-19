@@ -53,7 +53,7 @@ const ModalsProvider = ({ children }) => {
     <ModalsStateContext.Provider value={openedModals}>
       <ModalsDispatchContext.Provider value={dispatch}>
           {children}
-          <Modals />
+          <Modals />  
       </ModalsDispatchContext.Provider>
     </ModalsStateContext.Provider>
   );

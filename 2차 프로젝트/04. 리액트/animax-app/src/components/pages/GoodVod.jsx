@@ -25,7 +25,7 @@ export function GoodVod({ VodListData, ifVodData }) {
   // epi 배열수 기준으로 랜덤수 만들기
   const random = useMemo(() => Math.ceil(Math.random() * epi.length), []);
   // 회차가 미공개 제외, 1화 이상인 아이템 중 랜덤으로 나오는 객체 중 연령제한나이
-  const age = epi[random]['age'];
+  const age = epi[random]?.['age'];
   
   // 연령체크
   const ageChk = {
@@ -53,7 +53,7 @@ export function GoodVod({ VodListData, ifVodData }) {
   const [isShowMore, setIsShowMore] = useState(false);
 
   // 공백제거
-  let trimTxt = epi[random].desc.split("^").map((v,i) => {
+  let trimTxt = epi[random]?.desc.split("^").map((v,i) => {
     return (
       <Fragment key={i}>
         {v}
@@ -80,17 +80,17 @@ export function GoodVod({ VodListData, ifVodData }) {
       <div className="good_bx_wrap">
         <dl className="good_bx">
           <dt className="good_img_bx">
-            <img src={castItem.still[0]} alt="" />
+            <img src={castItem?.still[0]} alt="" />
           </dt>
           <dd className="good_cont">
             <div className="text-group">
               <h4 className="tit">
-                {epi[random].tit}
+                {epi[random]?.tit}
                 {ageChk[age]}
               </h4>
               <ul className="detail_list">
-                <li>{epi[random].genre}</li>
-                <li>총 {epi[random].epiNum} 화</li>
+                <li>{epi[random]?.genre}</li>
+                <li>총 {epi[random]?.epiNum} 화</li>
               </ul>
               <p className="txt">{commenter()}</p>
               <span className="btn_wrap">
