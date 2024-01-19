@@ -2,7 +2,7 @@
 
 import { Fragment, useMemo, useRef, useState } from "react";
 
-export function GoodVod({ VodListData, ifVodData }) {
+export function GoodVod({ VodListData, ifVodData, onClickVodHandler, onClickVideoHandler }) {
   let goodItemData = [...VodListData];
   let goodItemInfoData = [...ifVodData];
   goodItemData.sort((x, y) => {
@@ -45,6 +45,8 @@ export function GoodVod({ VodListData, ifVodData }) {
   const epiTit = interaction[random];
   // 랜덤으로 나오는 에피소드 제목과 등장인물 데이터 제목이 같다면, 데이터 추출
   const castItem = goodItemInfoData.find((v) => v.tit === epiTit && v);
+
+  console.log()
 
   /***************************** 
     줄거리 더보기
