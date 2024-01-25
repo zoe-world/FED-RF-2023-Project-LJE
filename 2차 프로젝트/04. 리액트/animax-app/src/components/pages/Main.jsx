@@ -35,8 +35,7 @@ export function Main(props) {
   const onClickVodHandler = (e) => {
     e.preventDefault();
     openModal(modals.infoModal, {
-      onReset: () => {
-        console.log('됨');
+      cat: 
       }
     });
   };

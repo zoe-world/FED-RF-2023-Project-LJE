@@ -713,12 +713,14 @@ body{
 .list_v2_wrap .link_img em{
     position: absolute;
     z-index: 1;
-    padding: 0.75vw 1.5vw 1vw;
+    display: flex;
+    align-items: center;
+    padding: 0 1vw;
     width: 96px;
     height: 65px;
     background: url(../../public/images/bg.png) no-repeat 50% top;
     color: #b2b2b2;
-    font-size: min(2.1vw, 3.1rem);
+    font-size: 3rem;
 }
 .list_v2_wrap .link_img em.on{
     color: #00B8FF;

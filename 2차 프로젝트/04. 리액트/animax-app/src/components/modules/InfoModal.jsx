@@ -67,7 +67,7 @@ const InfoModal = ({ index, isOpen, onClose }) => {
   const [isShowMore, setIsShowMore] = useState(false);
 
   // 공백제거
-  let trimTxt = itemDesc.split("^").map((v, i) => {
+  let trimTxt = (itemDesc||"").split("^").map((v, i) => {
     return (
       <Fragment key={i}>
         {v}
@@ -227,9 +227,11 @@ const InfoModal = ({ index, isOpen, onClose }) => {
         </div>
         {/* tab menu */}
         <div className="previewModal-tab_bx">
-          <Tabs tabItem={tabItem} castLength={castLength} stLength={stLength}/>
+          {
+            <Tabs tabItem={tabItem} castLength={castLength} stLength={stLength}/>
+          }
         </div>
-        <BestTag   cat="tag" item={getInfo}  VodListData={VodListData}/>
+        <BestTag cat="tag" item={getInfo}  VodListData={VodListData}/>
       </div>
       <button className="previewModal-close" onClick={handleClickCancle}>
         <FontAwesomeIcon icon={faXmark} />

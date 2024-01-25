@@ -1,6 +1,7 @@
 // Animax 추천 TV프로그램 컴포넌트
 
 import { Fragment, useMemo, useRef, useState } from "react";
+import { shallowEqual, useSelector } from "react-redux";
 
 export function GoodVod({ VodListData, ifVodData, onClickVodHandler, onClickVideoHandler }) {
   let goodItemData = [...VodListData];
@@ -46,8 +47,6 @@ export function GoodVod({ VodListData, ifVodData, onClickVodHandler, onClickVide
   // 랜덤으로 나오는 에피소드 제목과 등장인물 데이터 제목이 같다면, 데이터 추출
   const castItem = goodItemInfoData.find((v) => v.tit === epiTit && v);
 
-  console.log()
-
   /***************************** 
     줄거리 더보기
   *****************************/
@@ -69,13 +68,19 @@ export function GoodVod({ VodListData, ifVodData, onClickVodHandler, onClickVide
   // 조건에 따라 줄거리를 보여주는 함수
   const commenter = () => {
     // 원본에서 글자수 만큼 자른 짧은 버전
-    let shortReview = trimTxt.slice(0, textLimit.current);
-    if (trimTxt.length > textLimit.current) {
+    let shortReview = (trimTxt||"").slice(0, textLimit.current);
+    if ((trimTxt||"").length > textLimit.current) {
       return shortReview;
     }
     return trimTxt;
     // 공백 넣기
   };
+
+  // 랜덤으로 뜨는 에피소드 지금 감상하기 버튼
+  const epiRandom = useRef(epi[random]);
+
+console.log(interaction, epiRandom)
+
   return (
     <article className="good_wrap">
       <h3>추천! TV 프로그램</h3>
@@ -96,7 +101,7 @@ export function GoodVod({ VodListData, ifVodData, onClickVodHandler, onClickVide
               </ul>
               <p className="txt">{commenter()}</p>
               <span className="btn_wrap">
-                <a href="#" className="btn play_btn">
+                <a href="#" className="btn play_btn" onClick={onClickVodHandler}>
                   <span className="txt">지금 감상하기</span>
                 </a>
                 <a href="#" className="btn info_btn">
