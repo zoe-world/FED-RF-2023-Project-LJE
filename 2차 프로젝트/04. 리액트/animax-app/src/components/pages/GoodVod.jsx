@@ -1,7 +1,6 @@
 // Animax 추천 TV프로그램 컴포넌트
 
 import { Fragment, useMemo, useRef, useState } from "react";
-import { shallowEqual, useSelector } from "react-redux";
 
 export function GoodVod({ VodListData, ifVodData, onClickVodHandler, onClickVideoHandler }) {
   let goodItemData = [...VodListData];
@@ -9,7 +8,7 @@ export function GoodVod({ VodListData, ifVodData, onClickVodHandler, onClickVide
   goodItemData.sort((x, y) => {
     let a = Number(x.idx);
     let b = Number(y.idx);
-    return a == b ? 0 : a > b ? 1 : -1;
+    return a === b ? 0 : a > b ? 1 : -1;
   });
   
   // 에피소드 회차수 미공개 제외 && 1화 이상인 아이템
@@ -24,7 +23,7 @@ export function GoodVod({ VodListData, ifVodData, onClickVodHandler, onClickVide
   //터링된 아이템 제목과 등장인물 데이터 중 제목를 비교 후 교집합 추출
   let interaction = epiTxt.filter((v) => infoTit.includes(v));
   // epi 배열수 기준으로 랜덤수 만들기
-  const random = useMemo(() => Math.ceil(Math.random() * epi.length), []);
+  const random = useMemo(() => Math.ceil(Math.random() * epi.length - 1), []);
   // 회차가 미공개 제외, 1화 이상인 아이템 중 랜덤으로 나오는 객체 중 연령제한나이
   const age = epi[random]?.['age'];
   

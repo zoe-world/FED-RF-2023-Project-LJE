@@ -3,7 +3,7 @@ export const menu = {
   gnb: [
     {
       txt: "홈",
-      link: "/",
+      link: "/main",
     },
     {
       txt: "프로그램",
@@ -21,7 +21,7 @@ export const menu = {
     },
     {
       txt: "편성표",
-      link: "",
+      link: "/",
     },
     {
       txt: "로그인",

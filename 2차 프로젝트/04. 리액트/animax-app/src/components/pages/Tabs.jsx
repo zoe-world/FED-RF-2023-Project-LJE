@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { Cast } from "./Cast";
 import { StillCut } from "./StillCut";
 import { StarRate } from "./StarRate";

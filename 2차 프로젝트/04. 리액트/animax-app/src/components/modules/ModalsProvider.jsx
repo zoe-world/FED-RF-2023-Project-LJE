@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import {
   ModalsDispatchContext,
   ModalsStateContext,
-  TabStateContext,
 } from "./ModalsContext";
 import { useState } from "react";
 import { useMemo } from "react";

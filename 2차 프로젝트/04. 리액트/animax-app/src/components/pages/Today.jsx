@@ -1,6 +1,5 @@
 // Animax 오늘의 업데이트 리스트 컴포넌트
 
-import { useEffect, useState } from "react";
 import { SwiperVodList } from "../plugin/SwiperVodList";
 
 // 배너데이터

@@ -1,6 +1,7 @@
 // Animax 메뉴 컴포넌트
+import { useState } from "react";
 import { menu } from "../data/gnb"; 
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export function Menu(props) {
     // props.cat - 메뉴 분류명
@@ -10,7 +11,7 @@ export function Menu(props) {
     <>
       {selMenu.map((v, i) => (
         <li key={i}>
-          <Link to={v.link}>{v.txt}</Link>
+          <NavLink to={v.link} className={({isActive})=> isActive?v.link+' active':v.link}>{v.txt}</NavLink>
         </li>
       ))}
     </>

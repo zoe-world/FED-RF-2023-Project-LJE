@@ -28,6 +28,81 @@ html {
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
 }
+input[type=password], input[type=tel], input[type=text], textarea {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 5px;
+    border: 1px solid #e5e5e5;
+    padding: 0 20px;
+    margin: 0;
+    color: #a5a5a5;
+}
+input[type=checkbox] {
+    position: absolute;
+    clip: rect(0,0,0,0);
+    margin: 0;
+    padding: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0;
+    border: none;
+}
+label {
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+input[type=password]::-webkit-input-placeholder,input[type=text]::-webkit-input-placeholder {
+    color: #888
+}
+
+input[type=password]:focus,input[type=tel]:focus,input[type=text]:focus,textarea:focus {
+    border: 1px solid #1351f9;
+    outline: none
+}
+
+input.dark-theme[type=password]:focus,input.dark-theme[type=tel]:focus,input.dark-theme[type=text]:focus,textarea.dark-theme:focus {
+    border: 1px solid #1351f9
+}
+
+::-ms-clear,::-ms-reveal {
+    display: none
+}
+
+::-ms-expand {
+    display: none
+}
+.check_style input[type=checkbox] {
+    position: absolute;
+    clip: rect(0,0,0,0)
+}
+.check_style input[type=checkbox]+label {
+    font-size: 13px;
+    color: #a5a5a5
+}
+.check_style input[type=checkbox]+label:before {
+    width: 22px;
+    height: 22px
+}
+.check_style input[type=checkbox].check-blue+label:before {
+    border: 1px solid #d9d9d9;
+    vertical-align: middle
+}
+
+.check_style input[type=checkbox].check-blue:focus+label:before {
+    border: 1px solid #1351f9
+}
+
+.check_style input[type=checkbox].check-blue:checked+label:before {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAXCAYAAADgKtSgAAAAAXNSR0IArs4c6QAAAO9JREFUSA1jFA78+Z+BRoCJRuaCjR01HGvoDv5gYWTE6nAGil3ekcLMcGYaK1bTKTK8J52ZIcWLmWHlgX/UNRxkcII7M0Pfmr8MXSv/Us9wZIPblmE3GGQb1mBZUMbCMLOQmYGFGdNBxBqM0/B95/8xBNsyM8wtZkGxgBSDcRq+aPc/hvLZfxi8LZjgFpBqMMhwRnylYrInE0NnKgvDw5f/GeTFGcGRhy+MQQYiAxZkDjp77vZ/DDycfxhqopkZFu36y0CKwSCz8LocZpm4AAPDyw8wHvE01tSCrp0cg0FmEGU4umXE8kcNxxpSNA0WAAXETbeav2oDAAAAAElFTkSuQmCC) #1351f9 no-repeat 50%;
+    background-size: 22px;
+    border: 1px solid #1351f9
+}
+
 /* 접근성 
 -------------------------------------------------------------- */
 .blind,

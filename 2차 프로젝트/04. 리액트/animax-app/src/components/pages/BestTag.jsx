@@ -49,7 +49,7 @@ export function BestTag({ cat, item, VodListData }) {
   useEffect(()=>{
     filterItem('전체');
   },[setTagItem, setTagBtnAct])
-  console.log(tagTotalItem, tagBtnAct);
+
 
   // 마우스오버 함수
   const getItem = (x) => {

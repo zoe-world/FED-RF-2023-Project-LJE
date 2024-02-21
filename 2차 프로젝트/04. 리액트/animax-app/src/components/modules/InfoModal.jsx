@@ -13,8 +13,6 @@ import { infoVodData } from "../data/infoVod_list";
 import { Tabs } from "../pages/Tabs";
 import { BestTag } from "../pages/BestTag";
 
-const vData = VideoListData;
-
 const ModalStyle = {
   overlay: {
     position: "fixed",
@@ -108,7 +106,6 @@ const InfoModal = ({ index, isOpen, onClose }) => {
   VodListData = [...VodListData];
   
   const [objInfo, setObjInfo] = useState({});
-  const [onReset, setOnReset] = useState();
   const getInfo = (x) => {
     setObjInfo(x);
   };

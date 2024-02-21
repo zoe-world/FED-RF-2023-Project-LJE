@@ -34,10 +34,7 @@ export function Main(props) {
   const { openModal } = useModals();
   const onClickVodHandler = (e) => {
     e.preventDefault();
-    openModal(modals.infoModal, {
-      cat: 
-      }
-    });
+    openModal(modals.infoModal, {});
   };
   const onClickVideoHandler = (e) => {
     e.preventDefault();
@@ -59,7 +56,7 @@ export function Main(props) {
         {/* 2.3.2 인기 작품 리스트 */}
         <Best cat="best" item={getInfo} VodListData={VodListData} />
         {/* 2.3.3 추천 vod */}
-        <GoodVod VodListData={VodListData} ifVodData={ifVodData} onClickVodHandler={onClickVodHandler} onClickVideoHandler={onClickVideoHandler}/>
+        <GoodVod item={getInfo} VodListData={VodListData} ifVodData={ifVodData} onClickVodHandler={onClickVodHandler} onClickVideoHandler={onClickVideoHandler}/>
         {/* 2.3.4 인기 태그 작품 */}
         <BestTag cat="tag" item={getInfo} VodListData={VodListData} />
       </section>

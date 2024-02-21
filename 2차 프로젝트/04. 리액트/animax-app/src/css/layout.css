@@ -133,6 +133,7 @@
     font-family: 'Pretendard';
     transition: .5s;
 }
+.gnb_box > ul > li > .active,
 .gnb_box > ul > li > a:hover{
     color: #32c5fa;
 }
@@ -152,6 +153,7 @@
     font-family: 'Pretendard';
     transition: .5s;
 }
+.util_box > ul > li > .active,
 .util_box > ul > li > a:hover{
     color: #32c5fa;
 }
@@ -173,7 +175,8 @@
 
 /****************** 2 main-area ******************/
 .main_area {
-    min-height: 80vh;
+    min-height: 100%;
+    overflow: hidden;
 }
 .main_area > h2 {
     padding-top: 100px;

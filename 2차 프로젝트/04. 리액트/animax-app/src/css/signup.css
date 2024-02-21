@@ -1,0 +1,82 @@
+/* singup */
+.signup_form {
+  margin: 150px auto;
+  padding: 40px;
+  width: 560px;
+  background-color: #252525;
+  font-family: 'Prestandard';
+}
+.signup_form .join-sns-box {
+  padding: 0;
+}
+.signup_form .join-hd {
+  font-size: 3rem;
+  text-align: left;
+}
+.signup_form h2 span {
+  color: #fff;
+}
+.signup_form .sns-box {
+  padding: 0;
+  margin-top: 50px;
+}
+.signup_form .join-input-box li {
+  position: relative;
+  margin-bottom: 25px;
+}
+.login-error-gray {
+  position: relative;
+  display: block;
+  margin-top: 12px;
+  padding-left: 24px;
+  color: #a5a5a5;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.login-error-gray .alert-icon {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  color: #a5a5a5;
+  border: 1px solid #a5a5a5;
+  border-radius: 50%;
+  font-size: 10px;
+}
+.login-error-pink {
+    color: #ff27a3;
+}
+input[type='text'].input_style01.error-msg,
+input[type='email'].input_style01.error-msg,
+input[type='password'].input_style01.error-msg,
+input[type='number'].input_style01.error-msg {
+  border: 1px solid #ff27a3;
+}
+
+.signup_form .join-input-box li .btn-input {
+  position: absolute;
+  top: 7px;
+  right: 16px;
+  padding: 10px 4px;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.btn-animax-join a {
+  display: block;
+  padding: 20px 0;
+  color: #fff;
+  border-radius: 100px;
+  background-color: #717171;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 20px;
+}
+.btn-animax-join.on a {
+  background-color: #027fe7;
+}
