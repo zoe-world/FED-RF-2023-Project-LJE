@@ -24,7 +24,8 @@
   position: relative;
   margin-bottom: 25px;
 }
-.login-error-gray {
+.login-error-gray,
+.login-error-pink {
   position: relative;
   display: block;
   margin-top: 12px;
@@ -33,7 +34,7 @@
   font-size: 14px;
   line-height: 1.4;
 }
-.login-error-gray .alert-icon {
+.alert-icon {
   position: absolute;
   top: 2px;
   left: 0;
@@ -48,7 +49,11 @@
   font-size: 10px;
 }
 .login-error-pink {
-    color: #ff27a3;
+  color: #ff27a3;
+}
+.login-error-pink .alert-icon {
+  border-color: #ff27a3;
+  color: #ff27a3;
 }
 input[type='text'].input_style01.error-msg,
 input[type='email'].input_style01.error-msg,
@@ -65,10 +70,13 @@ input[type='number'].input_style01.error-msg {
   font-weight: 600;
   font-size: 16px;
 }
-
-.btn-animax-join a {
-  display: block;
+.btn-animax-join > li {
+  text-align: center;
+}
+.btn-animax-join button {
+  display: inline-block;
   padding: 20px 0;
+  width: max(20vw, 180px);
   color: #fff;
   border-radius: 100px;
   background-color: #717171;
@@ -77,6 +85,6 @@ input[type='number'].input_style01.error-msg {
   font-size: 18px;
   line-height: 20px;
 }
-.btn-animax-join.on a {
+.btn-animax-join.on button {
   background-color: #027fe7;
 }

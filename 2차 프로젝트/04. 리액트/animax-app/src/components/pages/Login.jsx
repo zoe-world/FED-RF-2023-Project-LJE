@@ -19,7 +19,7 @@ export function Login({ cat }) {
 
   return (
     <>
-      <div className='login_form'>
+      <div className='login_form'>  
         <h1>로그인</h1>
         <div className='join-sns-box'>
           <h2>Animax 계정으로 로그인</h2>
@@ -34,6 +34,7 @@ export function Login({ cat }) {
                       placeholder='이메일 주소 또는 아이디'
                       title='아이디'
                       className='input_style01'
+                      autoComplete='off'
                     />
                   </label>
                 </li>
@@ -44,6 +45,7 @@ export function Login({ cat }) {
                       placeholder='비밀번호'
                       title='비밀번호'
                       className='input_style01'
+                      autoComplete='off'
                     />
                   </label>
                 </li>

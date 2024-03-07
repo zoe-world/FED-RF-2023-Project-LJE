@@ -1,5 +1,6 @@
 {
-  "homepage": "",
+  "proxy": "https://zoe-world.github.io/FED-RF-2023-Dist-LJE",
+  "homepage": "https://zoe-world.github.io/FED-RF-2023-Dist-LJE",
   "name": "animax-app",
   "version": "0.1.0",
   "private": true,
@@ -13,9 +14,11 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.6.7",
     "jquery": "^3.7.1",
     "jquery-ui-dist": "^1.13.2",
     "jquery-ui-touch-punch": "^0.2.3",
+    "logger": "^0.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-modal": "^3.16.1",
@@ -23,6 +26,8 @@
     "react-router-dom": "^6.19.0",
     "react-scripts": "5.0.1",
     "redux": "^5.0.1",
+    "redux-logger": "^3.0.6",
+    "redux-persist": "^6.0.0",
     "swiper": "^6.8.4",
     "web-vitals": "^2.1.4"
   },

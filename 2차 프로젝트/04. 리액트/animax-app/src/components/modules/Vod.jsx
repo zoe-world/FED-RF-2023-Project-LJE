@@ -34,7 +34,7 @@ export function Vod({ item, onClickVodHandler,onClickVideoHandler }) {
     $(ele).on("mouseenter", showEle);
     $(vodBox.current).on("mouseleave", hideEle);
   }); ////////// useEffect /////////////
-
+ 
   return (
     <>
       {/* 1. vod 정보창 */}

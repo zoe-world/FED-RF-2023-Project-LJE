@@ -52,7 +52,6 @@ export function Tabs({ tabItem, castLength, stLength }) {
       <div className="tab_content">
         <section className="tab_cont">
           {activeTab === 1 && castLength > 0 && (
-
             <Cast castLength={castLength} tabItem={tabItem} />
           )}
           {activeTab === 2 && stLength > 0 && <StillCut tabItem={tabItem}/>}

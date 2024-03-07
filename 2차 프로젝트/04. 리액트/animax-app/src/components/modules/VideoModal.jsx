@@ -64,7 +64,6 @@ console.log(itemVideoSrc)
   VodListData = [...VodListData];
   
   const [objInfo, setObjInfo] = useState({});
-  const [onReset, setOnReset] = useState();
   const getInfo = (x) => {
     setObjInfo(x);
   };

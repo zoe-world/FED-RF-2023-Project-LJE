@@ -1,8 +1,8 @@
 // Animax 오늘의 업데이트 리스트 컴포넌트
 
-import { useEffect, useState } from "react";
-import { SwiperVodList } from "../plugin/SwiperVodList";
-import { BestTagBtn } from "./BestTagBtn";
+import { useEffect, useState } from 'react';
+import { SwiperVodList } from '../plugin/SwiperVodList';
+import { BestTagBtn } from './BestTagBtn';
 
 // 배너데이터
 export function BestTag({ cat, item, VodListData }) {
@@ -15,7 +15,6 @@ export function BestTag({ cat, item, VodListData }) {
   // 해시태그 버튼 텍스트 추출용
   const [tagBtn, setTagBtn] = useState(VodListData);
 
-
   // 해시태크 배열데이터값에서 추출
   const tag = tagBtn.map((v) => v.hashtag?.[0]);
   const tag2 = tagBtn.map((v) => v.hashtag?.[1]);
@@ -26,13 +25,11 @@ export function BestTag({ cat, item, VodListData }) {
   tagTotalItem.push(...tag2);
   tagTotalItem = [...new Set(tagTotalItem)];
 
-
-
-    // 버튼 active 
-    const [tagBtnAct, setTagBtnAct] = useState('전체');
+  // 버튼 active
+  const [tagBtnAct, setTagBtnAct] = useState('전체');
   // 해시태그 클릭시 바뀌는 데이터
   const [tagItem, setTagItem] = useState(newVodListData);
-  
+
   const filterItem = (filter) => {
     const newItem = newVodListData.filter((v) => v.hashtag[0] === filter);
     const newItem2 = newVodListData.filter((v) => v.hashtag[1] === filter);
@@ -42,14 +39,13 @@ export function BestTag({ cat, item, VodListData }) {
     newTotal.sort((a, b) => a.idx - b.idx);
     setTagItem(newTotal);
     setTagBtnAct(filter);
-    if(filter== '전체'){
+    if (filter == '전체') {
       setTagItem(VodListData);
     }
   };
-  useEffect(()=>{
+  useEffect(() => {
     filterItem('전체');
-  },[setTagItem, setTagBtnAct])
-
+  }, [setTagItem, setTagBtnAct]);
 
   // 마우스오버 함수
   const getItem = (x) => {
@@ -58,10 +54,10 @@ export function BestTag({ cat, item, VodListData }) {
 
   return (
     <>
-      <article className="list_v2_wrap tag">
+      <article className='list_v2_wrap tag'>
         <h3>
           인기 태그 작품
-          <span className="tab_btn">
+          <span className='tab_btn'>
             <BestTagBtn
               tagTotalItem={tagTotalItem}
               filterItem={filterItem}

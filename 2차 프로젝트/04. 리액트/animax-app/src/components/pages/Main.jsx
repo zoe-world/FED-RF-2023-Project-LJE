@@ -6,7 +6,7 @@ import { Today } from "./Today";
 import { TopBanner } from "./TopBanner";
 import { Vod } from "../modules/Vod";
 import { Best } from "./Best";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { BestTag } from "./BestTag";
 import useModals from "../modules/useModals";
 import { modals } from "../modules/Modals";
