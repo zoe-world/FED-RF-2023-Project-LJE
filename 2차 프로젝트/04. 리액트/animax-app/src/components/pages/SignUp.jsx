@@ -6,76 +6,59 @@ import { SnsBox } from './SnsBox';
 import { faExclamation } from '@fortawesome/free-solid-svg-icons';
 import '../../css/signup.css';
 import { useState } from 'react';
-import { setUser } from '../../redux/reducers/user';
-import { useAppDispatch, useAppSelector } from '../../redux/store';
-import { GetProfile, GetUser, PatchUserName, PostUser } from '../../api/user';
-import http from '../../api/http';
 import { useLocation } from 'react-router-dom';
 
 export function SignUp() {
-  const { email, password, username } = useAppSelector((state) => state.user);
-  const dispatch = useAppDispatch(); // 리덕스
-  const nav = useLocation();
-  //이름, 비밀번호, 비밀번호확인, 이름
-  const [userEmail, setUserEmail] = useState('');
-  const [userPwd, setUserPwd] = useState('');
-  const [matchPwd, setMatchPwd] = useState('');
-  const [userName, setUserName] = useState('');
+  //이름, 비밀번호, 비밀번호확인
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPwd, setConfirmPwd] = useState('');
+  // 각각 에러 메세지
+  const [emailMsg, setEmailMsg] = useState('');
+  const [pwdMsg, setPwdMsg] = useState('');
+  const [confirmPwdMsg, setConfirmPwdMsg] = useState('');
 
-  //비밀번호 확인
-  if (userPwd !== matchPwd) {
-    var checkPassword = '비밀번호가 일치하지 않습니다.';
-  } else {
-    checkPassword = '';
-  }
+  const [isEmailChk, setIsEmailChk] = useState(false); //중복검사 했는지 안했는지
+  const [isEmailAvailable, setIsEmailAvailable] = useState(false); // 아이디 사용 가능한지
 
-  //회원가입 성공
-  const [success, setSuccess] = useState(false);
-
-  // 회원가입
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    if (matchPwd !== userPwd) {
-      return alert('비밀번호와 비밀번호확인은 같아야 합니다.');
+  const onChangeEmailHandler = (e) => {
+    const emailValue = e.target.value;
+    setEmail(emailValue);
+    emailCheckHandler(emailValue);
+  };
+  const onChangePasswordHandler = (e) => {
+    const { name, value } = e.target;
+    if (name === 'password') {
+      setPassword(value);
+      passwordCheckHandler(value, confirmPwd);
     } else {
-      setSuccess(true);
-      console.log('성공', email, userPwd, username);
-
-      PostUser(email, userPwd) // 회원가입
-        .then((data) => {
-          console.log('회원가입 성공', data);
-
-          GetUser(email, userPwd).then((data) => {
-            // 로그인
-            console.log('로그인 성공', data);
-            const token = data.data.access_token;
-            console.log('토큰!!!!!!!!!', token);
-
-            window.localStorage.setItem('token', JSON.stringify(token)); // 로컬 스토리지에 토큰 저장
-
-            http.defaults.headers.common['Authorization'] = token
-              ? `Bearer ${token}`
-              : null;
-
-            PatchUserName(username) //닉넴 수정
-              .then((data) => {
-                console.log('닉네임 수정 완료', data);
-
-                GetProfile()
-                  .then((data) => {
-                    console.log('프로필 가져오기 성공', data);
-                    dispatch(setUser(data.data));
-                    nav('/selectline'); // 최종 성공
-                  })
-                  .catch((err) => console.log('프로필 가져오기 실패'));
-              })
-              .catch((err) => console.log('닉넴 수정 실패', err));
-          });
-        })
-        .catch((err) => console.log(err, '회원 가입 실패'));
+      setConfirmPwd(value);
+      passwordCheckHandler(password, value);
     }
   };
+  // 아이디 유효성 검사, 중복검사 handler 구현
+  const emailCheckHandler = async (email) => {
+    const emailRegex = /^[a-z\d]{5,10}$/;
+    if (email === '') {
+      setEmailMsg('5~50자의 이메일 형식으로 입력해주세요.');
+      setIsEmailAvailable(false);
+      return false;
+    } else if (!emailRegex.test(email)) {
+      setEmailMsg(
+        '입력하신 이메일 주소가 형식에 맞지 않습니다. 다시 입력해 주세요.'
+      );
+      setIsEmailAvailable(false);
+      return false;
+    }
+  }
+  try {
+    const responseData = async emailDuplicateCheck(email);
+    if (responseData) {
+      setEmailMsg('사용 가능한 이메일입니다.');
+      setIsEmailChk(true);
+      setIsEmailAvailable(true);
+    } 
+  }
 
   return (
     <>
@@ -91,7 +74,7 @@ export function SignUp() {
             <span>이메일과 비밀번호</span>만으로 <br />
             <span>Animax를 즐길 수</span> 있어요!
           </h2>
-          <form onSubmit={handleSubmit}>
+          <form>
             <fieldset>
               <legend className='sr-only'>회원가입 입력폼</legend>
               <ul className='join-input-box'>
@@ -104,8 +87,8 @@ export function SignUp() {
                       className='input_style01 input_style02 error-msg'
                       maxLength='50'
                       autoComplete='off'
-                      onChange={(e) => setUserEmail(e.target.value)}
-                      value={userEmail}
+                      onChange={onChangeEmailHandler}
+                      value={email}
                     />
                   </label>
                   <span className='login-error-gray' id='id-error-alert'>
@@ -117,25 +100,52 @@ export function SignUp() {
                   </span>
                 </li>
                 <li>
-                  <label htmlFor='userPwd'>
+                  <label htmlFor='password'>
                     <input
                       type='password'
-                      id='userPwd'
+                      id='password'
                       autoComplete='off'
                       className='input_style01 input_style02'
                       maxLength='50'
+                      placeholder='비밀번호 입력'
+                      value={password}
+                      onChange={onChangePasswordHandler}
                     />
                   </label>
                   <button type='button' className='btn-input'>
                     show
                   </button>
-                  <span className='login-error-gray' id='pw-error-alert'>
+                  {/* <span className='login-error-gray' id='pw-error-alert'>
                     <span className='alert-icon'>
                       <FontAwesomeIcon icon={faExclamation} />
                     </span>
                     비밀번호는 8~20자 이내로 영문 대소문자, 숫자, 특수문자 중
                     3가지 이상 혼용하여 입력해 주세요.
-                  </span>
+                  </span> */}
+                </li>
+                <li>
+                  <label htmlFor='confirmPassword'>
+                    <input
+                      type='password'
+                      id='confirmPassword'
+                      autoComplete='off'
+                      className='input_style01 input_style02'
+                      maxLength='50'
+                      placeholder='비밀번호 확인'
+                      value={confirmPwd}
+                      onChange={onChangePasswordHandler}
+                    />
+                  </label>
+                  <button type='button' className='btn-input'>
+                    show
+                  </button>
+                  {/* <span className='login-error-gray' id='pw-error-alert'>
+                    <span className='alert-icon'>
+                      <FontAwesomeIcon icon={faExclamation} />
+                    </span>
+                    비밀번호는 8~20자 이내로 영문 대소문자, 숫자, 특수문자 중
+                    3가지 이상 혼용하여 입력해 주세요.
+                  </span> */}
                 </li>
               </ul>
               <ul className='btn-animax-join' id='sub-join-submit'>
@@ -148,7 +158,6 @@ export function SignUp() {
             </fieldset>
           </form>
         </div>
-        <h1>{email}</h1>
         <SnsBox />
       </div>
     </>

@@ -6,7 +6,7 @@ const UserService = {
 
   // 로그인
   getUser: (email, password) =>
-    http.post('/#/login/', {
+    http.get('/#/login/', {
       email: email,
       password: password,
     }),
@@ -16,14 +16,18 @@ const UserService = {
 
   // 회원가입 api
   postUser: (email, password) =>
-    http.post('/#/signup/', {
-      email: email,
-      password: password,
-    }),
+    http.get(
+      '/#/signup/',
+      
+      {
+        email: email,
+        password: password,
+      }
+    ),
 
   // 회원가입 : 이름
   patchUserName: (username) =>
-    http.patch('/#/signup/', {
+    http.get('/#/signup/', {
       username: username,
     }),
 };
