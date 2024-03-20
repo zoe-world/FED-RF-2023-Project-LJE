@@ -61,8 +61,11 @@ input[type='password'].input_style01.error-msg,
 input[type='number'].input_style01.error-msg {
   border: 1px solid #ff27a3;
 }
-
-.signup_form .join-input-box li .btn-input {
+.signup_form .join-input-box li label {
+  position: relative;
+  display: block;
+}
+.signup_form .join-input-box li .hint-btn {
   position: absolute;
   top: 7px;
   right: 16px;

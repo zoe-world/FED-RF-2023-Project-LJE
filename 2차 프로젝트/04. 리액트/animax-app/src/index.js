@@ -4,7 +4,7 @@ import './css/index.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { HashRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
 import { Main } from './components/pages/Main';
 import { Program } from './components/pages/Program';
@@ -23,7 +23,7 @@ function App() {
       <Provider store={store}>
         <ModalsProvider>
           {/* "homepage": "https://zoe-world.github.io/FED-RF-2023-Dist-LJE/" */}
-          <HashRouter>
+          <BrowserRouter>
             <Routes>
               <Route path='/' element={<Layout cat='main' />}>
                 <Route index element={<Main />} />
@@ -35,7 +35,7 @@ function App() {
               </Route>
               <Route path='/signup' element={<SignUp />} />
             </Routes>
-          </HashRouter>
+          </BrowserRouter>
         </ModalsProvider>
       </Provider>
     </>
