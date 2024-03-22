@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { TopArea } from "../layout/TopArea";
 import { SnsBox } from "./SnsBox";
 import { faExclamation } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import "../../css/signup.css";
 import { useCallback, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
@@ -18,12 +19,16 @@ export function SignUp() {
   const [confirmPwd, setConfirmPwd] = useState("");
 
   // 각각 에러 메세지
-  const [emailMsg, setEmailMsg] = useState("");
+  const [emailMsg, setEmailMsg] = useState(
+    "5~50자의 이메일 형식으로 입력해주세요."
+  );
   const [pwdMsg, setPwdMsg] = useState("");
   const [confirmPwdMsg, setConfirmPwdMsg] = useState("");
 
-  const [isEmailChk, setIsEmailChk] = useState(false); //중복검사 했는지 안했는지
   const [isEmailAvailable, setIsEmailAvailable] = useState(false); // 아이디 사용 가능한지
+
+  // type 변경 여부를 알리는 state
+  const [showPswd, setShowPswd] = useState(false);
 
   const onChangeEmailHandler = (e) => {
     const emailValue = e.target.value;
@@ -41,26 +46,10 @@ export function SignUp() {
     }, 500)
   );
   const onChangePasswordHandler = (e) => {
-    const { name, value } = e.target;
-    if (name === "password") {
-      setPassword(value);
-      passwordCheckHandler(value, confirmPwd, setPwdMsg, setConfirmPwdMsg);
-    } else {
-      setConfirmPwd(value);
-      passwordCheckHandler(password, value, setPwdMsg, setConfirmPwdMsg);
-    }
+    const passwordValue = e.target.value;
+    setPassword(passwordValue);
+    passwordCheckHandler(passwordValue, pwdMsg);
   };
-
-  const passwordChangeUtil = (e) =>
-    onChangePasswordHandler(
-      e,
-      password,
-      confirmPwd,
-      setPassword,
-      setConfirmPwd,
-      setPwdMsg,
-      setConfirmPwdMsg
-    );
 
   // 아이디 유효성 검사
   const emailCheckHandler = (email) => {
@@ -68,26 +57,25 @@ export function SignUp() {
       /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
     initData();
     let userInfo = localStorage.getItem("userInfo");
+
     userInfo = JSON.parse(userInfo);
     let isOk = true;
+
     //로컬스토리지 체크함수호출
     if (emailRegex.test(email)) {
-      userInfo.foreach((v) => {
+      userInfo.map((v) => {
         if (v.eml === email) {
           setEmailMsg("사용중인 이메일입니다.");
           setIsEmailAvailable(false);
           isOk = false;
         }
-        if (isOk) {
-          setEmailMsg("사용 가능한 이메일입니다.");
-          setIsEmailChk(true);
-          setIsEmailAvailable(true);
-          return true;
-        }
       });
-    }
-
-    if (email === "") {
+      if (isOk) {
+        setEmailMsg("사용 가능한 이메일입니다.");
+        setIsEmailAvailable(true);
+        return true;
+      }
+    } else if (email === "") {
       setEmailMsg("5~50자의 이메일 형식으로 입력해주세요.");
       setIsEmailAvailable(false);
       return false;
@@ -99,13 +87,9 @@ export function SignUp() {
       return false;
     }
   };
+
   // 비밀번호 유효성 검사
-  const passwordCheckHandler = (
-    password,
-    confirmPwd,
-    setPwdMsg,
-    setConfirmPwdMsg
-  ) => {
+  const passwordCheckHandler = (passwordValue, PwdMsg) => {
     const passwordRegex =
       /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])(?!.*\s)(?!.*[^a-zA-Z\d!@#$%^&*]).{8,16}$/;
     if (password === "") {
@@ -126,15 +110,13 @@ export function SignUp() {
       return true;
     }
   };
+  const confirmPwdCheckHandler = (confirmPwd, setConfirmPwdMsg) => {};
 
   //회원가입 진행
   const signupHandler = (e) => {
     e.preventDefault();
-
-    if (
-      !passwordCheckHandler(password, confirmPwd, setPwdMsg, setConfirmPwdMsg)
-    )
-      return;
+    if (!passwordCheckHandler(password, setPwdMsg)) return;
+    if (!confirmPwdCheckHandler(confirmPwd, setConfirmPwdMsg)) return;
     // 로컬스토리지 체크함수호출(없으면 생성함!)
     initData();
 
@@ -157,6 +139,14 @@ export function SignUp() {
     // 5. 로컬스에 반영하기
     localStorage.setItem("userInfo", JSON.stringify(userInfo));
   };
+
+  // 비밀번호 보이기 토클
+  const toggleShowPassword = (e) => {
+    const name = e.currentTarget;
+    console.log(name);
+    setShowPswd(!showPswd);
+  };
+
   return (
     <>
       <TopArea cat="signup" />
@@ -181,15 +171,35 @@ export function SignUp() {
                       type="text"
                       id="email"
                       placeholder="animax@example.com"
-                      className="input_style01 input_style02 error-msg"
+                      className={
+                        !email
+                          ? "input_style01 input_style02"
+                          : isEmailAvailable
+                          ? "input_style01 input_style02"
+                          : "input_style01 input_style02 error-msg"
+                      }
                       maxLength="50"
                       autoComplete="off"
                       onChange={onChangeEmailHandler}
                       value={email}
                     />
                   </label>
-                  {emailMsg && (
+                  {!email ? (
                     <span className="login-error-gray" id="id-error-alert">
+                      <span className="alert-icon">
+                        <FontAwesomeIcon icon={faExclamation} />
+                      </span>
+                      {emailMsg}
+                    </span>
+                  ) : (
+                    <span
+                      className={
+                        isEmailAvailable
+                          ? "login-error-gray"
+                          : "login-error-pink"
+                      }
+                      id="id-error-alert"
+                    >
                       <span className="alert-icon">
                         <FontAwesomeIcon icon={faExclamation} />
                       </span>
@@ -200,19 +210,33 @@ export function SignUp() {
                 <li>
                   <label htmlFor="password">
                     <input
-                      type="password"
+                      type={showPswd ? "text" : "password"}
                       id="password"
                       autoComplete="off"
                       className="input_style01 input_style02"
                       maxLength="50"
                       placeholder="비밀번호 입력"
                       value={password}
-                      onChange={passwordChangeUtil}
+                      onChange={onChangePasswordHandler}
                     />
                   </label>
-                  <button type="button" className="hint-btn">
-                    show
-                  </button>
+                  {showPswd ? (
+                    <button
+                      type="button"
+                      className="hint-btn"
+                      onClick={(e) => toggleShowPassword(e)}
+                    >
+                      <FontAwesomeIcon icon={faEye} />
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      className="hint-btn"
+                      onClick={(e) => toggleShowPassword(e)}
+                    >
+                      <FontAwesomeIcon icon={faEyeSlash} />
+                    </button>
+                  )}
 
                   {/* <span className='login-error-gray' id='pw-error-alert'>
                     <span className='alert-icon'>
@@ -225,26 +249,39 @@ export function SignUp() {
                 <li>
                   <label htmlFor="confirmPassword">
                     <input
-                      type="password"
+                      type={showPswd ? "text" : "password"}
                       id="confirmPassword"
                       autoComplete="off"
                       className="input_style01 input_style02"
                       maxLength="50"
                       placeholder="비밀번호 확인"
-                      value={confirmPwd}
-                      onChange={passwordChangeUtil}
+                      value={onChangePasswordHandler}
                     />
                   </label>
-                  <button type="button" className="hint-btn">
-                    show
-                  </button>
-                  {/* <span className='login-error-gray' id='pw-error-alert'>
-                    <span className='alert-icon'>
+                  {showPswd ? (
+                    <button
+                      type="button"
+                      className="hint-btn"
+                      onClick={(e) => toggleShowPassword(e)}
+                    >
+                      <FontAwesomeIcon icon={faEye} />
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      className="hint-btn"
+                      onClick={(e) => toggleShowPassword(e)}
+                    >
+                      <FontAwesomeIcon icon={faEye} />
+                    </button>
+                  )}
+                  <span className="login-error-gray" id="pw-error-alert">
+                    <span className="alert-icon">
                       <FontAwesomeIcon icon={faExclamation} />
                     </span>
                     비밀번호는 8~20자 이내로 영문 대소문자, 숫자, 특수문자 중
                     3가지 이상 혼용하여 입력해 주세요.
-                  </span> */}
+                  </span>
                 </li>
               </ul>
               <ul className="btn-animax-join" id="sub-join-submit">
