@@ -26,8 +26,8 @@ const ModalStyle = {
     zIndex: 9999,
     overflowY: "auto",
     padding: "2vw 10vw",
-    display:'flex',
-    alignItems:'center'
+    display: "flex",
+    alignItems: "center",
   },
   content: {
     position: "static",
@@ -49,8 +49,7 @@ const VideoModal = ({ index, isOpen, onClose }) => {
 
   const itemInfo = useSelector((state) => state.item.value, shallowEqual);
   const item = Object.values(itemInfo)[0];
-  const itemVideoSrc = item.videoSrc
-console.log(itemVideoSrc)
+  const itemVideoSrc = item.videoSrc;
   /*  
     tab-menu
   */
@@ -62,7 +61,7 @@ console.log(itemVideoSrc)
   // video 전체 데이터
   let VodListData = VideoListData;
   VodListData = [...VodListData];
-  
+
   const [objInfo, setObjInfo] = useState({});
   const getInfo = (x) => {
     setObjInfo(x);
@@ -73,7 +72,9 @@ console.log(itemVideoSrc)
       isOpen={isOpen}
       contentLabel="modal"
       closeTimeoutMS={150}
-      onRequestClose={() => {onClose();}}
+      onRequestClose={() => {
+        onClose();
+      }}
       shouldReturnFocusAfterClose={false}
       style={ModalStyle}
       index={index}
@@ -81,7 +82,12 @@ console.log(itemVideoSrc)
       <div className="previewModal-player video-player">
         <div className="previewModal-video_bx">
           <div className="previewModal-video">
-            <video src={itemVideoSrc.openSrc} style={{width:'100%'}} controls autoPlay></video>
+            <video
+              src={itemVideoSrc.openSrc}
+              style={{ width: "100%" }}
+              controls
+              autoPlay
+            ></video>
           </div>
         </div>
       </div>

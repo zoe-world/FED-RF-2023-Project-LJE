@@ -6,7 +6,7 @@ import $ from "jquery";
 import { useDispatch } from "react-redux";
 import { itemOver } from "../../redux/reducers/item";
 
-export function Vod({ item, onClickVodHandler,onClickVideoHandler }) {
+export function Vod({ item, onClickVodHandler, onClickVideoHandler }) {
   const selData = VideoListData;
   // redux
   const dispatch = useDispatch();
@@ -34,7 +34,6 @@ export function Vod({ item, onClickVodHandler,onClickVideoHandler }) {
     $(ele).on("mouseenter", showEle);
     $(vodBox.current).on("mouseleave", hideEle);
   }); ////////// useEffect /////////////
- 
   return (
     <>
       {/* 1. vod 정보창 */}
@@ -62,7 +61,12 @@ export function Vod({ item, onClickVodHandler,onClickVideoHandler }) {
         }
       >
         <div className="info_bx">
-          <a href="#" title="동영상 재생" className="link_play link_ico" onClick={onClickVideoHandler}>
+          <a
+            href="#"
+            title="동영상 재생"
+            className="link_play link_ico"
+            onClick={onClickVideoHandler}
+          >
             <span className="tootip">재생하기</span>
           </a>
           <a
