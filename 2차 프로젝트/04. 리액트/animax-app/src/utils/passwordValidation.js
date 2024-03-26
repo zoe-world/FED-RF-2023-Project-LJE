@@ -36,7 +36,6 @@ export const onChangePasswordHandler = (
   }
 };
 export const passwordCheckHandler = (
-  value,
   password,
   confirm,
   setPasswordError,
@@ -54,19 +53,14 @@ export const passwordCheckHandler = (
     setPasswordError(
       "비밀번호는 8~16자의 영문, 숫자, 특수문자(!@#$%^&*)를 모두 포함하여야 합니다."
     );
-    setIsPasswordAvailable(false);
     return false;
   } else if (confirm !== password) {
     setPasswordError("");
     setConfirmError("비밀번호가 일치하지 않습니다.");
-    setIsPasswordAvailable(true);
-    setIsConfirmAvailable(false);
     return false;
   } else {
     setPasswordError("");
     setConfirmError("");
-    setIsPasswordAvailable(true);
-    setIsConfirmAvailable(true);
     return true;
   }
 };

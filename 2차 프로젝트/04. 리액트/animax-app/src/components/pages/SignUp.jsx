@@ -52,18 +52,6 @@ export function SignUp() {
       emailCheckHandler(email);
     }, 500)
   );
-  const passwordChangeUtil = (e) =>
-    onChangePasswordHandler(
-      e,
-      password,
-      confirm,
-      setPassword,
-      setConfirm,
-      setPasswordError,
-      setConfirmError,
-      isPasswordAvailable,
-      isConfirmAvailable
-    );
 
   // 아이디 유효성 검사
   const emailCheckHandler = (email) => {
@@ -101,6 +89,18 @@ export function SignUp() {
       return false;
     }
   };
+  const passwordChangeUtil = (e) =>
+    onChangePasswordHandler(
+      e,
+      password,
+      confirm,
+      setPassword,
+      setConfirm,
+      setPasswordError,
+      setConfirmError,
+      setIsPasswordAvailable,
+      setIsConfirmAvailable
+    );
 
   //회원가입 진행
   const signupHandler = (e) => {
@@ -110,9 +110,7 @@ export function SignUp() {
         password,
         confirm,
         setConfirmError,
-        setPasswordError,
-        setIsEmailAvailable,
-        setIsConfirmAvailable
+        setPasswordError
       )
     )
       return;
@@ -150,7 +148,7 @@ export function SignUp() {
       setConfirmHint(!confirmHint);
     }
   };
-
+  console.log(typeof password, !password);
   return (
     <>
       <TopArea cat="signup" />
