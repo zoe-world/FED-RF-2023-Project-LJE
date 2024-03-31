@@ -4,7 +4,7 @@
   padding: 40px;
   width: 560px;
   background-color: #252525;
-  font-family: 'Prestandard';
+  font-family: "Prestandard";
 }
 .signup_form .join-sns-box {
   padding: 0;
@@ -55,10 +55,10 @@
   border-color: #ff27a3;
   color: #ff27a3;
 }
-input[type='text'].input_style01.error-msg,
-input[type='email'].input_style01.error-msg,
-input[type='password'].input_style01.error-msg,
-input[type='number'].input_style01.error-msg {
+input[type="text"].input_style01.error-msg,
+input[type="email"].input_style01.error-msg,
+input[type="password"].input_style01.error-msg,
+input[type="number"].input_style01.error-msg {
   border: 1px solid #ff27a3;
 }
 .signup_form .join-input-box li label {
@@ -90,4 +90,19 @@ input[type='number'].input_style01.error-msg {
 }
 .btn-animax-join.on button {
   background-color: #027fe7;
+}
+
+.err {
+  animation: error 0.2s 3;
+}
+@keyframes error {
+  0% {
+    transform: translateX(-2px);
+  }
+  50% {
+    transform: translateX(2px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
 }

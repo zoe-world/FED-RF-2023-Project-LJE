@@ -46,21 +46,29 @@ export const passwordCheckHandler = (
   const passwordRegex =
     /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])(?!.*\s)(?!.*[^a-zA-Z\d!@#$%^&*]).{8,16}$/;
   if (password === "") {
-    setPasswordError("비밀번호를 입력해주세요.");
+    setPasswordError(
+      "비밀번호는 8~20자 이내로 영문 대소문자, 숫자, 특수문자 중 3가지 이상 혼용하여 입력해 주세요."
+    );
     setIsPasswordAvailable(false);
     return false;
   } else if (!passwordRegex.test(password)) {
     setPasswordError(
-      "비밀번호는 8~16자의 영문, 숫자, 특수문자(!@#$%^&*)를 모두 포함하여야 합니다."
+      "비밀번호는 8~20자의 영문, 숫자, 특수문자(!@#$%^&*)를 모두 포함하여야 합니다."
     );
+    setIsPasswordAvailable(false);
     return false;
   } else if (confirm !== password) {
     setPasswordError("");
     setConfirmError("비밀번호가 일치하지 않습니다.");
+    setIsPasswordAvailable(false);
+    setIsConfirmAvailable(false);
+
     return false;
   } else {
     setPasswordError("");
     setConfirmError("");
+    setIsPasswordAvailable(true);
+    setIsConfirmAvailable(true);
     return true;
   }
 };
