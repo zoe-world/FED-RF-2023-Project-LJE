@@ -48,6 +48,10 @@
   border-radius: 50%;
   font-size: 10px;
 }
+.alert-icon.none {
+  display: none;
+}
+
 .login-error-pink {
   color: #ff27a3;
 }

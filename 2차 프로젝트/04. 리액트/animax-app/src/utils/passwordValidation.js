@@ -62,7 +62,6 @@ export const passwordCheckHandler = (
     setConfirmError("비밀번호가 일치하지 않습니다.");
     setIsPasswordAvailable(false);
     setIsConfirmAvailable(false);
-
     return false;
   } else {
     setPasswordError("");

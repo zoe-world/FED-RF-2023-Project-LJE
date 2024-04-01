@@ -7,7 +7,7 @@ import { faExclamation } from "@fortawesome/free-solid-svg-icons";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import "../../css/signup.css";
 import { useCallback, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { debounce } from "../../hooks/debounce";
 import { fireStore } from "../../firebase";
 import { initData } from "func/userInfo";
@@ -15,8 +15,12 @@ import {
   onChangePasswordHandler,
   passwordCheckHandler,
 } from "utils/passwordValidation";
+import userEvent from "@testing-library/user-event";
+import { doc } from "firebase/firestore";
 
 export function SignUp() {
+  const navigate = useNavigate();
+
   //이름, 비밀번호, 비밀번호확인
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -106,18 +110,13 @@ export function SignUp() {
 
   //회원가입 진행
   const signupHandler = (e) => {
-    /*
-       1. 회원가입 버튼을 눌렀을 때 isemailavailable 값이 false 이면??
-       .err 값을 추가하고, 그게 아니라면 그냥 통과
-
-
-     */
     e.preventDefault();
-    const err = document.querySelector("#email");
     const idCheckResult = emailCheckHandler(email);
-    if (idCheckResult) setEmailMsg("");
-    else return;
-
+    if (idCheckResult) {
+      setEmailMsg("");
+    } else {
+      return;
+    }
     if (
       !passwordCheckHandler(
         password,
@@ -149,6 +148,12 @@ export function SignUp() {
 
     // 5. 로컬스에 반영하기
     localStorage.setItem("userInfo", JSON.stringify(userInfo));
+
+    // 회원가입 버튼 active
+    const registerBtn = document.querySelector(".btn-animax-join button");
+    registerBtn.classList.add("on");
+    // 로그인 페이지로 이동하기
+    navigate("/login");
   };
 
   // 비밀번호 보이기 토클
@@ -163,7 +168,7 @@ export function SignUp() {
       setConfirmHint(!confirmHint);
     }
   };
-  console.log(typeof password, !password);
+
   return (
     <>
       <TopArea cat="signup" />
@@ -197,23 +202,21 @@ export function SignUp() {
                       value={email}
                     />
                   </label>
-                  {!email ? (
-                    <span className="login-error-gray" id="id-error-alert">
+                  {email !== "" && !isEmailAvailable ? (
+                    <span
+                      className={`login-error-gray ${
+                        email !== "" && !isEmailAvailable && "login-error-pink"
+                      }`}
+                      id="id-error-alert"
+                    >
                       <span className={`alert-icon`}>
                         <FontAwesomeIcon icon={faExclamation} />
                       </span>
                       {emailMsg}
                     </span>
                   ) : (
-                    <span
-                      className={
-                        isEmailAvailable
-                          ? "login-error-gray"
-                          : "login-error-pink"
-                      }
-                      id="id-error-alert"
-                    >
-                      <span className="alert-icon">
+                    <span className={`login-error-gray`} id="id-error-alert">
+                      <span className={`alert-icon`}>
                         <FontAwesomeIcon icon={faExclamation} />
                       </span>
                       {emailMsg}
@@ -268,28 +271,6 @@ export function SignUp() {
                     </span>
                     {passwordError}
                   </span>
-                  {/* {!password ? (
-                    <span className="login-error-gray" id="id-error-alert">
-                      <span className="alert-icon">
-                        <FontAwesomeIcon icon={faExclamation} />
-                      </span>
-                      {passwordError}
-                    </span>
-                  ) : (
-                    <span
-                      className={
-                        isPasswordAvailable
-                          ? "login-error-gray"
-                          : "login-error-pink"
-                      }
-                      id="id-error-alert"
-                    >
-                      <span className="alert-icon">
-                        <FontAwesomeIcon icon={faExclamation} />
-                      </span>
-                      {passwordError}
-                    </span>
-                  )} */}
                 </li>
                 <li>
                   <label htmlFor="confirm">
@@ -298,7 +279,12 @@ export function SignUp() {
                       id="confirm"
                       name="confirm"
                       autoComplete="off"
-                      className="input_style01 input_style02"
+                      className={`input_style01 input_style02 ${
+                        password !== "" &&
+                        confirm !== "" &&
+                        !isConfirmAvailable &&
+                        "error-msg"
+                      }`}
                       maxLength="16"
                       placeholder="비밀번호 확인"
                       value={confirm}
@@ -322,28 +308,26 @@ export function SignUp() {
                       <FontAwesomeIcon icon={faEyeSlash} />
                     </button>
                   )}
-                  {!confirm ? (
-                    <span className="login-error-gray" id="id-error-alert">
-                      <span className="alert-icon">
-                        <FontAwesomeIcon icon={faExclamation} />
+                  {password !== "" &&
+                    confirm !== "" &&
+                    confirm !== password && (
+                      <span
+                        className={`login-error-gray ${
+                          password !== "" &&
+                          confirm !== "" &&
+                          confirm !== password &&
+                          !isConfirmAvailable
+                            ? "login-error-pink"
+                            : ""
+                        }`}
+                        id="id-error-alert"
+                      >
+                        <span className={`alert-icon`}>
+                          <FontAwesomeIcon icon={faExclamation} />
+                        </span>
+                        {confirmError}
                       </span>
-                      {confirmError}
-                    </span>
-                  ) : (
-                    <span
-                      className={
-                        isConfirmAvailable
-                          ? "login-error-gray"
-                          : "login-error-pink"
-                      }
-                      id="id-error-alert"
-                    >
-                      <span className="alert-icon">
-                        <FontAwesomeIcon icon={faExclamation} />
-                      </span>
-                      {confirmError}
-                    </span>
-                  )}
+                    )}
                 </li>
               </ul>
               <ul className="btn-animax-join" id="sub-join-submit">
