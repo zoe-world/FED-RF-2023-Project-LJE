@@ -24,7 +24,6 @@ export function Vod({ item, onClickVodHandler, onClickVideoHandler }) {
     e.preventDefault();
     setIsAct(true);
   };
-
   const hideEle = (e) => {
     e.preventDefault();
     setIsAct(false);

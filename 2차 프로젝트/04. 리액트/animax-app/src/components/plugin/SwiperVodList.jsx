@@ -194,7 +194,7 @@ export function SwiperVodList({ cat, getMonthDiff, fm, rank, item, tagItem }) {
               >
                 <a href="#" className="link_img">
                   <div className="img_group">
-                    <em className={v.rank <=3 ? 'on':''}>{v.rank}</em>
+                    <em className={v.rank <= 3 ? "on" : ""}>{v.rank}</em>
                     <div className="bg"></div>
                     <img
                       className="img"
@@ -236,14 +236,14 @@ export function SwiperVodList({ cat, getMonthDiff, fm, rank, item, tagItem }) {
         </Swiper>
       </div>
 
-      { cat!== 'tag' &&
+      {cat !== "tag" && (
         <div className="list-ctl_box">
           <ol className="paging_list swiper-paging_list"></ol>
           <a href="#" title="오늘의 업데이트 더보기" className="more_btn">
             더보기
           </a>
         </div>
-      }
+      )}
     </>
   );
 } /////////// SwiperVodList 컴포넌트 /////

@@ -1,4 +1,3 @@
-
 // redux/slide.js
 import { createSlice } from "@reduxjs/toolkit";
 
@@ -12,6 +11,7 @@ export const itemSlice = createSlice({
   reducers: {
     itemOver: (state, action) => {
       state.value = action.payload;
+      console.log(itemSlice.actions);
     },
     itemOut: (state) => {
       state.value = initialStateValue;
